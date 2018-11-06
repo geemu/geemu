@@ -3,10 +3,3 @@ spring:
     name: eureka
   profiles:
     active: @env@
-
-eureka:
-  client:
-    fetch-registry: false
-    register-with-eureka: true
-    service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
