@@ -1,19 +1,21 @@
 <?xml version='1.0' encoding='utf-8'?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.chenfangming</groupId>
     <artifactId>backend-cloud</artifactId>
     <version>1.0.0.RELEASE</version>
+    <packaging>pom</packaging>
 
     <name>${project.artifactId}</name>
     <description>backend的spring cloud版本</description>
-    <packaging>pom</packaging>
 
     <modules>
         <module>eureka</module>
+        <module>config</module>
+        <module>gateway</module>
+        <module>user</module>
     </modules>
 
     <properties>
@@ -27,6 +29,7 @@
         <spring-boot-dependencies.version>2.0.6.RELEASE</spring-boot-dependencies.version>
         <spring-cloud-dependencies.version>Finchley.RELEASE</spring-cloud-dependencies.version>
         <lombok.version>1.18.4</lombok.version>
+        <guava.version>23.0</guava.version>
     </properties>
 
     <dependencies>
@@ -34,6 +37,17 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
         </dependency>
     </dependencies>
 
@@ -82,10 +96,7 @@
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
                 <includes>
-                    <include>static/**</include>
-                    <include>application.yml</include>
-                    <include>application-${env}.yml</include>
-                    <include>**/*Mapper.xml</include>
+                    <include>**</include>
                 </includes>
             </resource>
         </resources>
@@ -99,18 +110,6 @@
             </activation>
             <properties>
                 <env>dev</env>
-            </properties>
-        </profile>
-        <profile>
-            <id>test</id>
-            <properties>
-                <env>test</env>
-            </properties>
-        </profile>
-        <profile>
-            <id>pro</id>
-            <properties>
-                <env>pro</env>
             </properties>
         </profile>
     </profiles>

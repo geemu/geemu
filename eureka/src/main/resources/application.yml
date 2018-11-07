@@ -1,5 +1,18 @@
 spring:
+  devtools:
+    livereload:
+      port: 35729
   application:
-    name: eureka
+    name: EUREKA
   profiles:
     active: @env@
+
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+    app-group-name: 注册中心
+    appname: ${spring.application.name}
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka

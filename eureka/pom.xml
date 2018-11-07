@@ -3,6 +3,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>com.chenfangming</groupId>
+        <artifactId>backend-cloud</artifactId>
+        <version>1.0.0.RELEASE</version>
+    </parent>
+
     <artifactId>eureka</artifactId>
     <version>1.0.0.RELEASE</version>
     <packaging>jar</packaging>
@@ -10,16 +16,24 @@
     <name>eureka</name>
     <description>注册中心</description>
 
-    <parent>
-        <groupId>com.chenfangming</groupId>
-        <artifactId>backend-cloud</artifactId>
-        <version>1.0.0.RELEASE</version>
-    </parent>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jsr305</artifactId>
+                    <groupId>com.google.code.findbugs</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>guava</artifactId>
+                    <groupId>com.google.guava</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>HdrHistogram</artifactId>
+                    <groupId>org.hdrhistogram</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 

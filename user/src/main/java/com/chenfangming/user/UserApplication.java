@@ -1,12 +1,49 @@
 package com.chenfangming.user;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Mono;
 
+/**
+ * User程序入口
+ * @author 陈方明  cfmmail@sina.com
+ * @since 2018-11-07 21:06
+ */
+@RestController
+@EnableEurekaClient
 @SpringBootApplication
 public class UserApplication {
+    @Value("${foo}")
+    public String foo;
 
+    /**
+     * 主函数
+     * @param args 运行参数
+     */
     public static void main(String[] args) {
-        SpringApplication.run(UserApplication.class, args);
+        SpringApplication app = new SpringApplication(UserApplication.class);
+        // 关闭启动Banner
+        app.setBannerMode(org.springframework.boot.Banner.Mode.OFF);
+        app.run(args);
+    }
+
+    @GetMapping("hello")
+    public String hello() {
+        return "hello";
+    }
+
+    @GetMapping("badboy")
+    public Mono<String> badboy() throws Exception {
+        Thread.sleep(10000L);
+        return Mono.just("badboy");
+    }
+
+    @GetMapping("foo")
+    public String foo() {
+        return foo;
     }
 }

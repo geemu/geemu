@@ -9,21 +9,25 @@
         <version>1.0.0.RELEASE</version>
     </parent>
 
-    <artifactId>config</artifactId>
+    <artifactId>gateway</artifactId>
     <version>1.0.0.RELEASE</version>
     <packaging>jar</packaging>
 
-    <name>config</name>
-    <description>配置中心</description>
+    <name>${project.artifactId}</name>
+    <description>网关</description>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-config-server</artifactId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
     </dependencies>
 
