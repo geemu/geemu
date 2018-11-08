@@ -1,9 +1,22 @@
-#  Server容器配置
+spring:
+  devtools:
+    livereload:
+      port: 35729
+  application:
+    name: EUREKA
+
 server:
   port: 8761
 
 eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+    app-group-name: 注册中心
+    appname: ${spring.application.name}
   server:
     enable-self-preservation: false
   client:
     fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka

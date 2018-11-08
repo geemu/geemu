@@ -5,13 +5,4 @@ spring:
         enabled: true
         service-id: config
       name: user
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://127.0.0.1:8761/eureka/
-  instance:
-    hostname: localhost
-    prefer-ip-address: true
-    app-group-name: 用户服务
-    appname: ${spring.application.name}
+      profile: default
