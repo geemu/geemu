@@ -1,11 +1,14 @@
 package com.chenfangming.user;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.data.redis.core.ReactiveRedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
@@ -19,6 +22,13 @@ import reactor.core.publisher.Mono;
 public class UserApplication {
     @Value("${foo}")
     public String foo;
+    @Autowired
+    private ReactiveRedisTemplate reactiveRedisTemplate;
+
+    @GetMapping("redis")
+    public Flux<String> aa() {
+        return reactiveRedisTemplate.keys("key*");
+    }
 
     /**
      * 主函数

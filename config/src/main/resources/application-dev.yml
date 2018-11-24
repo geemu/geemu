@@ -10,3 +10,13 @@ eureka:
     prefer-ip-address: true
     app-group-name: 配置中心
     appname: ${spring.application.name}
+
+spring:
+  redis:
+    database: 0
+    url: 47.97.215.198
+    password: Chen1436863821.
+    port: 6379
+    lettuce:
+      pool:
+        min-idle: 1
