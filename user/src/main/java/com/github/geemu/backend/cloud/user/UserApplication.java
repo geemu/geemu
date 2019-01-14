@@ -1,4 +1,4 @@
-package com.chenfangming.user;
+package com.github.geemu.backend.cloud.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

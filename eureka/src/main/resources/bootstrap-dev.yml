@@ -1,22 +1,21 @@
+server:
+  port: 8761
+
 spring:
   devtools:
     livereload:
       port: 35729
   application:
-    name: EUREKA
-
-server:
-  port: 8761
+    name: eureka
 
 eureka:
   instance:
-    hostname: localhost
+    hostname: 127.0.0.1
     prefer-ip-address: true
-    app-group-name: 注册中心
-    appname: ${spring.application.name}
   server:
     enable-self-preservation: false
   client:
     fetch-registry: false
+    register-with-eureka: false
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
+      defaultZone: http://127.0.0.1:8761/eureka
