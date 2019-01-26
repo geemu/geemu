@@ -1,5 +1,6 @@
-package com.github.geemu.backend.cloud.config;
+package com.chenfangming.backend.cloud.config;
 
+import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -20,7 +21,7 @@ public class ConfigApplication {
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(ConfigApplication.class);
         // 关闭启动Banner
-        app.setBannerMode(org.springframework.boot.Banner.Mode.OFF);
+        app.setBannerMode(Banner.Mode.OFF);
         app.run(args);
     }
 }

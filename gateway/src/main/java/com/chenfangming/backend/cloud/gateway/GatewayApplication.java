@@ -1,14 +1,16 @@
-package com.github.geemu.backend.cloud.gateway;
+package com.chenfangming.backend.cloud.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 /**
  * Gateway程序入口
  * @author 陈方明  cfmmail@sina.com
  * @since 2018-11-07 22:33
  */
+@EnableZuulProxy
 @EnableEurekaClient
 @SpringBootApplication
 public class GatewayApplication {

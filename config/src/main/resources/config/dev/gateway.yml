@@ -1,0 +1,8 @@
+foo: DEV环境
+
+server:
+  port: 8763
+
+spring:
+  application:
+    name: gateway

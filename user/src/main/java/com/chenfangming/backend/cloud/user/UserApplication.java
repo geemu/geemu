@@ -1,7 +1,8 @@
-package com.github.geemu.backend.cloud.user;
+package com.chenfangming.backend.cloud.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
@@ -25,11 +26,6 @@ public class UserApplication {
     @Autowired
     private ReactiveRedisTemplate reactiveRedisTemplate;
 
-    @GetMapping("redis")
-    public Flux<String> aa() {
-        return reactiveRedisTemplate.keys("key*");
-    }
-
     /**
      * 主函数
      * @param args 运行参数
@@ -37,8 +33,13 @@ public class UserApplication {
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(UserApplication.class);
         // 关闭启动Banner
-        app.setBannerMode(org.springframework.boot.Banner.Mode.OFF);
+        app.setBannerMode(Banner.Mode.OFF);
         app.run(args);
+    }
+
+    @GetMapping("redis")
+    public Flux<String> aa() {
+        return reactiveRedisTemplate.keys("key*");
     }
 
     @GetMapping("hello")

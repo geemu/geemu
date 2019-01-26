@@ -1,5 +1,6 @@
-package com.github.geemu.backend.cloud.eureka;
+package com.chenfangming.backend.cloud.eureka;
 
+import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
@@ -19,7 +20,7 @@ public class EurekaApplication {
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(EurekaApplication.class);
         // 关闭启动Banner
-        app.setBannerMode(org.springframework.boot.Banner.Mode.OFF);
+        app.setBannerMode(Banner.Mode.OFF);
         app.run(args);
     }
 }

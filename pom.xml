@@ -10,7 +10,6 @@
 
     <name>${project.artifactId}</name>
     <description>backend的spring cloud版本</description>
-    <url>https://github.com/geemu/backend-cloud</url>
 
     <modules>
         <module>eureka</module>
@@ -26,78 +25,17 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
-        <spring-boot-maven-plugin.version>2.1.2.RELEASE</spring-boot-maven-plugin.version>
-        <spring-boot-dependencies.version>2.1.2.RELEASE</spring-boot-dependencies.version>
-        <spring-cloud-dependencies.version>Finchley.RELEASE</spring-cloud-dependencies.version>
         <!-- 版本管理 -->
-        <lombok.version>1.18.4</lombok.version>
-        <spring-boot-devtools.version>2.1.2.RELEASE</spring-boot-devtools.version>
-        <guava.version>27.0.1-jre</guava.version>
-        <mybatisplus-spring-boot-starter.version>1.0.5</mybatisplus-spring-boot-starter.version>
-        <mysql-connector-java.version>8.0.13</mysql-connector-java.version>
+        <version.spring-boot-maven-plugin>2.1.2.RELEASE</version.spring-boot-maven-plugin>
+        <version.spring-boot-dependencies>2.1.2.RELEASE</version.spring-boot-dependencies>
+        <version.spring-cloud-dependencies>Greenwich.RELEASE</version.spring-cloud-dependencies>
+        <version.mybatisplus-spring-boot-starter>1.0.5</version.mybatisplus-spring-boot-starter>
     </properties>
-
-    <!-- 依赖管理器 -->
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-devtools</artifactId>
-                <version>${spring-boot-devtools.version}</version>
-                <optional>true</optional>
-            </dependency>
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>${guava.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>${mysql-connector-java.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatisplus-spring-boot-starter</artifactId>
-                <version>${mybatisplus-spring-boot-starter.version}</version>
-            </dependency>
-            <!-- SpringBoot的依赖管理 -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot-dependencies.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <!-- SpringCloud的依赖管理 -->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud-dependencies.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
         </dependency>
     </dependencies>
 
@@ -106,7 +44,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot-maven-plugin.version}</version>
+                <version>${version.spring-boot-maven-plugin}</version>
                 <configuration>
                     <fork>true</fork>
                     <addResources>true</addResources>
@@ -125,19 +63,15 @@
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
                 <includes>
-                    <include>static/**</include>
-                    <include>application.yml</include>
-                    <include>application-${env}.yml</include>
-                    <include>application.properties</include>
-                    <include>application-${env}.properties</include>
-                    <include>bootstrap.yml</include>
-                    <include>bootstrap-${env}.yml</include>
-                    <include>bootstrap.properties</include>
-                    <include>bootstrap-${env}.properties</include>
-                    <include>**Mapper.xml</include>
-                    <include>config/${env}/**.yml</include>
-                    <include>config/${env}/**.properties</include>
+                    <include>META-INF/**</include>
                     <include>config.properties</include>
+                    <include>application.yml</include>
+                    <include>bootstrap.yml</include>
+                    <include>static/**</include>
+                    <include>**Mapper.xml</include>
+                    <include>application-${env}.yml</include>
+                    <include>bootstrap-${env}.yml</include>
+                    <include>config/${env}/**.yml</include>
                 </includes>
             </resource>
         </resources>
@@ -154,5 +88,32 @@
             </properties>
         </profile>
     </profiles>
+
+    <!-- 依赖管理 -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatisplus-spring-boot-starter</artifactId>
+                <version>${version.mybatisplus-spring-boot-starter}</version>
+            </dependency>
+            <!-- SpringBoot的依赖管理 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${version.spring-boot-dependencies}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- SpringCloud的依赖管理 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${version.spring-cloud-dependencies}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>
