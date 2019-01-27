@@ -3,7 +3,6 @@ package com.chenfangming.backend.cloud.config;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cloud.config.server.EnableConfigServer;
 
 /**
@@ -12,7 +11,7 @@ import org.springframework.cloud.config.server.EnableConfigServer;
  * @since 2018-11-06 21:02
  */
 @EnableConfigServer
-@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
+@SpringBootApplication
 public class ConfigApplication {
     /**
      * 主函数
