@@ -1,5 +1,6 @@
 package com.chenfangming.backend.cloud.gateway;
 
+import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
@@ -21,7 +22,7 @@ public class GatewayApplication {
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(GatewayApplication.class);
         // 关闭启动Banner
-        app.setBannerMode(org.springframework.boot.Banner.Mode.OFF);
+        app.setBannerMode(Banner.Mode.OFF);
         app.run(args);
     }
 
