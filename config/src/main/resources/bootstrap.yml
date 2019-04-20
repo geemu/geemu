@@ -1,4 +1,4 @@
 spring:
   profiles:
     active: native
-    include: @env@
+    include: @springProfile@

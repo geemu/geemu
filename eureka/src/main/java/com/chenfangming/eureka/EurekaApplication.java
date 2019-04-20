@@ -1,4 +1,4 @@
-package com.chenfangming.backend.cloud.eureka;
+package com.chenfangming.eureka;
 
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
@@ -19,7 +19,6 @@ public class EurekaApplication {
      */
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(EurekaApplication.class);
-        // 关闭启动Banner
         app.setBannerMode(Banner.Mode.OFF);
         app.run(args);
     }

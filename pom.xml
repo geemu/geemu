@@ -15,7 +15,7 @@
         <module>eureka</module>
         <module>config</module>
         <module>gateway</module>
-        <module>user</module>
+        <module>task</module>
     </modules>
 
     <properties>
@@ -63,15 +63,7 @@
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
                 <includes>
-                    <include>META-INF/**</include>
-                    <include>config.properties</include>
-                    <include>application.yml</include>
-                    <include>bootstrap.yml</include>
-                    <include>static/**</include>
-                    <include>**Mapper.xml</include>
-                    <include>application-${env}.yml</include>
-                    <include>bootstrap-${env}.yml</include>
-                    <include>config/${env}/**.yml</include>
+                    <include>**</include>
                 </includes>
             </resource>
         </resources>
@@ -79,12 +71,12 @@
 
     <profiles>
         <profile>
-            <id>dev</id>
+            <id>local</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <env>dev</env>
+                <springProfile>local</springProfile>
             </properties>
         </profile>
     </profiles>
