@@ -21,7 +21,6 @@ public class GatewayApplication {
      */
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(GatewayApplication.class);
-        // 关闭启动Banner
         app.setBannerMode(Banner.Mode.OFF);
         app.run(args);
     }
