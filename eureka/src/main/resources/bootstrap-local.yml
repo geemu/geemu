@@ -1,12 +1,13 @@
 server:
   port: 8761
 
+spring:
+  application:
+    name: cloud-eureka
 
 eureka:
   instance:
     prefer-ip-address: true
-    app-group-name: cloud
-    appname: cloud-eureka
   server:
     enable-self-preservation: false
   client:
