@@ -10,11 +10,11 @@
     </parent>
 
     <artifactId>task</artifactId>
-    <version>1.0.0.RELEASE</version>
+    <version>${project.parent.version}</version>
     <packaging>jar</packaging>
 
-    <name>user</name>
-    <description>用户服务</description>
+    <name>task</name>
+    <description>定时任务</description>
 
     <dependencies>
         <dependency>

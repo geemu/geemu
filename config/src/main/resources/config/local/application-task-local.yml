@@ -1,8 +1,8 @@
-foo: DEV环境
+foo: local-application-task
 
 server:
   port: 8764
 
 spring:
   application:
-    name: USER
+    name: cloud-task
