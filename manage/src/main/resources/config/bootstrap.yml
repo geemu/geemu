@@ -1,5 +1,3 @@
 spring:
   profiles:
     active: @springProfile@
-  application:
-    name: cloud-eureka

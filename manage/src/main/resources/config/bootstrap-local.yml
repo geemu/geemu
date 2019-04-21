@@ -1,0 +1,15 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: cloud-config
+      name: application-manage
+      profile: local
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/
