@@ -109,7 +109,13 @@
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
                 <includes>
-                    <include>**</include>
+                    <include>static/**</include>
+                    <include>public/**</include>
+                    <include>template/**</include>
+                    <include>**Mapper.xml</include>
+                    <include>config/bootstrap.yml</include>
+                    <include>config/bootstrap-${springProfile}.yml</include>
+                    <include>config/${springProfile}/*-${springProfile}.yml</include>
                 </includes>
             </resource>
         </resources>
