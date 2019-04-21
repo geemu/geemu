@@ -5,8 +5,9 @@ spring:
     config:
       discovery:
         enabled: true
-        service-id: config
-      name: gateway
+        service-id: cloud-config
+      name: application-gateway
+      profile: local
 
 eureka:
   client:

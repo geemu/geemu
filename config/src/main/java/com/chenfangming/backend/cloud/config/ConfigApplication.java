@@ -15,6 +15,7 @@ import org.springframework.cloud.config.server.EnableConfigServer;
 @EnableDiscoveryClient
 @SpringBootApplication
 public class ConfigApplication {
+
     /**
      * 主函数
      * @param args 运行参数
