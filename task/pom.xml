@@ -13,7 +13,7 @@
     <version>${project.parent.version}</version>
     <packaging>jar</packaging>
 
-    <name>task</name>
+    <name>${project.artifactId}</name>
     <description>定时任务</description>
 
     <dependencies>
