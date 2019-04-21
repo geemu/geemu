@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.config.server.EnableConfigServer;
 
 /**
- * Config程序入口
+ * Config配置中心程序入口
  * @author 陈方明  cfmmail@sina.com
  * @since 2018-11-06 21:02
  */
@@ -19,8 +19,8 @@ public class ConfigApplication {
      */
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(ConfigApplication.class);
-        // 关闭启动Banner
         app.setBannerMode(Banner.Mode.OFF);
         app.run(args);
     }
+
 }

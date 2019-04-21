@@ -1,0 +1,8 @@
+foo: DEV环境
+
+server:
+  port: 8764
+
+spring:
+  application:
+    name: USER

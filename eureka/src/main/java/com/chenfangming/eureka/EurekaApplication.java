@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 /**
- * Eureka程序入口
+ * Eureka注册中心程序入口
  * @author 陈方明  cfmmail@sina.com
  * @since 2018-11-06 21:02
  */
@@ -22,4 +22,5 @@ public class EurekaApplication {
         app.setBannerMode(Banner.Mode.OFF);
         app.run(args);
     }
+
 }
