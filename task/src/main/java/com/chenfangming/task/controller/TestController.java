@@ -1,9 +1,9 @@
 package com.chenfangming.task.controller;
 
+import com.chenfangming.task.config.autoconfig.AppProperties;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import lombok.AllArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,12 +19,11 @@ import java.util.concurrent.TimeUnit;
 @Api("测试控制器")
 @RestController
 @RequestMapping("test")
+@AllArgsConstructor
 public class TestController {
 
-    @Autowired
     private RedisTemplate<String, Object> redisTemplate;
-    @Value("${foo}")
-    public String foo;
+    AppProperties appProperties;
 
     @ApiOperation("字符串")
     @GetMapping("hello")
@@ -35,7 +34,7 @@ public class TestController {
     @ApiOperation("配置中心属性")
     @GetMapping("foo")
     public String foo() {
-        return foo;
+        return appProperties.getFoo();
     }
 
     @ApiOperation("redis")

@@ -1,4 +1,5 @@
-foo: local-application-task
+app:
+  foo: local-application-task
 
 server:
   port: 8764
