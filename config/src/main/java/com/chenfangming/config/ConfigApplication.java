@@ -1,4 +1,4 @@
-package com.chenfangming.backend.cloud.config;
+package com.chenfangming.config;
 
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;

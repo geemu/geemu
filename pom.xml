@@ -85,6 +85,9 @@
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>versions-maven-plugin</artifactId>
                     <version>${version.versions-maven-plugin}</version>
+                    <configuration>
+                        <generateBackupPoms>false</generateBackupPoms>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
@@ -128,6 +131,7 @@
                     <include>config/bootstrap.yml</include>
                     <include>config/bootstrap-${springProfile}.yml</include>
                     <include>config/${springProfile}/*-${springProfile}.yml</include>
+                    <include>config/logback-${springProfile}.xml</include>
                 </includes>
             </resource>
         </resources>
