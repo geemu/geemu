@@ -3,4 +3,5 @@ spring:
     active: @springProfile@
 
 logging:
-  path: classpath:config/logback-@springProfile@.xml
+  config: classpath:config/logback-@springProfile@.xml
+

@@ -1,6 +1,8 @@
 package com.chenfangming.task.controller;
 
 import com.chenfangming.task.config.autoconfig.AppProperties;
+import com.chenfangming.task.entity.TestEntity;
+import com.chenfangming.task.mapper.TestMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -23,7 +26,8 @@ import java.util.concurrent.TimeUnit;
 public class TestController {
 
     private RedisTemplate<String, Object> redisTemplate;
-    AppProperties appProperties;
+    private AppProperties appProperties;
+    private TestMapper testMapper;
 
     @ApiOperation("字符串")
     @GetMapping("hello")
@@ -42,5 +46,11 @@ public class TestController {
     public String redis(String key, String value) {
         redisTemplate.opsForValue().set(key, value + "value", 100L, TimeUnit.SECONDS);
         return (String) redisTemplate.opsForValue().get(key);
+    }
+
+    @ApiOperation("mysql")
+    @GetMapping("mysql")
+    public List<TestEntity> mysql() {
+        return testMapper.selectAll();
     }
 }
