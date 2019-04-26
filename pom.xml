@@ -9,7 +9,7 @@
     <version>0.0.1</version>
     <packaging>pom</packaging>
 
-    <name>${project.artifactId}</name>
+    <name>cloud</name>
     <description>Spring Cloud</description>
 
     <modules>
@@ -35,6 +35,7 @@
         <version.spring-cloud>Greenwich.RELEASE</version.spring-cloud>
         <version.swagger>2.9.2</version.swagger>
         <version.mybatis-spring-boot-starter>2.0.1</version.mybatis-spring-boot-starter>
+        <version.maven-checkstyle-plugin>3.0.0</version.maven-checkstyle-plugin>
     </properties>
 
     <!-- 全局依赖管理 -->
@@ -96,6 +97,28 @@
                     </configuration>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>${version.maven-checkstyle-plugin}</version>
+                    <configuration>
+                        <configLocation>style/checkStyle.xml</configLocation>
+                        <encoding>UTF-8</encoding>
+                        <consoleOutput>true</consoleOutput>
+                        <failsOnError>true</failsOnError>
+                        <skip>false</skip>
+                        <includeTestSourceDirectory>false</includeTestSourceDirectory>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>check</id>
+                            <phase>install</phase>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>${version.spring-boot-maven-plugin}</version>
@@ -123,6 +146,10 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
             </plugin>
         </plugins>
         <resources>

@@ -10,10 +10,10 @@
     </parent>
 
     <artifactId>gateway</artifactId>
-    <version>${project.parent.version}</version>
+    <version>0.0.1</version>
     <packaging>jar</packaging>
 
-    <name>${project.artifactId}</name>
+    <name>gateway</name>
     <description>网关</description>
 
     <dependencies>

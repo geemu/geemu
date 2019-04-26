@@ -11,10 +11,10 @@
     </parent>
 
     <artifactId>config</artifactId>
-    <version>${project.parent.version}</version>
+    <version>0.0.1</version>
     <packaging>jar</packaging>
 
-    <name>${project.artifactId}</name>
+    <name>config</name>
     <description>配置中心</description>
 
     <dependencies>

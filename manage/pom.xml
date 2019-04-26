@@ -11,10 +11,10 @@
     </parent>
 
     <artifactId>manage</artifactId>
-    <version>${project.parent.version}</version>
+    <version>0.0.1</version>
     <packaging>jar</packaging>
 
-    <name>${project.artifactId}</name>
+    <name>manage</name>
     <description>后台管理</description>
 
     <dependencies>
