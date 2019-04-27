@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
-        "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
+<!DOCTYPE module PUBLIC "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+        "https://checkstyle.org/dtds/configuration_1_3.dtd">
 
 <module name="Checker">
     <!-- UTF-8编码 -->
@@ -113,10 +113,9 @@
             <property name="classes" value="java.lang.Boolean"/>
         </module>
 
-        <!-- 命名规范   -->
-        <!-- 包 -->
+        <!-- 包名 -->
         <module name="PackageName">
-            <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
+            <property name="format" value="^[a-z]+(\.[a-z][a-z0-50]*)*$"/>
         </module>
         <!-- 类和接口 -->
         <module name="TypeName">
@@ -126,36 +125,28 @@
         <module name="MethodName">
             <property name="format" value="(^[a-z][a-zA-Z0-9]{0,50}$)"/>
         </module>
-        <!-- 本地final变量，包括catch参数 -->
+        <!-- 本地final变量,包括catch参数 -->
         <module name="LocalFinalVariableName"/>
-        <!-- 常量（静态，final字段） -->
+        <!-- 常量(静态,final字段) -->
         <module name="ConstantName">
             <property name="format" value="(^[A-Z0-9_]{0,50}$)"/>
         </module>
-        <!-- 静态，非final字段 -->
+        <!-- 静态,非final字段 -->
         <module name="StaticVariableName">
-            <property name="format" value="(^[A-Z0-9_]{0,19}$)"/>
+            <property name="format" value="(^[A-Z0-9_]{0,50}$)"/>
         </module>
         <!-- 非静态字段 -->
         <module name="MemberName">
             <property name="format" value="(^[a-z][a-z0-9][a-zA-Z0-9]{0,50}$)"/>
         </module>
-        <!-- 本地非final变量，包括catch参数 -->
+        <!-- 本地非final变量,包括catch参数 -->
         <module name="LocalVariableName"/>
         <!-- 参数 -->
         <module name="ParameterName">
             <property name="format" value="(^[a-z][a-zA-Z0-9_]{0,50}$)"/>
         </module>
         <!-- 代码缩进   -->
-        <module name="Indentation">
-        </module>
-
-        <!-- 检查是否抛出了多余的异常
-        <module name="RedundantThrows">
-            <property name="logLoadErrors" value="true"/>
-            <property name="suppressLoadErrors" value="true"/>
-        </module>
-        -->
+        <module name="Indentation"/>
 
         <!-- 检查boolean值是否冗余的地方 -->
         <module name="SimplifyBooleanExpression"/>
