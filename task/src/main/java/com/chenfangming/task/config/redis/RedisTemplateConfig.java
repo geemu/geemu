@@ -19,8 +19,11 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @AllArgsConstructor
 public class RedisTemplateConfig {
 
+    /** 连接 **/
     private RedisConnectionFactory connectionFactory;
+    /** 序列化 **/
     private StringRedisSerializer stringSerializer;
+    /** 序列化 **/
     private Jackson2JsonRedisSerializer<Object> jackson2JsonSerializer;
 
 

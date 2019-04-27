@@ -12,6 +12,7 @@ import java.util.Date;
  */
 @Data
 public class TestEntity implements Serializable {
+
     /** 主键 **/
     private Long id;
     /** 姓名 **/
@@ -20,4 +21,5 @@ public class TestEntity implements Serializable {
     private Boolean nonDeleted;
     /** 创建时间 **/
     private Date createTime;
+
 }

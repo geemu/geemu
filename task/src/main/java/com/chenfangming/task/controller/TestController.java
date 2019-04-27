@@ -25,29 +25,52 @@ import java.util.concurrent.TimeUnit;
 @AllArgsConstructor
 public class TestController {
 
+    /** TIME **/
+    private static final Long TIME = 100L;
+    /** redisTemplate **/
     private RedisTemplate<String, Object> redisTemplate;
+    /** appProperties **/
     private AppProperties appProperties;
+    /** testMapper **/
     private TestMapper testMapper;
 
+    /**
+     * 字符串
+     * @return String
+     */
     @ApiOperation("字符串")
     @GetMapping("hello")
     public String hello() {
         return "hello";
     }
 
+    /**
+     * 配置中心属性
+     * @return String
+     */
     @ApiOperation("配置中心属性")
     @GetMapping("foo")
     public String foo() {
         return appProperties.getFoo();
     }
 
+    /**
+     * String
+     * @param key key
+     * @param value value
+     * @return String
+     */
     @ApiOperation("redis")
     @GetMapping("redis")
     public String redis(String key, String value) {
-        redisTemplate.opsForValue().set(key, value + "value", 100L, TimeUnit.SECONDS);
+        redisTemplate.opsForValue().set(key, value + "value", TIME, TimeUnit.SECONDS);
         return (String) redisTemplate.opsForValue().get(key);
     }
 
+    /**
+     * mysql
+     * @return List<TestEntity>
+     */
     @ApiOperation("mysql")
     @GetMapping("mysql")
     public List<TestEntity> mysql() {

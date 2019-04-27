@@ -7,11 +7,12 @@
     <property name="charset" value="UTF-8"/>
     <!-- 这条注释使得所有的错误都变成warning,不影响构建结果 -->
     <property name="severity" value="warning"/>
-    <!-- 检查尺寸违规  -->
+    <property name="fileExtensions" value="java,properties,xml,yml"/>
     <!-- 检查文件的长度（行） default max = 2000 -->
     <module name="FileLength">
         <property name="max" value="2500"/>
     </module>
+
 
     <!-- 检查属性文件是否包含相同的key. -->
     <!-- 检查**.properties配置文件 是否有相同的key -->
@@ -21,11 +22,12 @@
 
     <module name="TreeWalker">
         <module name="EmptyLineSeparator">
+            <property name="allowNoEmptyLineBetweenFields" value="true"/>
             <property name="tokens"
                       value="CLASS_DEF,CTOR_DEF,ENUM_DEF,IMPORT,INSTANCE_INIT,INTERFACE_DEF,METHOD_DEF,PACKAGE_DEF,STATIC_INIT,VARIABLE_DEF"/>
         </module>
         <!-- 检查imports    -->
-        <!-- 必须导入类的完整路径，即不能使用*导入所需的类 -->
+        <!-- 必须导入类的完整路径,即不能使用*导入所需的类 -->
         <module name="AvoidStarImport"/>
         <!-- 检查是否从非法的包中导入了类 illegalPkgs: 定义非法的包名称-->
         <module name="IllegalImport"/> <!-- defaults to sun.* packages -->
@@ -42,7 +44,13 @@
         <module name="ParenPad"/>
         <module name="TypecastParenPad"/>
         <module name="WhitespaceAfter"/>
-        <module name="WhitespaceAround"/>
+        <module name="WhitespaceAround">
+            <property name="allowEmptyConstructors" value="true"/>
+            <property name="allowEmptyLambdas" value="true"/>
+            <property name="allowEmptyMethods" value="true"/>
+            <property name="allowEmptyTypes" value="true"/>
+            <property name="allowEmptyLoops" value="true"/>
+        </module>
 
 
         <!-- 检查类和接口的javadoc 默认不检查author 和version tags
@@ -116,14 +124,17 @@
         <!-- 包名 -->
         <module name="PackageName">
             <property name="format" value="^[a-z]+(\.[a-z][a-z0-50]*)*$"/>
+            <message key="name.invalidPattern" value="包名 ''{0}'' 必须符合正则表达式 ''{1}''"/>
         </module>
         <!-- 类和接口 -->
         <module name="TypeName">
             <property name="format" value="(^[A-Z][a-zA-Z0-9]{0,50}$)"/>
+            <message key="name.invalidPattern" value="类名 ''{0}'' 必须符合正则表达式 ''{1}''"/>
         </module>
         <!-- 方法 -->
         <module name="MethodName">
             <property name="format" value="(^[a-z][a-zA-Z0-9]{0,50}$)"/>
+            <message key="name.invalidPattern" value="方法名 ''{0}'' 必须符合正则表达式 ''{1}''"/>
         </module>
         <!-- 本地final变量,包括catch参数 -->
         <module name="LocalFinalVariableName"/>
@@ -138,15 +149,48 @@
         <!-- 非静态字段 -->
         <module name="MemberName">
             <property name="format" value="(^[a-z][a-z0-9][a-zA-Z0-9]{0,50}$)"/>
+            <message key="name.invalidPattern" value="非静态字段 ''{0}'' 必须符合正则表达式 ''{1}''"/>
         </module>
         <!-- 本地非final变量,包括catch参数 -->
-        <module name="LocalVariableName"/>
+        <module name="LocalVariableName">
+            <property name="tokens" value="VARIABLE_DEF"/>
+            <property name="format" value="^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"/>
+            <message key="name.invalidPattern" value="局部变量名称 ''{0}'' 必须符合正则表达式 ''{1}''."/>
+        </module>
+        <module name="ClassTypeParameterName">
+            <property name="format" value="(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)"/>
+            <message key="name.invalidPattern" value="类类型名称 ''{0}'' 必须符合正则表达式 ''{1}''."/>
+        </module>
+        <module name="MethodTypeParameterName">
+            <property name="format" value="(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)"/>
+            <message key="name.invalidPattern" value="方法类型名称 ''{0}'' 必须符合正则表达式 ''{1}''."/>
+        </module>
+        <module name="InterfaceTypeParameterName">
+            <property name="format" value="(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)"/>
+            <message key="name.invalidPattern" value="接口类型名称 ''{0}'' 必须符合正则表达式 ''{1}''."/>
+        </module>
+        <module name="CatchParameterName">
+            <property name="format" value="^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"/>
+            <message key="name.invalidPattern" value="捕获参数名称 ''{0}'' 必须符合正则表达式 ''{1}''."/>
+        </module>
         <!-- 参数 -->
         <module name="ParameterName">
             <property name="format" value="(^[a-z][a-zA-Z0-9_]{0,50}$)"/>
+            <message key="name.invalidPattern" value="参数名 ''{0}'' 必须符合正则表达式 ''{1}''"/>
         </module>
         <!-- 代码缩进   -->
-        <module name="Indentation"/>
+        <module name="Indentation">
+            <property name="basicOffset" value="4"/>
+            <property name="braceAdjustment" value="0"/>
+            <property name="caseIndent" value="2"/>
+            <property name="throwsIndent" value="4"/>
+            <property name="lineWrappingIndentation" value="4"/>
+            <property name="arrayInitIndent" value="2"/>
+        </module>
+        <module name="AbbreviationAsWordInName">
+            <property name="ignoreFinal" value="false"/>
+            <property name="allowedAbbreviationLength" value="1"/>
+        </module>
 
         <!-- 检查boolean值是否冗余的地方 -->
         <module name="SimplifyBooleanExpression"/>
