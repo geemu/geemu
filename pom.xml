@@ -101,7 +101,7 @@
                     <artifactId>maven-checkstyle-plugin</artifactId>
                     <version>${version.maven-checkstyle-plugin}</version>
                     <configuration>
-                        <configLocation>style/checkStyle.xml</configLocation>
+                        <configLocation>style.xml</configLocation>
                         <encoding>UTF-8</encoding>
                         <consoleOutput>true</consoleOutput>
                         <failsOnError>true</failsOnError>
