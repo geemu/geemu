@@ -18,6 +18,7 @@
         <module>gateway</module>
         <module>task</module>
         <module>manage</module>
+        <module>common</module>
     </modules>
 
     <!-- 全局属性配置 -->
