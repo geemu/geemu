@@ -1,6 +1,8 @@
-package com.chenfangming.task.config.autoconfig;
+package com.chenfangming.task.config;
 
+import com.chenfangming.task.config.AppAutoConfiguration.AppProperties;
 import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,5 +16,11 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties(AppProperties.class)
 public class AppAutoConfiguration {
 
+    @Data
+    @ConfigurationProperties(prefix = "app")
+    public static class AppProperties {
+        /** foo **/
+        private String foo;
+    }
 
 }

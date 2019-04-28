@@ -1,6 +1,6 @@
 package com.chenfangming.task.controller;
 
-import com.chenfangming.task.config.autoconfig.AppProperties;
+import com.chenfangming.task.config.AppAutoConfiguration.AppProperties;
 import com.chenfangming.task.entity.TestEntity;
 import com.chenfangming.task.mapper.TestMapper;
 import io.swagger.annotations.Api;
