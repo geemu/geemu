@@ -3,11 +3,11 @@ package com.chenfangming.common;
 import java.lang.reflect.Array;
 
 /**
- * Array工具类.
+ * 数组工具类
  * @author 陈方明  cfmmail@sina.com
  * @since 2019-01-04 23:28
  */
-public final class ArrayUtils {
+public final class ArrayHelper {
     /** 一个空的不可变{@code Object}数组。 **/
     public static final Object[] EMPTY_OBJECT_ARRAY = new Object[0];
     /** 一个空的不可变{@code Class}数组。 **/
@@ -54,13 +54,13 @@ public final class ArrayUtils {
     public static final int INDEX_NOT_FOUND = -1;
 
     /** 工具类隐藏public构造器 **/
-    private ArrayUtils() {
+    private ArrayHelper() {
         super();
     }
 
 
     /**
-     * 返回要检查的数组的长度。
+     * 返回要检查的数组的长度
      * @param array 要检查的数组
      * @return 数组的长度，如果数组为{@code null}，则为{@code 0}
      * @throws IllegalArgumentException 如果object参数不是数组
@@ -73,10 +73,11 @@ public final class ArrayUtils {
 
     /**
      * 检查一个数组是否为空或{@code null}
+     * @param <T> 数组元素类型
      * @param array 要检查的数组
      * @return {@code true} 如果数组为空或{@code null}
      */
-    public static boolean isEmpty(final Object... array) {
+    public static <T> boolean isEmpty(final T... array) {
         return null == array || 0 == array.length;
     }
 
@@ -177,7 +178,7 @@ public final class ArrayUtils {
      * @return {@code true} 如果数组为空或{@code null}
      */
     public static boolean isEmpty(final double[] array) {
-        return length(array) == 0;
+        return 0 == length(array);
     }
 
     /**
@@ -225,18 +226,166 @@ public final class ArrayUtils {
     public static boolean isEmpty(final Boolean[] array) {
         return 0 == length(array);
     }
+    // ------------------------------------ isEmpty end ------------------------------------ //
+
+    // ------------------------------------ isNotEmpty start ------------------------------------ //
 
     /**
-     * 参数array是否不为空
-     * 1. 如果参数array为{@code null}返回{@code false}
-     * 2. 如果参数array的长度为{@code 0}返回{@code false}
-     * @param <T> 参数array的元素类型
-     * @param array 参数array
-     * @return boolean 参数array是否不为空
+     * 检查一个数组是否不为空或不为{@code null}
+     * @param array 要检查的数组
+     * @return {@code true} 如果数组不为空或不为{@code null}
      */
+    @SuppressWarnings("unchecked")
     public static <T> boolean isNotEmpty(final T... array) {
         return !isEmpty(array);
     }
-    // ------------------------------------ isEmpty start ------------------------------------ //
+
+    /**
+     * 检查一个原始long数组是否不为空或不为{@code null}
+     * @param array 要检查的数组
+     * @return {@code true} 如果数组不为空或不为{@code null}
+     */
+    public static boolean isNotEmpty(final long[] array) {
+        return !isEmpty(array);
+    }
+
+    /**
+     * 检查一个包装类Long数组是否不为空或不为{@code null}
+     * @param array 要检查的数组
+     * @return {@code true} 如果数组不为空或{@code null}
+     */
+    public static boolean isNotEmpty(final Long[] array) {
+        return !isEmpty(array);
+    }
+
+    /**
+     * 检查一个原始int数组是否不为空或不为{@code null}
+     * @param array 要检查的数组
+     * @return {@code true} 如果数组不为空或不为{@code null}
+     */
+    public static boolean isNotEmpty(final int[] array) {
+        return !isEmpty(array);
+    }
+
+    /**
+     * 检查一个包装类Integer数组是否不为空或不为{@code null}
+     * @param array 要检查的数组
+     * @return {@code true} 如果数组不为空或不为{@code null}
+     */
+    public static boolean isNotEmpty(final Integer[] array) {
+        return !isEmpty(array);
+    }
+
+    /**
+     * 检查一个原始short数组是否不为空或不为{@code null}
+     * @param array 要检查的数组
+     * @return {@code true} 如果数组不为空或不为{@code null}
+     */
+    public static boolean isNotEmpty(final short[] array) {
+        return !isEmpty(array);
+    }
+
+    /**
+     * 检查一个包装类Short数组是否不为空或不为{@code null}
+     * @param array 要检查的数组
+     * @return {@code true} 如果数组不为空或不为{@code null}
+     */
+    public static boolean isNotEmpty(final Short[] array) {
+        return !isEmpty(array);
+    }
+
+    /**
+     * 检查一个原始char数组是否不为空或不为{@code null}
+     * @param array 要检查的数组
+     * @return {@code true} 如果数组不为空或不为{@code null}
+     */
+    public static boolean isNotEmpty(final char[] array) {
+        return !isEmpty(array);
+    }
+
+    /**
+     * 检查一个包装类Character数组是否不为空或不为{@code null}
+     * @param array 要检查的数组
+     * @return {@code true} 如果数组不为空或不为{@code null}
+     */
+    public static boolean isNotEmpty(final Character[] array) {
+        return !isEmpty(array);
+    }
+
+    /**
+     * 检查一个原始byte数组是否不为空或不为{@code null}
+     * @param array 要检查的数组
+     * @return {@code true} 如果数组不为空或不为{@code null}
+     */
+    public static boolean isNotEmpty(final byte[] array) {
+        return !isEmpty(array);
+    }
+
+    /**
+     * 检查一个包装类Byte数组是否不为空或不为{@code null}
+     * @param array 要检查的数组
+     * @return {@code true} 如果数组不为空或不为{@code null}
+     */
+    public static boolean isNotEmpty(final Byte[] array) {
+        return !isEmpty(array);
+    }
+
+
+    /**
+     * 检查一个原始double数组是否不为空或不为{@code null}
+     * @param array 要检查的数组
+     * @return {@code true} 如果数组不为空或不为{@code null}
+     */
+    public static boolean isNotEmpty(final double[] array) {
+        return !isEmpty(array);
+    }
+
+    /**
+     * 检查一个包装类Double数组是否不为空或不为{@code null}
+     * @param array 要检查的数组
+     * @return {@code true} 如果数组不为空或不为{@code null}
+     */
+    public static boolean isNotEmpty(final Double[] array) {
+        return !isEmpty(array);
+    }
+
+    /**
+     * 检查一个原始float数组是否不为空或不为{@code null}
+     * @param array 要检查的数组
+     * @return {@code true} 如果数组不为空或不为{@code null}
+     */
+    public static boolean isNotEmpty(final float[] array) {
+        return !isEmpty(array);
+    }
+
+    /**
+     * 检查一个包装类Float数组是否不为空或不为{@code null}
+     * @param array 要检查的数组
+     * @return {@code true} 如果数组不为空或不为{@code null}
+     */
+    public static boolean isNotEmpty(final Float[] array) {
+        return !isEmpty(array);
+    }
+
+
+    /**
+     * 检查一个原始boolean数组是否不为空或不为{@code null}
+     * @param array 要检查的数组
+     * @return {@code true} 如果数组不为空或不为{@code null}
+     */
+    public static boolean isNotEmpty(final boolean[] array) {
+        return !isEmpty(array);
+    }
+
+    /**
+     * 检查一个包装类Boolean数组是否不为空或不为{@code null}
+     * @param array 要检查的数组
+     * @return {@code true} 如果数组不为空或不为{@code null}
+     */
+    public static boolean isNotEmpty(final Boolean[] array) {
+        return !isEmpty(array);
+    }
+    // ------------------------------------ isEmpty end ------------------------------------ //
+
 
 }
