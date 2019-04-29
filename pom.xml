@@ -112,7 +112,7 @@
                     <executions>
                         <execution>
                             <id>check</id>
-                            <phase>install</phase>
+                            <phase>validate</phase>
                             <goals>
                                 <goal>check</goal>
                             </goals>
@@ -140,10 +140,6 @@
 
         <!-- 全局插件 -->
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>

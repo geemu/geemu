@@ -8,6 +8,6 @@ eureka:
     enable-self-preservation: false
   client:
     fetch-registry: false
-    register-with-eureka: true
+    register-with-eureka: false
     service-url:
-      defaultZone: http://127.0.0.1:8761/eureka
+      defaultZone: http://cloud.chenfangming.com:${server.port}/eureka
