@@ -1,12 +1,16 @@
 package com.chenfangming.common;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.lang.reflect.Array;
+import java.util.Arrays;
 
 /**
  * 数组工具类
  * @author 陈方明  cfmmail@sina.com
  * @since 2019-01-04 23:28
  */
+@Slf4j
 public final class ArrayHelper {
     /** 一个空的不可变{@code Object}数组。 **/
     public static final Object[] EMPTY_OBJECT_ARRAY = new Object[0];
@@ -387,5 +391,21 @@ public final class ArrayHelper {
     }
     // ------------------------------------ isEmpty end ------------------------------------ //
 
+    /**
+     * 将新元素添加到已有数组中
+     * 添加新元素会生成一个新的数组,不影响原数组
+     * @param <T> 数组元素类型
+     * @param source 已有数组
+     * @param newElements 新元素
+     * @return 新数组
+     */
+    @SafeVarargs
+    public static <T> T[] append(T[] source, T... newElements) {
+        int sourceLength = source.length;
+        int newElementLength = newElements.length;
+        final T[] newArray = Arrays.copyOf(source, sourceLength + newElementLength);
+        System.arraycopy(newElements, 0, newArray, sourceLength, newElementLength);
+        return newArray;
+    }
 
 }

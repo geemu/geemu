@@ -81,4 +81,23 @@ public final class StringHelper {
         }
     }
 
+    /**
+     * 字符串是否为空白
+     * @param text 被检测的字符串
+     * @return {@code true} 如果字符串text全部为空白或为{@code null}
+     */
+    public static boolean isBlank(CharSequence text) {
+        int length;
+        if ((null == text) || (0 == (length = text.length()))) {
+            return true;
+        }
+        for (int i = 0; i < length; i++) {
+            // 只要有一个非空字符即为非空字符串
+            if (!CharHelper.isBlankChar(text.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
