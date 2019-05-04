@@ -10,6 +10,8 @@ spring:
       profile: local
 
 eureka:
+  instance:
+    ip-address: 47.97.215.198
   client:
     service-url:
-      defaultZone: http://127.0.0.1:8761/eureka/
+      defaultZone: http://47.97.215.198:8761/eureka/

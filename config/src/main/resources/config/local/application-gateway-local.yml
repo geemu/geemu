@@ -1,7 +1,7 @@
 foo: application-gateway-local
 
 server:
-  port: 8763
+  port: 80
 
 spring:
   application:

@@ -4,6 +4,7 @@ server:
 eureka:
   instance:
     prefer-ip-address: true
+    ip-address: 47.97.215.198
   server:
     enable-self-preservation: false
   client:

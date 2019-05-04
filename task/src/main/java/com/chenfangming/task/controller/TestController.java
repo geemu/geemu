@@ -6,9 +6,11 @@ import com.chenfangming.task.mapper.TestMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import org.jasypt.encryption.StringEncryptor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -33,6 +35,7 @@ public class TestController {
     private AppProperties appProperties;
     /** testMapper **/
     private TestMapper testMapper;
+    private StringEncryptor stringEncryptor;
 
     /**
      * 字符串
@@ -42,6 +45,17 @@ public class TestController {
     @GetMapping("hello")
     public String hello() {
         return "hello";
+    }
+
+    /**
+     * 加密
+     * @return String
+     */
+    @ApiOperation("加密")
+    @GetMapping("encrypt")
+    public String encrypt(@RequestParam("text") String text) {
+        String data = stringEncryptor.encrypt(text);
+        return data;
     }
 
     /**
