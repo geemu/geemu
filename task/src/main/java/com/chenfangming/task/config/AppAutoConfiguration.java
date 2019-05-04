@@ -21,6 +21,20 @@ public class AppAutoConfiguration {
     public static class AppProperties {
         /** foo **/
         private String foo;
+        /** QQ **/
+        private QqProperties qq;
+    }
+
+    @Data
+    public static class QqProperties {
+        /** appId **/
+        private String appId;
+        /** appKey **/
+        private String appKey;
+        /** 回调地址 **/
+        private String fallBackUrl;
+        /** QQ互联认证服务器地址 **/
+        private String oauthServerUrl;
     }
 
 }

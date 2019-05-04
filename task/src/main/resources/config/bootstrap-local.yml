@@ -17,3 +17,10 @@ eureka:
 jasypt:
   encryptor:
     password: chenfangming
+
+app:
+  qq:
+    appId: 101576774
+    appKey: 99e6dcbede7d3cd420772323eb982c8b
+    fallBackUrl: http://www.chenfangming.com/fallback/qq
+    oauthServerUrl: https://graph.qq.com/oauth2.0/
