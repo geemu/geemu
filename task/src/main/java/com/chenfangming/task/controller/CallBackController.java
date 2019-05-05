@@ -92,7 +92,6 @@ public class CallBackController {
             return null;
         }
         log.info("用户信息为:{}", userInfoResponse);
-        String res = userInfoResponse.replace("\\", "");
-        return res;
+        return userInfoResponse.replace("\\", "");
     }
 }
