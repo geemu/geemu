@@ -32,7 +32,7 @@ public class AppAutoConfiguration {
         /** appKey **/
         private String appKey;
         /** 回调地址 **/
-        private String fallBackUrl;
+        private String callBackUrl;
         /** QQ互联认证服务器地址 **/
         private String oauthServerUrl;
     }

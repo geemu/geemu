@@ -29,17 +29,20 @@ public class LoginController {
     @GetMapping("qq")
     public String qq() {
         log.info("QQ登录");
-        String encodedFallBackUrl;
+        String encodedCallBackUrl;
         try {
-            encodedFallBackUrl = URLEncoder.encode(appProperties.getQq().getFallBackUrl(), "UTF-8");
+            encodedCallBackUrl = URLEncoder.encode(appProperties.getQq().getCallBackUrl(), "UTF-8");
         } catch (UnsupportedEncodingException e) {
             log.error("URL编码异常:{}{}", e, "");
             return null;
         }
-        return appProperties.getQq().getOauthServerUrl()
-                + "authorize?response_type=code&client_id=" + appProperties.getQq().getAppId()
-                + "&redirect_uri=" + encodedFallBackUrl
-                + "&state=" + "123456789&scope=get_user_info&display=pc";
+        return appProperties.getQq().getOauthServerUrl() + "oauth2.0/authorize"
+                + "?response_type=code"
+                + "&client_id=" + appProperties.getQq().getAppId()
+                + "&redirect_uri=" + encodedCallBackUrl
+                + "&state=" + "123456789"
+                + "&scope=get_user_info"
+                + "&display=pc";
     }
 
 }
