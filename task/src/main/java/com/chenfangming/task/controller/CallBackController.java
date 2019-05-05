@@ -39,6 +39,7 @@ public class CallBackController {
      * @param state 用于防范CSRF攻击的验证参数
      * @return 获取到的用户信息
      */
+    @SuppressWarnings("unchecked")
     @GetMapping("qq")
     public Object qq(String code, String state) {
         log.info("QQ回调：[code{}],[state:{}]", code, state);
@@ -91,6 +92,6 @@ public class CallBackController {
             return null;
         }
         log.info("用户信息为:{}", userInfoResponse);
-        return null;
+        return userInfoResponse;
     }
 }
