@@ -8,11 +8,13 @@ import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.jasypt.encryption.StringEncryptor;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.AssertTrue;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -22,6 +24,7 @@ import java.util.concurrent.TimeUnit;
  * @since 2019-04-21 12:43
  */
 @Api("测试控制器")
+@Validated
 @RestController
 @RequestMapping("test")
 @AllArgsConstructor
@@ -90,4 +93,18 @@ public class TestController {
     public List<TestEntity> mysql() {
         return testMapper.selectAll();
     }
+
+
+    @ApiOperation("get请求实体验证")
+    @GetMapping("getEntity")
+    public TestEntity getEntity(TestEntity data) {
+        return data;
+    }
+
+    @ApiOperation("get请求参数验证")
+    @GetMapping("getParam")
+    public Boolean getParam(@AssertTrue(message = "只能为true") Boolean data) {
+        return data;
+    }
+
 }

@@ -2,6 +2,7 @@ package com.chenfangming.task.entity;
 
 import lombok.Data;
 
+import javax.validation.Valid;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -14,10 +15,12 @@ import java.util.Date;
  * @since 2019-04-21 12:45
  */
 @Data
+@Valid
 public class TestEntity implements Serializable {
 
     /** 主键 **/
     @NotNull(message = "主键不能为空")
+    @NotEmpty
     private Long id;
     /** 姓名 **/
     @NotEmpty(message = "姓名不能为空")

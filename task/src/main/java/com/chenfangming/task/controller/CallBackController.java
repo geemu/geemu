@@ -2,10 +2,10 @@ package com.chenfangming.task.controller;
 
 
 import com.chenfangming.task.config.AppAutoConfiguration.AppProperties;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,6 +31,8 @@ public class CallBackController {
     private AppProperties appProperties;
     /** RestTemplate **/
     private RestTemplate restTemplate;
+    /** ObjectMapper **/
+    private ObjectMapper objectMapper;
 
 
     /**
@@ -77,7 +79,7 @@ public class CallBackController {
         log.info("openId返回结果为：{}", openId);
         Map<String, String> openIdMap;
         try {
-            openIdMap = new ObjectMapper().readValue(openId, Map.class);
+            openIdMap = objectMapper.readValue(openId, Map.class);
         } catch (IOException e) {
             log.error("openId结果转JSON异常:{}{}", e, "");
             return null;
