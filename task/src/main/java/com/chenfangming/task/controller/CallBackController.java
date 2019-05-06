@@ -43,8 +43,8 @@ public class CallBackController {
     @GetMapping("qq")
     public Object qq(String code, String state) {
         log.info("QQ回调：[code{}],[state:{}]", code, state);
-        String url = appProperties.getQq().getOauthServerUrl() + "oauth2.0/token" +
-                "?grant_type=authorization_code"
+        String url = appProperties.getQq().getOauthServerUrl() + "oauth2.0/token"
+                + "?grant_type=authorization_code"
                 + "&client_id=" + appProperties.getQq().getAppId()
                 + "&client_secret=" + appProperties.getQq().getAppKey()
                 + "&code=" + code
@@ -62,15 +62,16 @@ public class CallBackController {
             String[] temp = item.split("=");
             map.put(temp[0], temp[1]);
         }
-        String urlOpenId = appProperties.getQq().getOauthServerUrl() + "oauth2.0/me" +
-                "?access_token=" + map.get("access_token");
+        String urlOpenId = appProperties.getQq().getOauthServerUrl() + "oauth2.0/me"
+                + "?access_token=" + map.get("access_token");
         String responseOpenId = restTemplate.getForObject(urlOpenId, String.class);
         if (null == responseOpenId) {
             log.error("获取OpenId结果为null");
             return null;
         }
         log.info("获取OpenId结果为:{}", responseOpenId);
-        String openId = responseOpenId.replace("callback(", "")
+        String openId = responseOpenId
+                .replace("callback(", "")
                 .replace(")", "")
                 .replace(" ", "");
         log.info("openId返回结果为：{}", openId);
@@ -82,8 +83,8 @@ public class CallBackController {
             return null;
         }
         // 获取用户信息
-        String userInfoUrl = appProperties.getQq().getOauthServerUrl() + "user/get_user_info" +
-                "?access_token=" + map.get("access_token")
+        String userInfoUrl = appProperties.getQq().getOauthServerUrl() + "user/get_user_info"
+                + "?access_token=" + map.get("access_token")
                 + "&oauth_consumer_key=" + appProperties.getQq().getAppId()
                 + "&openid=" + openIdMap.get("openid");
         String userInfoResponse = restTemplate.getForObject(userInfoUrl, String.class);
