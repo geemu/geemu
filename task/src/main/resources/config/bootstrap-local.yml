@@ -20,7 +20,7 @@ jasypt:
 
 app:
   qq:
-    appId: 101576774
-    appKey: 99e6dcbede7d3cd420772323eb982c8b
-    callBackUrl: http://cloud.chenfangming.com/fallback/qq
+    appId: 101577560
+    appKey: b74b3fdad268cd6b4ac9dbba278174eb
+    callBackUrl: http://cloud.chenfangming.com/callback/qq
     oauthServerUrl: https://graph.qq.com/
