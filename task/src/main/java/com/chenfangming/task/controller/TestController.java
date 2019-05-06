@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import javax.validation.constraints.AssertTrue;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -97,13 +98,14 @@ public class TestController {
 
     @ApiOperation("get请求实体验证")
     @GetMapping("getEntity")
-    public TestEntity getEntity(TestEntity data) {
+    public TestEntity getEntity(@Valid TestEntity data) {
         return data;
     }
 
     @ApiOperation("get请求参数验证")
     @GetMapping("getParam")
-    public Boolean getParam(@AssertTrue(message = "只能为true") Boolean data) {
+    @Validated
+    public Boolean getParam(@Valid @AssertTrue(message = "只能为true") Boolean data) {
         return data;
     }
 
