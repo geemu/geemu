@@ -31,6 +31,7 @@
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
         <!-- 版本管理 -->
         <version.versions-maven-plugin>2.7</version.versions-maven-plugin>
+        <version.maven-resources-plugin>3.1.0</version.maven-resources-plugin>
         <version.spring-boot-maven-plugin>2.1.2.RELEASE</version.spring-boot-maven-plugin>
         <version.spring-boot>2.1.4.RELEASE</version.spring-boot>
         <version.spring-cloud>Greenwich.RELEASE</version.spring-cloud>
@@ -126,6 +127,32 @@
                     </executions>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${version.maven-resources-plugin}</version>
+                    <executions>
+                        <execution>
+                            <id>copy-dist-jar</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                                <encoding>UTF-8</encoding>
+                                <outputDirectory>../target</outputDirectory>
+                                <resources>
+                                    <resource>
+                                        <directory>target</directory>
+                                        <includes>
+                                            <include>*.jar</include>
+                                        </includes>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>${version.spring-boot-maven-plugin}</version>
@@ -153,6 +180,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
             </plugin>
         </plugins>
         <resources>

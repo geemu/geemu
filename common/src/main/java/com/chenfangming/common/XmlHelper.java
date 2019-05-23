@@ -31,7 +31,6 @@ public final class XmlHelper {
         }
         String xml = new BufferedReader(new InputStreamReader(inputStream)).lines().collect(Collectors.joining(System.lineSeparator()));
         log.info("xml文档为:{}", xml);
-
         StringReader reader = new StringReader(xml);
         InputSource inputSource = new InputSource(reader);
 
