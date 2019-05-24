@@ -139,6 +139,7 @@
                             </goals>
                             <configuration>
                                 <encoding>UTF-8</encoding>
+                                <overwrite>true</overwrite>
                                 <outputDirectory>../target</outputDirectory>
                                 <resources>
                                     <resource>
