@@ -32,8 +32,8 @@
         <!-- 版本管理 -->
         <version.versions-maven-plugin>2.7</version.versions-maven-plugin>
         <version.maven-resources-plugin>3.1.0</version.maven-resources-plugin>
-        <version.spring-boot-maven-plugin>2.1.2.RELEASE</version.spring-boot-maven-plugin>
-        <version.spring-boot>2.1.4.RELEASE</version.spring-boot>
+        <version.spring-boot-maven-plugin>2.1.5.RELEASE</version.spring-boot-maven-plugin>
+        <version.spring-boot>2.1.5.RELEASE</version.spring-boot>
         <version.spring-cloud>Greenwich.RELEASE</version.spring-cloud>
         <version.swagger>2.9.2</version.swagger>
         <version.mybatis-spring-boot-starter>2.0.1</version.mybatis-spring-boot-starter>
