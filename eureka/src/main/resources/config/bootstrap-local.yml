@@ -4,11 +4,10 @@ server:
 eureka:
   instance:
     prefer-ip-address: true
-    ip-address: 47.97.215.198
   server:
     enable-self-preservation: false
   client:
-    fetch-registry: false
-    register-with-eureka: false
+    fetch-registry: false # 指示此客户端是否应从Eureka获取Eureka注册表信息
+    register-with-eureka: false # 指示此实例是否应向Eureka注册其信息
     service-url:
-      defaultZone: http://cloud.chenfangming.com:${server.port}/eureka
+      defaultZone: http://127.0.0.1:${server.port}/eureka
