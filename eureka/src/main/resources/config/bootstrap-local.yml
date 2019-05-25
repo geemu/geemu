@@ -4,11 +4,12 @@ server:
 eureka:
   instance:
     prefer-ip-address: true # 一个标志,表示在猜测主机名时,应使用服务器的IP地址来引用操作系统报告的主机名
+    ip-address: 127.0.0.1
   server:
     enable-self-preservation: false # 关闭保护机制,以确保注册中心将不可用的实例正确剔除
     eviction-interval-timer-in-ms: 2000 # 清理失效服务的间隔,单位毫秒
   client:
-    fetch-registry: false # 指示此客户端是否应从Eureka获取Eureka注册表信息
+    fetch-registry: true # 指示此客户端是否应从Eureka获取Eureka注册表信息
     register-with-eureka: true # 指示此实例是否应向Eureka注册其信息
     service-url:
-      defaultZone: http://eureka.vultr.chenfangming.com:${server.port}/eureka
+      defaultZone: http://127.0.0.1:80/eureka,http://127.0.0.1:81/eureka,http://127.0.0.1:82/eureka
