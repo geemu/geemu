@@ -133,7 +133,7 @@
                     <executions>
                         <execution>
                             <id>copy-dist-jar</id>
-                            <phase>package</phase>
+                            <phase>install</phase>
                             <goals>
                                 <goal>copy-resources</goal>
                             </goals>
