@@ -9,6 +9,6 @@ eureka:
     eviction-interval-timer-in-ms: 2000 # 清理失效服务的间隔,单位毫秒
   client:
     fetch-registry: false # 指示此客户端是否应从Eureka获取Eureka注册表信息
-    register-with-eureka: false # 指示此实例是否应向Eureka注册其信息
+    register-with-eureka: true # 指示此实例是否应向Eureka注册其信息
     service-url:
       defaultZone: http://127.0.0.1:${server.port}/eureka
