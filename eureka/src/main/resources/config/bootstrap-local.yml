@@ -3,7 +3,7 @@ server:
 
 eureka:
   instance:
-    prefer-ip-address: true # 一个标志,表示在猜测主机名时,应使用服务器的IP地址来引用操作系统报告的主机名
+    prefer-ip-address: true # 表示在猜测主机名时,应使用服务器的IP地址来引用操作系统报告的主机名
     ip-address: 127.0.0.1
   server:
     enable-self-preservation: false # 关闭保护机制,以确保注册中心将不可用的实例正确剔除
