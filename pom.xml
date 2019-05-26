@@ -199,6 +199,8 @@
                     <include>**/*Mapper.xml</include>
                     <include>config/bootstrap.yml</include>
                     <include>config/bootstrap-${springProfile}.yml</include>
+                    <include>config/application.yml</include>
+                    <include>config/application-${springProfile}.yml</include>
                     <include>config/${springProfile}/*-${springProfile}.yml</include>
                     <include>config/logback-${springProfile}.xml</include>
                 </includes>
