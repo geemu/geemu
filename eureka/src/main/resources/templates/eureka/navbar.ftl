@@ -80,7 +80,7 @@
     </h4>
 </#if>
 
-<h1>Eureka集群</h1>
+<h1>当前Eureka的副本</h1>
 <ul class="list-group">
     <#list replicas as replica>
         <li class="list-group-item">

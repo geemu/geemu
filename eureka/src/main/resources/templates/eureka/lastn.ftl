@@ -35,7 +35,7 @@
                     <thead>
                     <tr>
                         <th>时间戳</th>
-                        <th>租赁</th>
+                        <th>租约</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -48,7 +48,7 @@
                         </#list>
                     <#else>
                         <tr>
-                            <td colspan="2">没有可用的结果</td>
+                            <td colspan="2">未查询到数据</td>
                         </tr>
                     </#if>
                     <tbody>
@@ -59,7 +59,7 @@
                     <thead>
                     <tr>
                         <th>时间戳</th>
-                        <th>租赁</th>
+                        <th>租约</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -72,7 +72,7 @@
                         </#list>
                     <#else>
                         <tr>
-                            <td colspan="2">没有可用的结果</td>
+                            <td colspan="2">未查询到数据</td>
                         </tr>
                     </#if>
                     </tbody>
