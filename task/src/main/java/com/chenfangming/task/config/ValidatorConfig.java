@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.HibernateValidator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 
 import javax.validation.Validation;
@@ -18,6 +19,9 @@ import javax.validation.ValidatorFactory;
 @Slf4j
 @Configuration
 public class ValidatorConfig {
+
+    /** spring.aop.proxy-target-class **/
+    private static final String SPRING_AOP_PROXY_TARGET_CLASS = "spring.aop.proxy-target-class";
 
     /**
      * Validator配置  配置快速失败
@@ -39,11 +43,13 @@ public class ValidatorConfig {
      * @return MethodValidationPostProcessor
      */
     @Bean
-    public MethodValidationPostProcessor methodValidationPostProcessor(Validator validator) {
+    public MethodValidationPostProcessor methodValidationPostProcessor(Environment environment, Validator validator) {
         log.info("初始化:MethodValidationPostProcessor");
-        MethodValidationPostProcessor postProcessor = new MethodValidationPostProcessor();
-        postProcessor.setValidator(validator);
-        return postProcessor;
+        MethodValidationPostProcessor processor = new MethodValidationPostProcessor();
+        boolean proxyTargetClass = environment.getProperty(SPRING_AOP_PROXY_TARGET_CLASS, Boolean.class, true);
+        processor.setProxyTargetClass(proxyTargetClass);
+        processor.setValidator(validator);
+        return processor;
     }
 
 }
