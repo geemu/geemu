@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Configuration;
  * @author 陈方明  cfmmail@sina.com
  * @since 2019-04-23 22:07
  */
-@Data
 @Configuration
 @EnableConfigurationProperties(AppProperties.class)
 public class AppAutoConfiguration {

@@ -39,10 +39,10 @@ public class ValidatorConfig {
      * @return MethodValidationPostProcessor
      */
     @Bean
-    public MethodValidationPostProcessor methodValidationPostProcessor() {
+    public MethodValidationPostProcessor methodValidationPostProcessor(Validator validator) {
         log.info("初始化:MethodValidationPostProcessor");
         MethodValidationPostProcessor postProcessor = new MethodValidationPostProcessor();
-        postProcessor.setValidator(validator());
+        postProcessor.setValidator(validator);
         return postProcessor;
     }
 
