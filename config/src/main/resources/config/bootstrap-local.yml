@@ -7,4 +7,4 @@ eureka:
     ip-address: 127.0.0.1
   client:
     service-url:
-      defaultZone: http://eureka.vultr.chenfangming.com/eureka/
+      defaultZone: http://eureka.vultr.chenfangming.com:8761/eureka/,http://eureka.aliyun.chenfangming.com:8761/eureka/

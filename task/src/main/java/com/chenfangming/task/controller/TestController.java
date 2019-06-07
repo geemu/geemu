@@ -5,8 +5,10 @@ import com.chenfangming.task.entity.TestEntity;
 import com.chenfangming.task.mapper.TestMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.jasypt.encryption.StringEncryptor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,29 +27,34 @@ import java.util.concurrent.TimeUnit;
  * @since 2019-04-21 12:43
  */
 @Api("测试控制器")
+@Slf4j
 @Validated
 @RestController
 @RequestMapping("test")
-@AllArgsConstructor
 public class TestController {
 
     /** TIME **/
     private static final Long TIME = 100L;
-    /** redisTemplate **/
+    @Autowired
     private RedisTemplate<String, Object> redisTemplate;
-    /** appProperties **/
+    @Autowired
     private AppProperties appProperties;
-    /** testMapper **/
+    @Value("${myapp}")
+    private String valueAnnotation;
+    @Autowired
     private TestMapper testMapper;
+    @Autowired
     private StringEncryptor stringEncryptor;
+
 
     /**
      * 字符串
      * @return String
      */
-    @ApiOperation("字符串")
     @GetMapping("hello")
     public String hello() {
+        log.info("use auto configuration:{}", appProperties.getQq().getAppId());
+        log.info("use @value annotation:{}", valueAnnotation);
         return "hello";
     }
 

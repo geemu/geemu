@@ -12,7 +12,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://eureka.vultr.chenfangming.com/eureka/
+      defaultZone: http://eureka.vultr.chenfangming.com:8761/eureka/,http://eureka.aliyun.chenfangming.com:8761/eureka/
 
 jasypt:
   encryptor:
@@ -20,7 +20,7 @@ jasypt:
 
 app:
   qq:
-    appId: 101577560
-    appKey: b74b3fdad268cd6b4ac9dbba278174eb
-    callBackUrl: http://cloud.chenfangming.com/callback/qq
-    oauthServerUrl: https://graph.qq.com/
+    app-id: 00101577560
+    app-key: b74b3fdad268cd6b4ac9dbba278174eb
+    oauth-server-url: https://graph.qq.com/
+    call-back-url: http://cloud.chenfangming.com/callback/qq

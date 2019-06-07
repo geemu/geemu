@@ -96,6 +96,7 @@
         <!-- 全局插件管理 -->
         <pluginManagement>
             <plugins>
+                <!-- versions -->
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>versions-maven-plugin</artifactId>
@@ -104,6 +105,7 @@
                         <generateBackupPoms>false</generateBackupPoms>
                     </configuration>
                 </plugin>
+                <!-- checkstyle -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-checkstyle-plugin</artifactId>
@@ -126,6 +128,7 @@
                         </execution>
                     </executions>
                 </plugin>
+                <!-- resources -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-resources-plugin</artifactId>
@@ -153,6 +156,7 @@
                         </execution>
                     </executions>
                 </plugin>
+                <!-- boot -->
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
@@ -193,8 +197,8 @@
                 <filtering>true</filtering>
                 <includes>
                     <include>META-INF/**</include>
-                    <include>static/**</include>
                     <include>public/**</include>
+                    <include>static/**</include>
                     <include>templates/**</include>
                     <include>**/*Mapper.xml</include>
                     <include>config/bootstrap.yml</include>

@@ -9,6 +9,7 @@ eureka:
   instance:
     prefer-ip-address: false
     hostname: eureka.vultr.chenfangming.com
+    ip-address: 47.97.215.198
   server:
     enable-self-preservation: false # 关闭保护机制,以确保注册中心将不可用的实例正确剔除
     eviction-interval-timer-in-ms: 60000 # 清理失效服务的间隔,单位毫秒
