@@ -6,12 +6,10 @@ spring:
       discovery:
         enabled: true
         service-id: cloud-config
-      name: application-gateway
+      name: gateway
       profile: local
 
 eureka:
-  instance:
-    ip-address: 47.97.215.198
   client:
     service-url:
-      defaultZone: http://47.97.215.198:8761/eureka/
+      defaultZone: http://eureka.vultr.chenfangming.com:8761/eureka,http://eureka.aliyun.chenfangming.com:8761/eureka

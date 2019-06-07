@@ -13,12 +13,11 @@
     <description>Spring Cloud</description>
 
     <modules>
+        <module>common</module>
         <module>eureka</module>
         <module>config</module>
         <module>gateway</module>
-        <module>task</module>
         <module>manage</module>
-        <module>common</module>
     </modules>
 
     <!-- 全局属性配置 -->
@@ -44,6 +43,11 @@
     <!-- 全局依赖管理 -->
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-devtools</artifactId>
+                <optional>true</optional>
+            </dependency>
             <dependency>
                 <groupId>com.github.ulisesbocchio</groupId>
                 <artifactId>jasypt-spring-boot-starter</artifactId>
@@ -121,7 +125,7 @@
                     <executions>
                         <execution>
                             <id>check</id>
-                            <phase>validate</phase>
+                            <phase>install</phase>
                             <goals>
                                 <goal>check</goal>
                             </goals>

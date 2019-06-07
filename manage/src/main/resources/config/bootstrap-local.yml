@@ -6,7 +6,7 @@ spring:
       discovery:
         enabled: true
         service-id: cloud-config
-      name: application-manage
+      name: manage
       profile: local
 
 eureka:
