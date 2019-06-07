@@ -27,6 +27,8 @@ public interface Constants {
         String UNDER_LINE = "_";
         /** 中划线 **/
         String MIDDLE_LINE = "-";
+        /** 空字符串 **/
+        String EMPTY_STRING = "";
     }
 
 }

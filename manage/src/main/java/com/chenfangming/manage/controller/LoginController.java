@@ -1,16 +1,13 @@
 package com.chenfangming.manage.controller;
 
 import com.chenfangming.manage.config.auto.AppAutoConfiguration.AppProperties;
-import com.chenfangming.manage.util.Constants;
+import com.chenfangming.manage.util.UrlUtils;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 
 /**
  * 登录控制器
@@ -30,13 +27,7 @@ public class LoginController {
     @GetMapping("qq")
     public String qq() {
         log.info("QQ登录");
-        String encodedCallBackUrl;
-        try {
-            encodedCallBackUrl = URLEncoder.encode(appProperties.getQq().getCallBackUrl(), Constants.System.UTF_8_VALUE);
-        } catch (UnsupportedEncodingException e) {
-            log.error("URL编码异常:{}{}", e, "");
-            return null;
-        }
+        String encodedCallBackUrl = UrlUtils.encode(appProperties.getQq().getCallBackUrl());
         return appProperties.getQq().getOauthServerUrl() + "oauth2.0/authorize"
                 + "?response_type=code"
                 + "&client_id=" + appProperties.getQq().getAppId()
