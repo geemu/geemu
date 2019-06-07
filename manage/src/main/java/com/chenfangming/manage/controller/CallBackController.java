@@ -1,7 +1,7 @@
 package com.chenfangming.manage.controller;
 
 
-import com.chenfangming.manage.config.auto.AppAutoConfiguration.AppProperties;
+import com.chenfangming.manage.config.auto.property.AppProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
@@ -28,7 +28,7 @@ import java.util.Map;
 public class CallBackController {
 
     /** appProperties **/
-    private AppProperties appProperties;
+    private AppProperty appProperties;
     /** RestTemplate **/
     private RestTemplate restTemplate;
     /** ObjectMapper **/

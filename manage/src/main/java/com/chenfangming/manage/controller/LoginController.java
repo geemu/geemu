@@ -1,6 +1,6 @@
 package com.chenfangming.manage.controller;
 
-import com.chenfangming.manage.config.auto.AppAutoConfiguration.AppProperties;
+import com.chenfangming.manage.config.auto.property.AppProperty;
 import com.chenfangming.manage.util.UrlUtils;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
 
     /** appProperties **/
-    private AppProperties appProperties;
+    private AppProperty appProperties;
 
     @GetMapping("qq")
     public String qq() {
