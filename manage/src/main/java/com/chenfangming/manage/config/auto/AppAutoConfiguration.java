@@ -17,7 +17,7 @@ public class AppAutoConfiguration {
 
     @Data
     @ConfigurationProperties(prefix = "app")
-    public static class AppProperties {
+    public class AppProperties {
         /** QQ **/
         private QqProperties qq;
     }
