@@ -34,4 +34,5 @@ public enum DefaultResponseStatus implements ResponseStatus {
     private int code;
     /** 提示信息 **/
     private String message;
+
 }
