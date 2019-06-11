@@ -1,12 +1,15 @@
 package com.chenfangming.manage.domain.req;
 
+import com.chenfangming.manage.util.Constants;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
+
 /**
- * 登录请求体
+ * 用户名密码登录请求体
  * @author 陈方明  cfmmail@sina.com
  * @since 2019-06-07 13:08
  */
@@ -14,15 +17,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginReq {
+public class NamePasswordLoginReq {
 
     /** 用户名 **/
+    @NotBlank(message = Constants.Tips.NAME_NOT_BLANK)
     private String name;
     /** 密码 **/
+    @NotBlank(message = Constants.Tips.PASSWORD_NOT_BLANK)
     private String password;
-    /** 图形验证码 **/
-    private String imgCode;
-    /** 短信验证码 **/
-    private String smsCode;
 
 }
