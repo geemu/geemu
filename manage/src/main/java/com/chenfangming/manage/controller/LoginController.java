@@ -3,6 +3,7 @@ package com.chenfangming.manage.controller;
 import com.chenfangming.manage.config.auto.property.AppProperty;
 import com.chenfangming.manage.util.UrlUtils;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,13 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @AllArgsConstructor
-@Api("登录控制器")
+@Api(tags = "登录控制器")
 @RequestMapping("login")
 public class LoginController {
 
     /** appProperties **/
     private AppProperty appProperties;
 
+    @ApiOperation("QQ登录")
     @GetMapping("qq")
     public String qq() {
         log.info("QQ登录");

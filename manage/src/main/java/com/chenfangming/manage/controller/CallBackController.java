@@ -24,7 +24,7 @@ import java.util.Map;
 @RestController
 @AllArgsConstructor
 @Api("第三方回调控制器")
-@RequestMapping("callback")
+@RequestMapping("call_back")
 public class CallBackController {
 
     /** appProperties **/

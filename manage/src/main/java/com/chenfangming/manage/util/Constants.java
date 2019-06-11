@@ -1,7 +1,5 @@
 package com.chenfangming.manage.util;
 
-import java.nio.charset.Charset;
-
 /**
  * 常量
  * @author 陈方明  cfmmail@sina.com
@@ -15,8 +13,6 @@ public interface Constants {
     interface System {
         /** UTF-8 **/
         String UTF_8_VALUE = "UTF-8";
-        /** UTF-8 **/
-        Charset UTF_8 = Charset.forName(UTF_8_VALUE);
         /** &符号 **/
         String AND = "&";
         /** 等于 **/
