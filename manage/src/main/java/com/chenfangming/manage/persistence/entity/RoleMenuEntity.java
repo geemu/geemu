@@ -17,6 +17,10 @@ import java.util.Date;
 @Data
 @TableName("backend_role_menu")
 public class RoleMenuEntity implements Serializable {
+
+    /** 序列化id **/
+    private static final long serialVersionUID = -1L;
+
     /** 主键  id **/
     @TableId(type = IdType.AUTO)
     private Long id;
@@ -26,9 +30,6 @@ public class RoleMenuEntity implements Serializable {
     /** 菜单id **/
     @TableField("menu_id")
     private Long menuId;
-    /** 是否可用  0不可用  1可用 **/
-    @TableField("enabled")
-    private Boolean enabled;
     /** 创建人 **/
     @TableField("create_user")
     private String createUser;

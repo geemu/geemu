@@ -17,6 +17,10 @@ import java.util.Date;
 @Data
 @TableName("backend_role")
 public class RoleEntity implements Serializable {
+
+    /** 序列化id **/
+    private static final long serialVersionUID = -1L;
+
     /** 主键  角色id **/
     @TableId(type = IdType.AUTO)
     private Long id;

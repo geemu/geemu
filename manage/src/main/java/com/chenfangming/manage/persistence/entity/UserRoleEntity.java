@@ -17,6 +17,10 @@ import java.util.Date;
 @Data
 @TableName("backend_user_role")
 public class UserRoleEntity implements Serializable {
+
+    /** 序列化id **/
+    private static final long serialVersionUID = -1L;
+
     /** 主键  id **/
     @TableId(type = IdType.AUTO)
     private Long id;
@@ -26,9 +30,6 @@ public class UserRoleEntity implements Serializable {
     /** 角色id **/
     @TableField("role_id")
     private Long roleId;
-    /** 是否可用  0不可用  1可用 **/
-    @TableField("enabled")
-    private Boolean enabled;
     /** 创建人 **/
     @TableField("create_user")
     private String createUser;

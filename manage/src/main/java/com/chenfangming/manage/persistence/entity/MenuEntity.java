@@ -18,6 +18,10 @@ import java.util.Date;
 @Data
 @TableName("backend_menu")
 public class MenuEntity implements Serializable {
+
+    /** 序列化id **/
+    private static final long serialVersionUID = -1L;
+
     /** 主键  权限菜单id **/
     @TableId(type = IdType.AUTO)
     private Long id;
@@ -30,21 +34,15 @@ public class MenuEntity implements Serializable {
     /** 资源类型  0目录  1菜单  2按钮 **/
     @TableField("type")
     private Integer type;
-    /** 请求方法 **/
+    /** 请求方法 POST DELETE PUT DELETE **/
     @TableField("method")
     private String method;
-    /** 请求路径 **/
-    @TableField("path")
-    private String path;
     /** ant风格匹配 **/
     @TableField("pattern")
     private String pattern;
     /** 排序权重值  数值越大越靠后 **/
     @TableField("sort")
     private Integer sort;
-    /** 是否可用  0不可用  1可用 **/
-    @TableField("enabled")
-    private Boolean enabled;
     /** 创建人 **/
     @TableField("create_user")
     private String createUser;
