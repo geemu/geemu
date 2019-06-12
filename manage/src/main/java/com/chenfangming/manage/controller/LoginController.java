@@ -1,9 +1,8 @@
 package com.chenfangming.manage.controller;
 
-import com.chenfangming.manage.config.auto.property.AppProperty;
 import com.chenfangming.manage.domain.model.ResponseEntity;
-import com.chenfangming.manage.domain.req.NamePasswordLoginReq;
-import com.chenfangming.manage.util.UrlUtils;
+import com.chenfangming.manage.domain.req.CustomLoginReq;
+import com.chenfangming.manage.service.LoginService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
@@ -31,34 +30,20 @@ import javax.validation.Valid;
 public class LoginController {
 
     /** 应用配置参数 **/
-    private AppProperty appProperties;
-
-    /**
-     *
-     **/
+    private LoginService loginService;
 
     @ApiOperation("QQ登录")
     @GetMapping("qq")
     public ResponseEntity<String> qq() {
         log.info("QQ登录");
-        String callBackUrl = appProperties.getQq().getCallBackUrl();
-        log.info("当前回调地址为:{}", callBackUrl);
-        String encodedCallBackUrl = UrlUtils.encode(callBackUrl);
-        log.info("URL编码后为:{}", encodedCallBackUrl);
-        String url = appProperties.getQq().getOauthServerUrl() + "oauth2.0/authorize"
-                + "?response_type=code"
-                + "&client_id=" + appProperties.getQq().getAppId()
-                + "&redirect_uri=" + encodedCallBackUrl
-                + "&state=" + "123456789"
-                + "&scope=get_user_info"
-                + "&display=pc";
-        log.info("请求QQ登录的URL为:{}", url);
+        String url = loginService.qq();
+        log.info("当前QQ登录地址为:{}", url);
         return new ResponseEntity<>(url);
     }
 
     @ApiOperation("用户名密码登录")
     @PostMapping
-    public ResponseEntity<String> login(@RequestBody @Valid NamePasswordLoginReq condition) {
+    public ResponseEntity<String> custom(@RequestBody @Valid CustomLoginReq condition) {
         return null;
     }
 
