@@ -1,0 +1,13 @@
+# 公共配置
+spring:
+  datasource:
+    name: 主库
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysql.aliyun.chenfangming.com:3306/backend?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true
+    username: root
+    password: mysql.aliyun.chenfangming.com:3306
+  redis:
+    host: redis.aliyun.chenfangming.com
+    port: 6379
+    password: redis.aliyun.chenfangming.com:6379

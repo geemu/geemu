@@ -3,8 +3,9 @@ server:
 
 eureka:
   instance:
-    prefer-ip-address: true
-    ip-address: 127.0.0.1
+    prefer-ip-address: false
+    ip-address: 47.97.215.198
+    hostname: config.aliyun.chenfangming.com
   client:
     service-url:
       defaultZone: http://eureka.vultr.chenfangming.com:8761/eureka/,http://eureka.aliyun.chenfangming.com:8761/eureka/
