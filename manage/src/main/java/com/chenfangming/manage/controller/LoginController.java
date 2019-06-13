@@ -44,6 +44,7 @@ public class LoginController {
     @ApiOperation("用户名密码登录")
     @PostMapping
     public ResponseEntity<String> custom(@RequestBody @Valid CustomLoginReq condition) {
+        loginService.custom(condition);
         return null;
     }
 

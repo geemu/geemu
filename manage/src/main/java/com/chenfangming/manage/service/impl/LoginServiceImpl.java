@@ -2,11 +2,15 @@ package com.chenfangming.manage.service.impl;
 
 import com.chenfangming.manage.config.auto.property.AppProperty;
 import com.chenfangming.manage.domain.req.CustomLoginReq;
+import com.chenfangming.manage.persistence.entity.UserEntity;
+import com.chenfangming.manage.persistence.mapper.UserMapper;
 import com.chenfangming.manage.service.LoginService;
 import com.chenfangming.manage.util.UrlUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 /**
  * com.chenfangming.manage.service.impl
@@ -20,6 +24,7 @@ public class LoginServiceImpl implements LoginService {
 
     /** 应用配置参数 **/
     private AppProperty appProperties;
+    private UserMapper userMapper;
 
     @Override
     public String qq() {
@@ -37,7 +42,8 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public String custom(CustomLoginReq condition) {
-        return null;
+    public UserEntity custom(CustomLoginReq condition) {
+        Optional<UserEntity> userEntity = userMapper.selectByName(condition.getName());
+        return userEntity.orElseThrow(() -> new IllegalArgumentException("This user does not exit!"));
     }
 }
