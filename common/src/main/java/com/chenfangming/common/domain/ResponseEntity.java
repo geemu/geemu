@@ -1,4 +1,4 @@
-package com.chenfangming.manage.domain.model;
+package com.chenfangming.common.domain;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -13,6 +13,7 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 public class ResponseEntity<T> {
+
     /** 返回状态 **/
     private int code;
     /** 返回提示信息 **/

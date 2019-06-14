@@ -1,4 +1,4 @@
-package com.chenfangming.manage.domain.model;
+package com.chenfangming.common.domain;
 
 /**
  * 返回状态
@@ -10,7 +10,7 @@ public interface ResponseStatus {
      * 获取状态码
      * @return 状态码
      */
-    int getCode();
+    Integer getCode();
 
     /**
      * 获取状态提示信息

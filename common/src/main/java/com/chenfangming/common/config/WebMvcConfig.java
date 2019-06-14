@@ -1,4 +1,4 @@
-package com.chenfangming.manage.config;
+package com.chenfangming.common.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -37,4 +37,5 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addResourceHandler("img/**")
                 .addResourceLocations("classpath:/static/img/");
     }
+
 }

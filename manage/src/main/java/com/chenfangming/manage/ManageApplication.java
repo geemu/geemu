@@ -5,6 +5,7 @@ import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * Manage后台管理程序入口
@@ -13,6 +14,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @EnableDiscoveryClient
 @SpringBootApplication
+@ComponentScan({"com.chenfangming.manage", "com.chenfangming.common"})
 @MapperScan("com.chenfangming.manage.persistence.mapper")
 public class ManageApplication {
 

@@ -1,6 +1,6 @@
 package com.chenfangming.manage.controller;
 
-import com.chenfangming.manage.domain.model.ResponseEntity;
+import com.chenfangming.common.domain.ResponseEntity;
 import com.chenfangming.manage.domain.req.CustomLoginReq;
 import com.chenfangming.manage.service.LoginService;
 import io.swagger.annotations.Api;

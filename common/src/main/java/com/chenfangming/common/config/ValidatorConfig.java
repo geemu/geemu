@@ -1,4 +1,4 @@
-package com.chenfangming.manage.config;
+package com.chenfangming.common.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.HibernateValidator;
