@@ -21,7 +21,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class BizExceptionHandle extends ResponseEntityExceptionHandler {
 
     /**
-     * 方法参数校验不通过异常、需要区别对待的异常
+     * 400方法参数校验不通过异常、需要区别对待的异常
      * 前端校验会防止出现这种异常,只要用户按规矩走前端JS请求是不会出现这种情况的，
      * 因此这种异常不需要明确提示哪里错了,后台记录以下就可以了。
      * @param ex 异常
@@ -35,7 +35,7 @@ public class BizExceptionHandle extends ResponseEntityExceptionHandler {
     }
 
     /**
-     * 参数绑定异常、需要区别对待的异常
+     * 400参数绑定异常、需要区别对待的异常
      * 前端校验会防止出现这种异常,只要用户按规矩走前端JS请求是不会出现这种情况的，
      * 因此这种异常不需要明确提示哪里错了,后台记录以下就可以了。
      * @param ex 异常
@@ -49,7 +49,7 @@ public class BizExceptionHandle extends ResponseEntityExceptionHandler {
     }
 
     /**
-     * 未知异常、不需要区别对待的异常
+     * 500未知异常、不需要区别对待的异常
      * @param ex 异常
      * @return JSON视图
      */
