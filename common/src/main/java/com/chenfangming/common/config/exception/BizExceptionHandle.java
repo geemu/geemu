@@ -3,11 +3,13 @@ package com.chenfangming.common.config.exception;
 import com.chenfangming.common.domain.DefaultResponseStatus;
 import com.chenfangming.common.domain.ResponseEntity;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.HttpMediaTypeNotSupportedException;
-import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.servlet.NoHandlerFoundException;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 /**
  * 异常控制器
@@ -16,31 +18,46 @@ import org.springframework.web.servlet.NoHandlerFoundException;
  */
 @Slf4j
 @RestControllerAdvice
-public class BizExceptionHandle {
+public class BizExceptionHandle extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-    public ResponseEntity<Void> handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException ex) {
-        log.info("不支持的请求方法:", ex);
-        return new ResponseEntity<>(DefaultResponseStatus.METHOD_NOT_SUPPORT);
+    /**
+     * 方法参数校验不通过异常、需要区别对待的异常
+     * 前端校验会防止出现这种异常,只要用户按规矩走前端JS请求是不会出现这种情况的，
+     * 因此这种异常不需要明确提示哪里错了,后台记录以下就可以了。
+     * @param ex 异常
+     * @return JSON视图
+     */
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<Void> handle(MethodArgumentNotValidException ex) {
+        log.warn("方法参数校验不通过:", ex);
+        return new ResponseEntity<>(DefaultResponseStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(HttpMediaTypeNotSupportedException.class)
-    public ResponseEntity<Void> handleHttpMediaTypeNotSupportedException(HttpMediaTypeNotSupportedException ex) {
-        log.info("不支持的请求方法:", ex);
-        return new ResponseEntity<>(DefaultResponseStatus.METHOD_NOT_SUPPORT);
+    /**
+     * 参数绑定异常、需要区别对待的异常
+     * 前端校验会防止出现这种异常,只要用户按规矩走前端JS请求是不会出现这种情况的，
+     * 因此这种异常不需要明确提示哪里错了,后台记录以下就可以了。
+     * @param ex 异常
+     * @return JSON视图
+     */
+    @ExceptionHandler(BindException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<Void> handle(BindException ex) {
+        log.warn("参数绑定异常:", ex);
+        return new ResponseEntity<>(DefaultResponseStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(NoHandlerFoundException.class)
-    public ResponseEntity<Void> handleNoHandlerFoundException(NoHandlerFoundException ex) {
-        log.info("请求路径不存在:", ex);
-        return new ResponseEntity<>(DefaultResponseStatus.PATH_NOT_FOUND);
-    }
-
+    /**
+     * 未知异常、不需要区别对待的异常
+     * @param ex 异常
+     * @return JSON视图
+     */
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<Void> handleException(Exception ex) {
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ResponseEntity<Void> handle(Exception ex) {
         log.error("后台未知异常:", ex);
-        return new ResponseEntity<>(DefaultResponseStatus.EXCEPTION);
+        return new ResponseEntity<>(DefaultResponseStatus.INTERNAL_SERVER_ERROR);
     }
-
 
 }

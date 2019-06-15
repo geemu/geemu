@@ -1,7 +1,6 @@
 package com.chenfangming.common.domain;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.ToString;
 
 /**
@@ -9,7 +8,6 @@ import lombok.ToString;
  * @author 陈方明  cfmmail@sina.com
  * @since 2018-11-03 15:25
  */
-@Getter
 @ToString
 @AllArgsConstructor
 public enum DefaultResponseStatus implements ResponseStatus {
@@ -18,8 +16,6 @@ public enum DefaultResponseStatus implements ResponseStatus {
     SUCCESS(0, "成功"),
     /** 通用失败 自定义业务失败 **/
     FAIL(1, "失败"),
-    /** 系统异常 BUG **/
-    EXCEPTION(2, "系统异常"),
     /** 加密异常 **/
     ENCRYPT_EXCEPTION(3, "加密异常"),
     /** 解密异常 **/
@@ -46,16 +42,22 @@ public enum DefaultResponseStatus implements ResponseStatus {
     AUTHENTICATION_EXPIRED(14, "认证已过期"),
     /** 图形、短信、语音验证码已过期 **/
     CAPTCHA_EXPIRED(15, "验证码已过期"),
-    /** 请求参数校验不通过 **/
-    ILLEGAL_ARGUMENT(16, "请求参数校验不通过"),
-    /** 不支持的请求方法 **/
-    METHOD_NOT_SUPPORT(17, "不支持的请求方法"),
-    /** 请求路径不存在 **/
-    PATH_NOT_FOUND(18, "请求路径不存在");
+    BAD_REQUEST(400, "请求异常"),
+    INTERNAL_SERVER_ERROR(500, "系统未知异常");
+
 
     /** 状态码 **/
     private Integer code;
     /** 提示信息 **/
     private String message;
 
+    @Override
+    public Integer getCode() {
+        return code;
+    }
+
+    @Override
+    public String getMessage() {
+        return message;
+    }
 }
