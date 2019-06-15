@@ -1,5 +1,6 @@
 package com.chenfangming.common.domain;
 
+import com.chenfangming.common.config.exception.BizException;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -76,6 +77,14 @@ public class ResponseEntity<T> {
      */
     public ResponseEntity(ResponseStatus responseStatus) {
         this(responseStatus.getCode(), responseStatus.getMessage(), null);
+    }
+
+    /**
+     * 自定义
+     * @param ex 自定义的状态码、提示信息
+     */
+    public ResponseEntity(BizException ex) {
+        this(ex.getCode(), ex.getMessage(), null);
     }
 
 }

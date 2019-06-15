@@ -13,10 +13,6 @@
         <result column="update_time" property="updateTime"/>
     </resultMap>
 
-    <sql id="BASE_COLUMN_LIST">
-        `id`,`name`,`password`,enabled,create_user,create_time,update_user,update_time
-    </sql>
-
     <select id="selectByName" resultMap="BASE_RESULT_MAP">
         select *
         from backend_user t

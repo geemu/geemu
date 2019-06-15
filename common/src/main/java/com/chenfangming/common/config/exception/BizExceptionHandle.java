@@ -48,6 +48,17 @@ public class BizExceptionHandle {
     }
 
     /**
+     * 200自定义异常、不需要区别对待的异常
+     * @param ex 异常
+     * @return JSON视图
+     */
+    @ExceptionHandler(BizException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public final ResponseEntity<Void> handle(BizException ex) {
+        return new ResponseEntity<>(ex);
+    }
+
+    /**
      * 500未知异常、不需要区别对待的异常
      * @param ex 异常
      * @return JSON视图

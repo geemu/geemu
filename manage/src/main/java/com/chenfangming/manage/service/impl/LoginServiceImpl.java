@@ -1,5 +1,7 @@
 package com.chenfangming.manage.service.impl;
 
+import com.chenfangming.common.config.exception.BizException;
+import com.chenfangming.common.domain.DefaultResponseStatus;
 import com.chenfangming.manage.config.auto.property.AppProperty;
 import com.chenfangming.manage.domain.req.CustomLoginReq;
 import com.chenfangming.manage.persistence.entity.UserEntity;
@@ -9,8 +11,6 @@ import com.chenfangming.manage.util.UrlUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 /**
  * com.chenfangming.manage.service.impl
@@ -43,7 +43,14 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public UserEntity custom(CustomLoginReq condition) {
-        Optional<UserEntity> userEntity = userMapper.selectByName(condition.getName());
-        return userEntity.orElseThrow(() -> new IllegalArgumentException("This user does not exit!"));
+        UserEntity userEntity = userMapper.selectByName(condition.getName())
+                .orElseThrow(() -> new BizException(DefaultResponseStatus.FAIL, "用户名或密码错误"));
+        if (!userEntity.getEnabled()) {
+            throw new BizException(DefaultResponseStatus.FAIL, "用户被禁用");
+        }
+        if (!userEntity.getPassword().equals(condition.getPassword())) {
+            throw new BizException(DefaultResponseStatus.FAIL, "用户名或密码错误");
+        }
+        return userEntity;
     }
 }
