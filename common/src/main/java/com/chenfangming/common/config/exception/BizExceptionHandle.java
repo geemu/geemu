@@ -9,7 +9,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 /**
  * 异常控制器
@@ -18,7 +17,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
  */
 @Slf4j
 @RestControllerAdvice
-public class BizExceptionHandle extends ResponseEntityExceptionHandler {
+public class BizExceptionHandle {
 
     /**
      * 400方法参数校验不通过异常、需要区别对待的异常
@@ -29,7 +28,7 @@ public class BizExceptionHandle extends ResponseEntityExceptionHandler {
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<Void> handle(MethodArgumentNotValidException ex) {
+    public final ResponseEntity<Void> handle(MethodArgumentNotValidException ex) {
         log.warn("方法参数校验不通过:", ex);
         return new ResponseEntity<>(DefaultResponseStatus.BAD_REQUEST);
     }
@@ -43,7 +42,7 @@ public class BizExceptionHandle extends ResponseEntityExceptionHandler {
      */
     @ExceptionHandler(BindException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<Void> handle(BindException ex) {
+    public final ResponseEntity<Void> handle(BindException ex) {
         log.warn("参数绑定异常:", ex);
         return new ResponseEntity<>(DefaultResponseStatus.BAD_REQUEST);
     }
@@ -55,7 +54,7 @@ public class BizExceptionHandle extends ResponseEntityExceptionHandler {
      */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ResponseEntity<Void> handle(Exception ex) {
+    public final ResponseEntity<Void> handle(Exception ex) {
         log.error("后台未知异常:", ex);
         return new ResponseEntity<>(DefaultResponseStatus.INTERNAL_SERVER_ERROR);
     }
