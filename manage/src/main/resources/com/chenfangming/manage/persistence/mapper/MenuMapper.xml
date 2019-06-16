@@ -21,14 +21,4 @@
         from backend_menu
     </select>
 
-    <select id="selectUserMenu" resultMap="MENU_RESULT_MAP">
-        SELECT m.id,m.pid,m.name,m.type,m.method,m.path,m.sort
-        FROM backend_menu m
-        INNER JOIN backend_role_menu rm ON m.id = rm.menu_id
-        AND rm.role_id IN
-        <foreach collection="ids" index="index" open="(" separator="," close=")" item="item">
-            #{item}
-        </foreach>
-    </select>
-
 </mapper>

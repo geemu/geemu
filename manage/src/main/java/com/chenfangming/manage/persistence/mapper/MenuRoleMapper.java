@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * 资源对应角色操作
+ * 一个资源对应多个角色
  * @author 陈方明  cfmmail@sina.com
  * @since 2019-06-12 22:56
  */

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 /**
- * 用户数据表操作
+ * 用户
  * @author 陈方明  cfmmail@sina.com
  * @since 2019-06-12 22:55
  */
