@@ -1,6 +1,5 @@
-package com.chenfangming.manage.controller;
+package com.chenfangming.common.config.exception;
 
-import com.chenfangming.common.config.exception.BizException;
 import com.chenfangming.common.domain.DefaultResponseStatus;
 import com.chenfangming.common.domain.ResponseEntity;
 import lombok.extern.slf4j.Slf4j;
