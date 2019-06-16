@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 第三方回调控制器
+ * 回调控制器
  * @author 陈方明  cfmmail@sina.com
  * @since 2019-05-04 18:23
  */

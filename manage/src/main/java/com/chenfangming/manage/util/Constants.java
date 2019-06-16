@@ -33,7 +33,6 @@ public interface Constants {
     interface Tips {
         String NAME_NOT_BLANK = "用户名不为空";
         String PASSWORD_NOT_BLANK = "密码不为空";
-
     }
 
 }

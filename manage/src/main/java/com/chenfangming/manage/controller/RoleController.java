@@ -1,7 +1,7 @@
 package com.chenfangming.manage.controller;
 
 import com.chenfangming.common.domain.ResponseEntity;
-import com.chenfangming.manage.persistence.entity.UserEntity;
+import com.chenfangming.manage.persistence.entity.RoleEntity;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 /**
- * 用户控制器
+ * 角色控制器
  * @author 陈方明  cfmmail@sina.com
  * @since 2019-06-13 22:29
  */
@@ -24,31 +24,31 @@ import javax.validation.Valid;
 @Validated
 @RestController
 @AllArgsConstructor
-@RequestMapping("user")
-@Api(tags = "用户控制器")
-public class UserController {
+@RequestMapping("role")
+@Api(tags = "角色控制器")
+public class RoleController {
 
-    @ApiOperation("新增一个用户")
+    @ApiOperation("新增一个角色")
     @PostMapping
-    public ResponseEntity<UserEntity> add(@Valid UserEntity userEntity) {
+    public ResponseEntity<RoleEntity> add(@Valid RoleEntity roleEntity) {
         return null;
     }
 
-    @ApiOperation("根据主键删除用户")
+    @ApiOperation("根据主键删除角色")
     @DeleteMapping
     public ResponseEntity<Void> del(@Valid Long id) {
         return null;
     }
 
-    @ApiOperation("根据主键修改用户信息")
+    @ApiOperation("根据主键修改角色信息")
     @PutMapping
-    public ResponseEntity<UserEntity> edit(@Valid UserEntity userEntity) {
+    public ResponseEntity<RoleEntity> edit(@Valid RoleEntity roleEntity) {
         return null;
     }
 
-    @ApiOperation("根据条件查询用户信息")
+    @ApiOperation("根据条件查询角色信息")
     @PutMapping
-    public ResponseEntity<UserEntity> find(@Valid UserEntity userEntity) {
+    public ResponseEntity<RoleEntity> find(@Valid RoleEntity roleEntity) {
         return null;
     }
 
