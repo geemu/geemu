@@ -1,7 +1,7 @@
 package com.chenfangming.manage.controller;
 
 
-import com.chenfangming.manage.config.auto.property.AppProperty;
+import com.chenfangming.manage.config.property.AppProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;

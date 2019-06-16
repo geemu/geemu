@@ -1,7 +1,8 @@
 package com.chenfangming.manage.controller;
 
 import com.chenfangming.common.domain.ResponseEntity;
-import com.chenfangming.manage.domain.req.CustomLoginReq;
+import com.chenfangming.manage.domain.req.NamePwdReq;
+import com.chenfangming.manage.persistence.entity.UserEntity;
 import com.chenfangming.manage.service.LoginService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 /**
@@ -43,8 +45,11 @@ public class LoginController {
 
     @ApiOperation("用户名密码登录")
     @PostMapping
-    public ResponseEntity<String> custom(@RequestBody @Valid CustomLoginReq condition) {
-        loginService.custom(condition);
+    public ResponseEntity<UserEntity> custom(@RequestBody @Valid NamePwdReq condition, HttpServletRequest request) {
+        UserEntity userEntity = loginService.login(condition);
+        request.getSession().setAttribute("currentUser", userEntity);
+        UserEntity data = (UserEntity) request.getSession().getAttribute("currentUser");
+        System.out.println(data);
         return null;
     }
 

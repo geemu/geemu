@@ -55,6 +55,7 @@ public class BizExceptionHandle {
     @ExceptionHandler(BizException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public final ResponseEntity<Void> handle(BizException ex) {
+        log.warn("自定义异常:", ex);
         return new ResponseEntity<>(ex);
     }
 

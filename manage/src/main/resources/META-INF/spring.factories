@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.chenfangming.manage.config.auto.AppAutoConfiguration
+com.chenfangming.manage.config.AppAutoConfiguration

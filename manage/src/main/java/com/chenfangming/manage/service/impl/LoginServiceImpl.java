@@ -2,8 +2,8 @@ package com.chenfangming.manage.service.impl;
 
 import com.chenfangming.common.config.exception.BizException;
 import com.chenfangming.common.domain.DefaultResponseStatus;
-import com.chenfangming.manage.config.auto.property.AppProperty;
-import com.chenfangming.manage.domain.req.CustomLoginReq;
+import com.chenfangming.manage.config.property.AppProperty;
+import com.chenfangming.manage.domain.req.NamePwdReq;
 import com.chenfangming.manage.persistence.entity.UserEntity;
 import com.chenfangming.manage.persistence.mapper.UserMapper;
 import com.chenfangming.manage.service.LoginService;
@@ -42,7 +42,7 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public UserEntity custom(CustomLoginReq condition) {
+    public UserEntity login(NamePwdReq condition) {
         UserEntity userEntity = userMapper.selectByName(condition.getName())
                 .orElseThrow(() -> new BizException(DefaultResponseStatus.FAIL, "用户名或密码错误"));
         if (!userEntity.getEnabled()) {

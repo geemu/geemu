@@ -17,7 +17,7 @@ import javax.validation.constraints.NotBlank;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomLoginReq {
+public class NamePwdReq {
 
     /** 用户名 **/
     @NotBlank(message = Constants.Tips.NAME_NOT_BLANK)

@@ -1,6 +1,6 @@
 package com.chenfangming.manage.service;
 
-import com.chenfangming.manage.domain.req.CustomLoginReq;
+import com.chenfangming.manage.domain.req.NamePwdReq;
 import com.chenfangming.manage.persistence.entity.UserEntity;
 
 /**
@@ -12,5 +12,5 @@ public interface LoginService {
 
     String qq();
 
-    UserEntity custom(CustomLoginReq condition);
+    UserEntity login(NamePwdReq condition);
 }

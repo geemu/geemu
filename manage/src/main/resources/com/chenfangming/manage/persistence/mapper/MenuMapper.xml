@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenfangming.manage.persistence.mapper.MenuMapper">
+
+    <resultMap id="MENU_RESULT_MAP" type="com.chenfangming.manage.persistence.entity.MenuEntity">
+        <id column="id" property="id"/>
+        <result column="pid" property="pid"/>
+        <result column="name" property="name"/>
+        <result column="type" property="type"/>
+        <result column="method" property="method"/>
+        <result column="path" property="path"/>
+        <result column="sort" property="sort"/>
+        <result column="create_user" property="createUser"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="MENU_RESULT_MAP">
+        select *
+        from backend_menu
+    </select>
+
+    <select id="selectUserMenu" resultMap="MENU_RESULT_MAP">
+        SELECT m.id,m.pid,m.name,m.type,m.method,m.path,m.sort
+        FROM backend_menu m
+        INNER JOIN backend_role_menu rm ON m.id = rm.menu_id
+        AND rm.role_id IN
+        <foreach collection="ids" index="index" open="(" separator="," close=")" item="item">
+            #{item}
+        </foreach>
+    </select>
+
+</mapper>

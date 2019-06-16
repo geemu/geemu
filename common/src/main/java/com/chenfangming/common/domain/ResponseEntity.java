@@ -64,6 +64,15 @@ public class ResponseEntity<T> {
 
     /**
      * 自定义
+     * @param code 自定义的状态码
+     * @param message 自定义的提示信息
+     */
+    public ResponseEntity(ResponseStatus code, String message) {
+        this(code.getCode(), message, null);
+    }
+
+    /**
+     * 自定义
      * @param responseStatus 自定义的状态码、提示信息
      * @param data 自定义的数据
      */

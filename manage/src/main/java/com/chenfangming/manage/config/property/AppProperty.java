@@ -1,4 +1,4 @@
-package com.chenfangming.manage.config.auto.property;
+package com.chenfangming.manage.config.property;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

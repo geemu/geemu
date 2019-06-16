@@ -39,7 +39,6 @@
         <version.maven-checkstyle-plugin>3.0.0</version.maven-checkstyle-plugin>
         <version.jasypt>2.1.1</version.jasypt>
         <version.mybatis.plus>3.1.1</version.mybatis.plus>
-        <version.devtools>2.1.5.RELEASE</version.devtools>
     </properties>
 
     <!-- 全局依赖管理 -->
@@ -49,12 +48,6 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${version.mybatis.plus}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-devtools</artifactId>
-                <version>${version.devtools}</version>
-                <optional>true</optional>
             </dependency>
             <dependency>
                 <groupId>com.github.ulisesbocchio</groupId>
