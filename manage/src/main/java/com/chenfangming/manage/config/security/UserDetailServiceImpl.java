@@ -2,8 +2,8 @@ package com.chenfangming.manage.config.security;
 
 import com.chenfangming.manage.persistence.entity.RoleEntity;
 import com.chenfangming.manage.persistence.entity.UserEntity;
-import com.chenfangming.manage.persistence.mapper.RoleMapper;
 import com.chenfangming.manage.persistence.mapper.UserMapper;
+import com.chenfangming.manage.persistence.mapper.UserRoleMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -26,7 +26,7 @@ import java.util.List;
 public class UserDetailServiceImpl implements UserDetailsService {
 
     private UserMapper userMapper;
-    private RoleMapper roleMapper;
+    private UserRoleMapper userRoleMapper;
 
 
     /**
@@ -41,7 +41,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
         UserEntity userEntity = userMapper.selectByName(userName)
                 .orElseThrow(() -> new UsernameNotFoundException("用户名不存在"));
         //  查询用户所拥有的角色  有效的
-        List<RoleEntity> roleEntityList = roleMapper.selectByUserId(userEntity.getId());
+        List<RoleEntity> roleEntityList = userRoleMapper.selectByUserId(userEntity.getId());
         List<GrantedAuthority> authorities = new LinkedList<>();
         for (RoleEntity role : roleEntityList) {
             //  这边应该放角色id
