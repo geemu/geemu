@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.chenfangming.manage.persistence.mapper.MenuRoleMapper">
+<mapper namespace="com.chenfangming.manage.persistence.mapper.RoleMenuMapper">
 
     <resultMap id="MENU_ROLE_RESULT_MAP" type="com.chenfangming.manage.persistence.entity.view.MenuRoleView"
                extends="com.chenfangming.manage.persistence.mapper.MenuMapper.MENU_RESULT_MAP">
@@ -15,7 +15,7 @@
         </collection>
     </resultMap>
 
-    <select id="selectAll" resultMap="MENU_ROLE_RESULT_MAP">
+    <select id="selectAllMenuRole" resultMap="MENU_ROLE_RESULT_MAP">
         SELECT m.id,
                m.pid,
                m.name,
@@ -26,8 +26,7 @@
         FROM backend_menu m
                  INNER JOIN backend_role_menu rm ON m.id = rm.menu_id
                  INNER JOIN backend_role r ON r.id = rm.role_id
-        WHERE m.enabled = TRUE
-          AND r.enabled = TRUE
+        WHERE r.enabled = TRUE
           AND rm.enabled = TRUE
         ORDER BY m.sort ASC
     </select>
