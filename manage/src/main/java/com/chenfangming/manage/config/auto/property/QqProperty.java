@@ -1,4 +1,4 @@
-package com.chenfangming.manage.config.property;
+package com.chenfangming.manage.config.auto.property;
 
 import lombok.Data;
 

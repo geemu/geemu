@@ -1,6 +1,6 @@
-package com.chenfangming.manage.config;
+package com.chenfangming.manage.config.auto;
 
-import com.chenfangming.manage.config.property.AppProperty;
+import com.chenfangming.manage.config.auto.property.AppProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
