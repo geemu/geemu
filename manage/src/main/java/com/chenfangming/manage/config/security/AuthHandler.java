@@ -4,6 +4,7 @@ import com.chenfangming.common.domain.DefaultResponseStatus;
 import com.chenfangming.common.domain.ResponseEntity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.AccessDeniedException;
@@ -30,9 +31,9 @@ import java.io.IOException;
  */
 @Slf4j
 @Component
-public class AuthenticationHandler implements AuthenticationSuccessHandler, AuthenticationFailureHandler, AccessDeniedHandler, AuthenticationEntryPoint, LogoutSuccessHandler {
+public class AuthHandler implements AuthenticationSuccessHandler, AuthenticationFailureHandler, AccessDeniedHandler, AuthenticationEntryPoint, LogoutSuccessHandler {
 
-    /** 构造注入 **/
+    @Autowired
     private ObjectMapper objectMapper;
 
     /**

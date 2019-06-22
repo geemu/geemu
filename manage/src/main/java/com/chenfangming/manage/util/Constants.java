@@ -8,23 +8,21 @@ package com.chenfangming.manage.util;
 public interface Constants {
 
     /**
-     * 系统常量
+     * 常量值
      */
-    interface System {
+    interface Value {
         /** UTF-8 **/
         String UTF_8_VALUE = "UTF-8";
-        /** &符号 **/
-        String AND = "&";
-        /** 等于 **/
-        String EQUAL = "=";
-        /** 问号 **/
-        String WHAT = "?";
-        /** 下划线 **/
-        String UNDER_LINE = "_";
-        /** 中划线 **/
-        String MIDDLE_LINE = "-";
         /** 空字符串 **/
         String EMPTY_STRING = "";
+        /** 未知 **/
+        String UNKNOW = "UNKNOW";
+        /** 英文逗号 **/
+        String COMMA_EN = ",";
+        /** -1 **/
+        Integer NUMBER_INTEGER_NEGATIVE_1 = -1;
+        /** 0 **/
+        Integer NUMBER_INTEGER_0 = 0;
     }
 
     /**

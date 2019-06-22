@@ -52,8 +52,7 @@ public class MyFilterInvocationSecurityMetadataSource implements FilterInvocatio
         for (MenuRoleView m : permissionEntityList) {
             List<RoleEntity> roleEntityList = m.getRoleEntityList();
             String pattern = m.getMethod() + ":" + m.getPattern();
-            boolean hasPermission = ANT_PATH_MATCHER.match(pattern, path)
-                    && !CollectionUtils.isEmpty(roleEntityList);
+            boolean hasPermission = ANT_PATH_MATCHER.match(pattern, path) && !CollectionUtils.isEmpty(roleEntityList);
             if (hasPermission) {
                 int size = roleEntityList.size();
                 String[] values = new String[size];
@@ -63,9 +62,8 @@ public class MyFilterInvocationSecurityMetadataSource implements FilterInvocatio
                 return SecurityConfig.createList(values);
             }
         }
-        //  没有匹配上的资源返回null 后续就不需要再执行MyAccessDecisionManager了，而是直接访问
-        //  如果是匿名用户，那么，将角色名从ROLE_ANONYMOUS改为0
-        log.info("当前请求资源[{}]未配置，不需要鉴权(不需要执行MyAccessDecisionManager)，可直接访问", path);
+        //  没有匹配上的资源返回null 跳过鉴权，直接访问
+        log.info("当前请求资源{}未配置，不需要鉴权，直接访问", path);
         return null;
     }
 

@@ -4,7 +4,8 @@ import com.chenfangming.manage.persistence.entity.RoleEntity;
 import com.chenfangming.manage.persistence.entity.UserEntity;
 import com.chenfangming.manage.persistence.mapper.RoleMapper;
 import com.chenfangming.manage.persistence.mapper.UserMapper;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -21,11 +22,13 @@ import java.util.List;
  * @author 陈方明  cfmmail@sina.com
  * @since 2018-11-23 14:09
  */
+@Primary
 @Component
-@AllArgsConstructor
 public class UserDetailServiceImpl implements UserDetailsService {
 
+    @Autowired
     private UserMapper userMapper;
+    @Autowired
     private RoleMapper roleMapper;
 
 
