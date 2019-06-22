@@ -8,17 +8,87 @@
         <result column="name" property="name"/>
         <result column="type" property="type"/>
         <result column="method" property="method"/>
-        <result column="path" property="path"/>
+        <result column="pattern" property="pattern"/>
+        <result column="operate" property="operate"/>
         <result column="sort" property="sort"/>
+        <result column="remark" property="remark"/>
         <result column="create_user" property="createUser"/>
         <result column="create_time" property="createTime"/>
         <result column="update_user" property="updateUser"/>
         <result column="update_time" property="updateTime"/>
     </resultMap>
 
+    <!--  一个资源对应多个角色  -->
+    <resultMap id="MENU_ROLE_RESULT_MAP" extends="MENU_RESULT_MAP" type="com.chenfangming.manage.persistence.entity.view.MenuRoleView">
+        <collection property="roleEntityList" ofType="com.chenfangming.manage.persistence.entity.RoleEntity">
+            <id column="role_id" property="id"/>
+            <result column="role_name" property="name"/>
+            <result column="role_remark" property="remark"/>
+            <result column="role_enabled" property="enabled"/>
+            <result column="role_create_user" property="createUser"/>
+            <result column="role_create_time" property="createTime"/>
+            <result column="role_update_user" property="updateUser"/>
+            <result column="role_update_time" property="updateTime"/>
+        </collection>
+    </resultMap>
+
     <select id="selectAll" resultMap="MENU_RESULT_MAP">
         select *
-        from backend_menu
+        from backend_menu m
+        where m.enabled = FALSE
+    </select>
+
+    <select id="selectButtonWithRole" resultMap="MENU_ROLE_RESULT_MAP">
+        SELECT m.id,
+               m.pid,
+               m.name,
+               m.type,
+               m.method,
+               m.pattern,
+               m.operate,
+               m.sort,
+               m.remark,
+               m.enabled,
+               m.create_user,
+               m.create_time,
+               m.update_user,
+               m.update_time,
+               r.id          AS role_id,
+               r.name        AS role_name,
+               r.remark      AS role_remark,
+               r.enabled     AS role_enabled,
+               r.create_user AS role_create_user,
+               r.create_time AS role_create_time,
+               r.update_user AS role_update_user,
+               r.update_time AS role_update_time
+        FROM (select * from backend_menu where enabled = TRUE AND type = 2) m
+                 INNER JOIN (SELECT * FROM backend_role_menu WHERE enabled = TRUE) rm ON m.id = rm.menu_id
+                 INNER JOIN (SELECT * FROM backend_role WHERE enabled = TRUE) r ON r.id = rm.role_id
+        ORDER BY m.sort
+    </select>
+
+    <select id="selectByRoleId" resultMap="MENU_RESULT_MAP" parameterType="java.util.List">
+        SELECT m.id,
+        m.pid,
+        m.name,
+        m.type,
+        m.method,
+        m.pattern,
+        m.operate,
+        m.sort,
+        m.remark,
+        m.enabled,
+        m.create_user,
+        m.create_time,
+        m.update_user,
+        m.update_time
+        FROM (select * from backend_menu where enabled = TRUE AND type != 2 ) m
+        LEFT JOIN (SELECT * FROM backend_role_menu WHERE enabled = TRUE) rm ON m.id = rm.menu_id
+        WHERE
+        rm.role_id IN
+        <foreach collection="roleIds" index="index" open="(" separator="," close=")" item="roleId">
+            #{roleId}
+        </foreach>
     </select>
 
 </mapper>

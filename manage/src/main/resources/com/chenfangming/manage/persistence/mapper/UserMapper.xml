@@ -6,6 +6,7 @@
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="password" property="password"/>
+        <result column="remark" property="remark"/>
         <result column="enabled" property="enabled"/>
         <result column="create_user" property="createUser"/>
         <result column="create_time" property="createTime"/>

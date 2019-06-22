@@ -20,6 +20,8 @@ public class RoleEntity implements Serializable {
     private Long id;
     /** 角色名称  忽略大小写 **/
     private String name;
+    /** 备注 **/
+    private String remark;
     /** 是否可用  0不可用  1可用 **/
     private Boolean enabled;
     /** 创建人 **/

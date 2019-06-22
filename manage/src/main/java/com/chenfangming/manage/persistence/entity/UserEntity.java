@@ -23,6 +23,8 @@ public class UserEntity implements Serializable {
     private String name;
     /** 密码  区分大小写 **/
     private String password;
+    /** 备注 **/
+    private String remark;
     /** 是否可用  0不可用  1可用 **/
     private Boolean enabled;
     /** 创建人 **/
@@ -33,4 +35,5 @@ public class UserEntity implements Serializable {
     private String updateUser;
     /** 更新时间 **/
     private Date updateTime;
+
 }

@@ -5,7 +5,9 @@ import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
 /**
  * Manage后台管理程序入口
@@ -26,6 +28,13 @@ public class ManageApplication {
         SpringApplication app = new SpringApplication(ManageApplication.class);
         app.setBannerMode(Banner.Mode.OFF);
         app.run(args);
+    }
+
+    @Bean
+    public ReloadableResourceBundleMessageSource init() {
+        ReloadableResourceBundleMessageSource res = new ReloadableResourceBundleMessageSource();
+        res.setBasename("classpath:org/springframework/security/messages");
+        return res;
     }
 
 }
