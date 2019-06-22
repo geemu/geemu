@@ -32,12 +32,6 @@
         </collection>
     </resultMap>
 
-    <select id="selectAll" resultMap="MENU_RESULT_MAP">
-        select *
-        from backend_menu m
-        where m.enabled = FALSE
-    </select>
-
     <select id="selectButtonWithRole" resultMap="MENU_ROLE_RESULT_MAP">
         SELECT m.id,
                m.pid,

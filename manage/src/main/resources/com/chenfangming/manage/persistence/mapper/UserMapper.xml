@@ -20,5 +20,4 @@
         where u.name = #{name}
     </select>
 
-
 </mapper>

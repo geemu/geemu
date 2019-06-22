@@ -19,22 +19,16 @@ import java.util.Set;
 public interface MenuMapper {
 
     /**
-     * 查询所有资源
-     * @return 所有资源
+     * 查询角色对应的可用目录、菜单
+     * @param roleIds 角色id集合
+     * @return 目录、菜单集合
      */
-    List<MenuEntity> selectAll();
+    List<MenuEntity> selectByRoleId(@Param("roleIds") Set<Long> roleIds);
 
     /**
      * 查询可用按钮及其可以访问的角色列表
      * @return 菜单、按钮集合及其可以访问的角色列表
      */
     List<MenuRoleView> selectButtonWithRole();
-
-    /**
-     * 查询角色对应的可用目录、菜单
-     * @param roleIds 角色id集合
-     * @return 目录、菜单集合
-     */
-    List<MenuEntity> selectByRoleId(@Param("roleIds") Set<Long> roleIds);
 
 }
