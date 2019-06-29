@@ -20,10 +20,10 @@ public final class UrlUtils {
      */
     public static String encode(String url) {
         try {
-            return URLEncoder.encode(url, Constants.System.UTF_8_VALUE);
+            return URLEncoder.encode(url, Constants.Value.UTF_8_VALUE);
         } catch (UnsupportedEncodingException e) {
             log.error("URL:{},编码异常:{},返回空字符串", url, e);
-            return Constants.System.EMPTY_STRING;
+            return Constants.Value.EMPTY_STRING;
         }
     }
 
