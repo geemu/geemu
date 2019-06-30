@@ -1,9 +1,19 @@
 package com.chenfangming.manage.service.impl;
 
+import com.chenfangming.manage.persistence.entity.RoleEntity;
+import com.chenfangming.manage.persistence.entity.view.MenuRoleView;
+import com.chenfangming.manage.persistence.mapper.MenuMapper;
+import com.chenfangming.manage.persistence.mapper.RoleMapper;
 import com.chenfangming.manage.service.RoleService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.util.AntPathMatcher;
+import org.springframework.util.CollectionUtils;
+
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * 角色
@@ -14,5 +24,47 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class RoleServiceImpl implements RoleService {
+
+    /** 匹配URL **/
+    private static final AntPathMatcher ANT_PATH_MATCHER = new AntPathMatcher();
+    private RoleMapper roleMapper;
+    private MenuMapper menuMapper;
+
+    /**
+     * 根据用户id查询用户角色列表
+     * @param userId 用户id
+     * @return 角色列表
+     */
+    @Override
+    public List<RoleEntity> selectByUserId(Long userId) {
+        return roleMapper.selectByUserId(userId);
+    }
+
+    /**
+     * 查询当前请求资源所能访问的角色
+     * @param method 请求方法
+     * @param uri 请求路径
+     * @return 角色列表
+     */
+    @Override
+    public List<RoleEntity> selectByRequest(String method, String uri) {
+        List<MenuRoleView> buttonWithRole = menuMapper.selectButtonWithRole();
+        Iterator<MenuRoleView> iterator = buttonWithRole.iterator();
+        String requestPath = method + ":" + uri;
+        while (iterator.hasNext()) {
+            MenuRoleView menuRoleView = iterator.next();
+            List<RoleEntity> roleEntityList = menuRoleView.getRoleEntityList();
+            if (CollectionUtils.isEmpty(roleEntityList)) {
+                log.info("资源:[{}]不存在可以访问的角色", menuRoleView);
+                return Collections.emptyList();
+            }
+            String pattern = menuRoleView.getMethod() + ":" + menuRoleView.getPattern();
+            boolean match = ANT_PATH_MATCHER.match(pattern, requestPath);
+            if (match) {
+                return roleEntityList;
+            }
+        }
+        return null;
+    }
 
 }
