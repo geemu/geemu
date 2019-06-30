@@ -59,7 +59,9 @@ public class RoleServiceImpl implements RoleService {
                 log.info("资源:{}不存在可以访问的角色", menuRoleView);
                 return Collections.emptyList();
             }
-            String pattern = menuRoleView.getMethod() + ":" + menuRoleView.getPattern();
+            String pattern = null == menuRoleView.getMethod() ? "" : menuRoleView.getMethod()
+                    + ":"
+                    + null == menuRoleView.getPattern() ? "" : menuRoleView.getPattern();
             boolean match = ANT_PATH_MATCHER.match(pattern, requestPath);
             if (match) {
                 return roleEntityList;
