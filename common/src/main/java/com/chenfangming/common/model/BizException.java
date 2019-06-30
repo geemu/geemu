@@ -1,6 +1,5 @@
-package com.chenfangming.common.config.exception;
+package com.chenfangming.common.model;
 
-import com.chenfangming.common.domain.ResponseStatus;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

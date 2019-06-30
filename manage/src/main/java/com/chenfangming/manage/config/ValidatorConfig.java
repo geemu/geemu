@@ -1,4 +1,4 @@
-package com.chenfangming.common.config;
+package com.chenfangming.manage.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.HibernateValidator;
@@ -43,10 +43,10 @@ public class ValidatorConfig {
      * @return MethodValidationPostProcessor
      */
     @Bean
-    public MethodValidationPostProcessor methodValidationPostProcessor(Environment environment, Validator validator) {
+    public MethodValidationPostProcessor methodValidationPostProcessor(Environment env, Validator validator) {
         log.info("初始化:MethodValidationPostProcessor");
         MethodValidationPostProcessor processor = new MethodValidationPostProcessor();
-        boolean proxyTargetClass = environment.getProperty(SPRING_AOP_PROXY_TARGET_CLASS, Boolean.class, true);
+        boolean proxyTargetClass = env.getProperty(SPRING_AOP_PROXY_TARGET_CLASS, Boolean.class, Boolean.TRUE);
         processor.setProxyTargetClass(proxyTargetClass);
         processor.setValidator(validator);
         return processor;

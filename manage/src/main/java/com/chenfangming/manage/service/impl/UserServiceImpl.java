@@ -1,11 +1,12 @@
 package com.chenfangming.manage.service.impl;
 
+import com.chenfangming.common.model.BizException;
+import com.chenfangming.common.model.DefaultResponseStatus;
 import com.chenfangming.manage.persistence.entity.UserEntity;
 import com.chenfangming.manage.persistence.mapper.UserMapper;
 import com.chenfangming.manage.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 /**
@@ -28,7 +29,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserEntity selectByName(String name) {
         return userMapper.selectByName(name)
-                .orElseThrow(() -> new UsernameNotFoundException("用户名不存在"));
+                .orElseThrow(() -> new BizException(DefaultResponseStatus.FAIL, "用户名不存在"));
     }
 
 }

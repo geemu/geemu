@@ -6,7 +6,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
 /**
@@ -16,7 +15,6 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
  */
 @EnableDiscoveryClient
 @SpringBootApplication
-@ComponentScan({"com.chenfangming.manage", "com.chenfangming.common"})
 @MapperScan("com.chenfangming.manage.persistence.mapper")
 public class ManageApplication {
 

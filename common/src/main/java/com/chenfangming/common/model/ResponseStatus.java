@@ -1,4 +1,4 @@
-package com.chenfangming.common.domain;
+package com.chenfangming.common.model;
 
 /**
  * 返回状态

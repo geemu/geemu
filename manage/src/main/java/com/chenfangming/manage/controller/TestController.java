@@ -1,6 +1,6 @@
 package com.chenfangming.manage.controller;
 
-import com.chenfangming.common.domain.ResponseEntity;
+import com.chenfangming.common.model.ResponseEntity;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package com.chenfangming.common.config;
+package com.chenfangming.manage.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;

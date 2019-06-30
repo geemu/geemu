@@ -1,4 +1,4 @@
-package com.chenfangming.common.domain;
+package com.chenfangming.common.model;
 
 import lombok.AllArgsConstructor;
 import lombok.ToString;
@@ -13,19 +13,21 @@ import lombok.ToString;
 public enum DefaultResponseStatus implements ResponseStatus {
 
     /** 通用成功 业务成功 **/
-    SUCCESS(0, "成功"),
+    SUCCESS(200, "成功"),
     /** 通用失败 自定义业务失败 **/
-    FAIL(1, "失败"),
-    BAD_REQUEST(2, "请求参数异常"),
-    INTERNAL_SERVER_ERROR(3, "系统未知异常"),
+    FAIL(400, "失败"),
+    PATH_NOT_FOUND(404, "请求路径不存在"),
+    INTERNAL_SERVER_ERROR(500, "系统未知异常"),
+
+    BAD_REQUEST(1, "请求参数异常"),
     /** 未登录 **/
-    NO_AUTHENTICATION(4, "未认证"),
+    NO_AUTHENTICATION(2, "未认证"),
     /** 权限不足 **/
-    NO_AUTHORIZE(5, "未授权"),
+    NO_AUTHORIZE(3, "未授权"),
     /** Token已过期 **/
-    TOKEN_EXPIRED(6, "认证已过期"),
+    TOKEN_EXPIRED(4, "认证已过期"),
     /** Refresh Token已过期 **/
-    REFRESH_TOKEN_EXPIRED(7, "认证已过期");
+    REFRESH_TOKEN_EXPIRED(5, "认证已过期");
 
 
     /** 状态码 **/

@@ -1,4 +1,4 @@
-package com.chenfangming.common.config;
+package com.chenfangming.manage.config;
 
 import io.swagger.annotations.Api;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package com.chenfangming.common.config;
+package com.chenfangming.manage.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

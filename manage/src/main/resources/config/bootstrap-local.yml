@@ -8,19 +8,13 @@ spring:
         service-id: cloud-config
       name: common,manage
       profile: local
-#  mvc:
-#    throw-exception-if-no-handler-found: true
-#  resources:
-#    add-mappings: false
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
 
 
 eureka:
   client:
     service-url:
       defaultZone: http://eureka.vultr.chenfangming.com:8761/eureka,http://eureka.aliyun.chenfangming.com:8761/eureka
-
-#mybatis-plus:
-#  global-config:
-#    banner: false
-#    db-config:
-#      id-type: auto

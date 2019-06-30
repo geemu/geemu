@@ -15,14 +15,6 @@ public interface Constants {
         String UTF_8_VALUE = "UTF-8";
         /** 空字符串 **/
         String EMPTY_STRING = "";
-        /** 未知 **/
-        String UNKNOW = "UNKNOW";
-        /** 英文逗号 **/
-        String COMMA_EN = ",";
-        /** -1 **/
-        Integer NUMBER_INTEGER_NEGATIVE_1 = -1;
-        /** 0 **/
-        Integer NUMBER_INTEGER_0 = 0;
     }
 
     /**

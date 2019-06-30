@@ -1,6 +1,5 @@
-package com.chenfangming.common.domain;
+package com.chenfangming.common.model;
 
-import com.chenfangming.common.config.exception.BizException;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;

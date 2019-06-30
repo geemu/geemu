@@ -1,6 +1,6 @@
 package com.chenfangming.manage.controller;
 
-import com.chenfangming.common.domain.ResponseEntity;
+import com.chenfangming.common.model.ResponseEntity;
 import com.chenfangming.manage.persistence.entity.RoleEntity;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
