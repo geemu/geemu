@@ -22,7 +22,7 @@ public interface RoleService {
      * 查询当前请求资源所能访问的角色
      * @param method 请求方法
      * @param uri 请求路径
-     * @return {@code null} 当前资源未进行权限配置,可直接访问;{@code List}能够访问当前资源的角色集合
+     * @return {@code null}当前资源未进行权限配置,可直接访问;{@code List}能够访问当前资源的角色集合
      */
     List<RoleEntity> selectByRequest(String method, String uri);
 
