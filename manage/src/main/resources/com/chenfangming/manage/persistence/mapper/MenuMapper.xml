@@ -32,7 +32,7 @@
         </collection>
     </resultMap>
 
-    <select id="selectButtonWithRole" resultMap="MENU_ROLE_RESULT_MAP">
+    <select id="selectAllWithRole" resultMap="MENU_ROLE_RESULT_MAP">
         SELECT m.id,
                m.pid,
                m.name,
@@ -55,7 +55,7 @@
                r.create_time AS role_create_time,
                r.update_user AS role_update_user,
                r.update_time AS role_update_time
-        FROM (select * from backend_menu where enabled = TRUE AND type = 2) m
+        FROM (select * from backend_menu where enabled = TRUE) m
                  INNER JOIN (SELECT * FROM backend_role_menu WHERE enabled = TRUE) rm ON m.id = rm.menu_id
                  INNER JOIN (SELECT * FROM backend_role WHERE enabled = TRUE) r ON r.id = rm.role_id
         ORDER BY m.sort
@@ -76,7 +76,7 @@
         m.create_time,
         m.update_user,
         m.update_time
-        FROM (select * from backend_menu where enabled = TRUE AND type != 2 ) m
+        FROM (select * from backend_menu where enabled = TRUE) m
         LEFT JOIN (SELECT * FROM backend_role_menu WHERE enabled = TRUE) rm ON m.id = rm.menu_id
         WHERE
         rm.role_id IN

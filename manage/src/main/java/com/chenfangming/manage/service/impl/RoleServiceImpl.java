@@ -41,14 +41,15 @@ public class RoleServiceImpl implements RoleService {
     }
 
     /**
-     * 查询当前请求资源所能访问的角色
+     * 查询可访问当前请求资源的角色集合
      * @param method 请求方法
      * @param uri 请求路径
-     * @return 角色列表
+     * @return {@code null}当前资源未进行权限配置,可直接访问;{@code List}能够访问当前资源的角色集合
      */
     @Override
     public List<RoleEntity> selectByRequest(String method, String uri) {
-        List<MenuRoleView> buttonWithRole = menuMapper.selectButtonWithRole();
+        // 所有资源及其可以访问的角色集合
+        List<MenuRoleView> buttonWithRole = menuMapper.selectAllWithRole();
         Iterator<MenuRoleView> iterator = buttonWithRole.iterator();
         String requestPath = method + ":" + uri;
         while (iterator.hasNext()) {

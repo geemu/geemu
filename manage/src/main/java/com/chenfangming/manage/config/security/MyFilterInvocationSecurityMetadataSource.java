@@ -48,7 +48,7 @@ public class MyFilterInvocationSecurityMetadataSource implements FilterInvocatio
         String method = request.getMethod();
         log.debug("当前请求方法为:{},路径为:{}", method, requestUrl);
         String path = method + ":" + requestUrl;
-        List<MenuRoleView> permissionEntityList = menuMapper.selectButtonWithRole();
+        List<MenuRoleView> permissionEntityList = menuMapper.selectAllWithRole();
         for (MenuRoleView m : permissionEntityList) {
             List<RoleEntity> roleEntityList = m.getRoleEntityList();
             String pattern = m.getMethod() + ":" + m.getPattern();
