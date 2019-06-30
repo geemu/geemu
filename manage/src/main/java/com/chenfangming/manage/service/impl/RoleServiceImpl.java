@@ -56,7 +56,7 @@ public class RoleServiceImpl implements RoleService {
             MenuRoleView menuRoleView = iterator.next();
             List<RoleEntity> roleEntityList = menuRoleView.getRoleEntityList();
             if (CollectionUtils.isEmpty(roleEntityList)) {
-                log.info("资源:[{}]不存在可以访问的角色", menuRoleView);
+                log.info("资源:{}不存在可以访问的角色", menuRoleView);
                 return Collections.emptyList();
             }
             String pattern = menuRoleView.getMethod() + ":" + menuRoleView.getPattern();
