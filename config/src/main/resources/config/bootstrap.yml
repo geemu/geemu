@@ -1,6 +1,6 @@
 spring:
   application:
-    name: cloud-config
+    name: CLOUD-CONFIG
   profiles:
     active: native
     include: @springProfile@

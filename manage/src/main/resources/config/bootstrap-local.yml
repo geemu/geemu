@@ -5,14 +5,9 @@ spring:
     config:
       discovery:
         enabled: true
-        service-id: cloud-config
+        service-id: CLOUD-CONFIG
       name: common,manage
       profile: local
-  mvc:
-    throw-exception-if-no-handler-found: true
-  resources:
-    add-mappings: false
-
 
 eureka:
   client:
