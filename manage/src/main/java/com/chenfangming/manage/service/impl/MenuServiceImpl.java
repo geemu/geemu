@@ -2,6 +2,7 @@ package com.chenfangming.manage.service.impl;
 
 import com.chenfangming.manage.persistence.entity.RoleEntity;
 import com.chenfangming.manage.persistence.entity.view.MenuRoleView;
+import com.chenfangming.manage.persistence.mapper.MenuMapper;
 import com.chenfangming.manage.service.MenuService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,15 +21,15 @@ import java.util.List;
 @AllArgsConstructor
 public class MenuServiceImpl implements MenuService {
 
-    private MenuService menuService;
+    private MenuMapper menuMapper;
 
     /**
-     * 查询可用按钮及其可以访问的角色列表
-     * @return 按钮及其可以访问的角色
+     * 查询所有资源及其可以访问的角色集合
+     * @return 所有资源其可以访问的角色集合
      */
     @Override
-    public List<MenuRoleView> selectButtonWithRole() {
-        return menuService.selectButtonWithRole();
+    public List<MenuRoleView> selectAllWithRole() {
+        return menuMapper.selectAllWithRole();
     }
 
     /**

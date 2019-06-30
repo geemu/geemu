@@ -26,7 +26,7 @@ public interface MenuMapper {
     List<MenuEntity> selectByRoleId(@Param("roleIds") Set<Long> roleIds);
 
     /**
-     * 查询所有资源其可以访问的角色集合
+     * 查询所有资源及其可以访问的角色集合
      * @return 所有资源其可以访问的角色集合
      */
     List<MenuRoleView> selectAllWithRole();
