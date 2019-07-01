@@ -4,10 +4,22 @@ import com.chenfangming.common.model.ResponseEntity;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.servlet.HandlerMapping;
+import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * 测试控制器
@@ -22,9 +34,32 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("test")
 public class TestController {
 
+    private static List<String> urls = new ArrayList<String>();
+    @Autowired
+    private DispatcherServlet dispatcherServlet;
+    @Autowired
+    private WebApplicationContext applicationContext;
+
     @GetMapping
     public ResponseEntity<String> data(String data) {
+        List<HandlerMapping> list = dispatcherServlet.getHandlerMappings();
+        System.out.println(list);
+        RequestMappingHandlerMapping mapping = applicationContext.getBean(RequestMappingHandlerMapping.class);
+        // 获取url与类和方法的对应信息
+        Map<RequestMappingInfo, HandlerMethod> map = mapping.getHandlerMethods();
+        for (RequestMappingInfo info : map.keySet()) {
+            // 获取url的Set集合，一个方法可能对应多个url
+            Set<String> patterns = info.getPatternsCondition().getPatterns();
+            for (String url : patterns) {
+                //把结果存入静态变量中程序运行一次次方法之后就不用再次请求次方法
+                urls.add(url);
+            }
+        }
+        System.out.println(urls);
         return new ResponseEntity<>(data);
     }
+
+    @GetMapping("test/{id}")
+    public void get() {}
 
 }
