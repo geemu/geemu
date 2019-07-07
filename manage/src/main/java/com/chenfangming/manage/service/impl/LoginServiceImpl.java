@@ -1,8 +1,8 @@
 package com.chenfangming.manage.service.impl;
 
-import com.chenfangming.common.model.BizException;
-import com.chenfangming.common.model.DefaultResponseStatus;
 import com.chenfangming.manage.config.auto.property.AppProperty;
+import com.chenfangming.manage.config.exception.BizException;
+import com.chenfangming.manage.config.exception.DefaultResponseStatus;
 import com.chenfangming.manage.domain.req.NamePwdReq;
 import com.chenfangming.manage.persistence.entity.UserEntity;
 import com.chenfangming.manage.persistence.mapper.UserMapper;

@@ -1,4 +1,4 @@
-package com.chenfangming.common.model;
+package com.chenfangming.manage.config.exception;
 
 /**
  * 返回状态
@@ -6,6 +6,7 @@ package com.chenfangming.common.model;
  * @since 2018-10-27 10:21
  */
 public interface ResponseStatus {
+
     /**
      * 获取状态码
      * @return 状态码
@@ -17,4 +18,5 @@ public interface ResponseStatus {
      * @return 状态提示信息
      */
     String getMessage();
+
 }

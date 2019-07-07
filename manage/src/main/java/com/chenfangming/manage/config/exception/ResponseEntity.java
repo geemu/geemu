@@ -1,4 +1,4 @@
-package com.chenfangming.common.model;
+package com.chenfangming.manage.config.exception;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -15,13 +15,13 @@ import lombok.ToString;
 public class ResponseEntity<T> {
 
     /** 返回状态 **/
-    private int code;
+    private Integer code;
     /** 返回提示信息 **/
     private String message;
     /** 返回数据 **/
     private T data;
 
-    private ResponseEntity(int code, String message, T data) {
+    private ResponseEntity(Integer code, String message, T data) {
         this.code = code;
         this.message = message;
         this.data = data;
@@ -72,19 +72,19 @@ public class ResponseEntity<T> {
 
     /**
      * 自定义
-     * @param responseStatus 自定义的状态码、提示信息
+     * @param status 自定义的状态码、提示信息
      * @param data 自定义的数据
      */
-    public ResponseEntity(ResponseStatus responseStatus, T data) {
-        this(responseStatus.getCode(), responseStatus.getMessage(), data);
+    public ResponseEntity(ResponseStatus status, T data) {
+        this(status.getCode(), status.getMessage(), data);
     }
 
     /**
      * 自定义
-     * @param responseStatus 自定义的状态码、提示信息
+     * @param status 自定义的状态码、提示信息
      */
-    public ResponseEntity(ResponseStatus responseStatus) {
-        this(responseStatus.getCode(), responseStatus.getMessage(), null);
+    public ResponseEntity(ResponseStatus status) {
+        this(status.getCode(), status.getMessage(), null);
     }
 
     /**

@@ -1,4 +1,4 @@
-package com.chenfangming.common.model;
+package com.chenfangming.manage.config.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.ToString;

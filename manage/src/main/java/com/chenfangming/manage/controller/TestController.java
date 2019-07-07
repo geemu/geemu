@@ -1,12 +1,17 @@
 package com.chenfangming.manage.controller;
 
-import com.chenfangming.common.model.ResponseEntity;
+
+import com.chenfangming.manage.config.exception.BizException;
+import com.chenfangming.manage.config.exception.DefaultResponseStatus;
+import com.chenfangming.manage.config.exception.ResponseEntity;
+import com.chenfangming.manage.config.resolve.CurrentUserInfo;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.WebApplicationContext;
@@ -16,6 +21,7 @@ import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -34,7 +40,7 @@ import java.util.Set;
 @RequestMapping("test")
 public class TestController {
 
-    private static List<String> urls = new ArrayList<String>();
+    private static List<String> urls = new ArrayList<>();
     @Autowired
     private DispatcherServlet dispatcherServlet;
     @Autowired
@@ -42,6 +48,9 @@ public class TestController {
 
     @GetMapping
     public ResponseEntity<String> data(String data) {
+        if (1 == 1) {
+            throw new BizException(DefaultResponseStatus.NO_AUTHENTICATION, "这是什么信息");
+        }
         List<HandlerMapping> list = dispatcherServlet.getHandlerMappings();
         System.out.println(list);
         RequestMappingHandlerMapping mapping = applicationContext.getBean(RequestMappingHandlerMapping.class);
@@ -59,7 +68,9 @@ public class TestController {
         return new ResponseEntity<>(data);
     }
 
-    @GetMapping("test/{id}")
-    public void get() {}
+    @PostMapping
+    public void get(@Valid CurrentUserInfo currentUser) {
+        System.out.println(currentUser);
+    }
 
 }
