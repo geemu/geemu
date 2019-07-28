@@ -18,7 +18,6 @@ public enum DefaultResponseStatus implements ResponseStatus {
     FAIL(400, "失败"),
     PATH_NOT_FOUND(404, "请求路径不存在"),
     INTERNAL_SERVER_ERROR(500, "系统未知异常"),
-
     BAD_REQUEST(1, "请求参数异常"),
     /** 未登录 **/
     NO_AUTHENTICATION(2, "未认证"),

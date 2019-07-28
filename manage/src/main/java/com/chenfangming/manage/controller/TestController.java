@@ -1,14 +1,13 @@
 package com.chenfangming.manage.controller;
 
 
-import com.chenfangming.manage.config.exception.BizException;
-import com.chenfangming.manage.config.exception.DefaultResponseStatus;
 import com.chenfangming.manage.config.exception.ResponseEntity;
 import com.chenfangming.manage.config.resolve.CurrentUserInfo;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,11 +45,9 @@ public class TestController {
     @Autowired
     private WebApplicationContext applicationContext;
 
+    @Cacheable(cacheNames = "data", key = "'dada'")
     @GetMapping
-    public ResponseEntity<String> data(String data) {
-        if (1 == 1) {
-            throw new BizException(DefaultResponseStatus.NO_AUTHENTICATION, "这是什么信息");
-        }
+    public ResponseEntity<List<String>> data(String data) {
         List<HandlerMapping> list = dispatcherServlet.getHandlerMappings();
         System.out.println(list);
         RequestMappingHandlerMapping mapping = applicationContext.getBean(RequestMappingHandlerMapping.class);
@@ -65,7 +62,7 @@ public class TestController {
             }
         }
         System.out.println(urls);
-        return new ResponseEntity<>(data);
+        return new ResponseEntity<>(urls);
     }
 
     @PostMapping
