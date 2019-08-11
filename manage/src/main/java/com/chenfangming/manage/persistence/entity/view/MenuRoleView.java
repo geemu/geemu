@@ -2,8 +2,11 @@ package com.chenfangming.manage.persistence.entity.view;
 
 import com.chenfangming.manage.persistence.entity.MenuEntity;
 import com.chenfangming.manage.persistence.entity.RoleEntity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,6 +17,9 @@ import java.util.List;
  * @since 2019-06-16 18:52
  */
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class MenuRoleView extends MenuEntity implements Serializable {
 

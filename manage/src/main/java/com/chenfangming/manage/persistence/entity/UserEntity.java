@@ -1,6 +1,9 @@
 package com.chenfangming.manage.persistence.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -12,6 +15,9 @@ import java.util.Date;
  * @since 2018-10-25 20:34
  */
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserEntity implements Serializable {
 
     /** 序列化id **/
