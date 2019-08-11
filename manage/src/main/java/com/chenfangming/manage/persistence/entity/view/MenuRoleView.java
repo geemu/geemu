@@ -18,7 +18,7 @@ import java.util.List;
 public class MenuRoleView extends MenuEntity implements Serializable {
 
     /** 序列化id **/
-    private static final long serialVersionUID = -1L;
+    private static final long serialVersionUID = 1L;
 
     /** 资源对应的角色集合 **/
     private List<RoleEntity> roleEntityList;

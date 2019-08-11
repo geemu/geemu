@@ -18,7 +18,7 @@ import java.util.List;
 public class RoleUserView extends RoleEntity implements Serializable {
 
     /** 序列化id **/
-    private static final long serialVersionUID = -1L;
+    private static final long serialVersionUID = 1L;
 
     /** 角色对应的用户集合 **/
     private List<UserEntity> userEntityList;
