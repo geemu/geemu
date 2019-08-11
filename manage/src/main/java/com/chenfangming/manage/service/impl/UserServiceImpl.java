@@ -1,12 +1,10 @@
 package com.chenfangming.manage.service.impl;
 
-import com.chenfangming.manage.config.exception.BizException;
-import com.chenfangming.manage.config.exception.DefaultResponseStatus;
 import com.chenfangming.manage.persistence.entity.UserEntity;
 import com.chenfangming.manage.persistence.mapper.UserMapper;
 import com.chenfangming.manage.service.UserService;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,9 +14,9 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-@AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
+    @Autowired
     private UserMapper userMapper;
 
     /**
@@ -28,8 +26,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public UserEntity selectByName(String name) {
-        return userMapper.selectByName(name)
-                .orElseThrow(() -> new BizException(DefaultResponseStatus.FAIL, "用户名不存在"));
+        return userMapper.selectByName(name).orElse(null);
     }
 
 }

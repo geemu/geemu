@@ -20,7 +20,7 @@
                r.remark,
                r.enabled,
                r.create_user,
-               ur.create_time,
+               r.create_time,
                r.update_user,
                r.update_time
         FROM (select * from backend_user_role where enabled = TRUE AND user_id = #{userId}) ur

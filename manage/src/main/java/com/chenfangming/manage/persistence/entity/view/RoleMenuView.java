@@ -3,7 +3,6 @@ package com.chenfangming.manage.persistence.entity.view;
 import com.chenfangming.manage.persistence.entity.MenuEntity;
 import com.chenfangming.manage.persistence.entity.RoleEntity;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -17,7 +16,6 @@ import java.util.List;
  * @since 2019-06-16 21:44
  */
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)

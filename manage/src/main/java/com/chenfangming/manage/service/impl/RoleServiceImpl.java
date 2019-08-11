@@ -5,8 +5,8 @@ import com.chenfangming.manage.persistence.entity.view.MenuRoleView;
 import com.chenfangming.manage.persistence.mapper.MenuMapper;
 import com.chenfangming.manage.persistence.mapper.RoleMapper;
 import com.chenfangming.manage.service.RoleService;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.CollectionUtils;
@@ -22,12 +22,13 @@ import java.util.List;
  */
 @Slf4j
 @Service
-@AllArgsConstructor
 public class RoleServiceImpl implements RoleService {
 
     /** 匹配URL **/
     private static final AntPathMatcher ANT_PATH_MATCHER = new AntPathMatcher();
+    @Autowired
     private RoleMapper roleMapper;
+    @Autowired
     private MenuMapper menuMapper;
 
     /**

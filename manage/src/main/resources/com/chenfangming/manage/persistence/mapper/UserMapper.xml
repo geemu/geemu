@@ -14,8 +14,17 @@
         <result column="update_time" property="updateTime"/>
     </resultMap>
 
+    <!-- 根据用户名查询用户 -->
     <select id="selectByName" resultMap="USER_RESULT_MAP">
-        select *
+        select u.id,
+               u.name,
+               u.password,
+               u.remark,
+               u.enabled,
+               u.create_user,
+               u.create_time,
+               u.update_user,
+               u.update_time
         from backend_user u
         where u.name = #{name}
     </select>
