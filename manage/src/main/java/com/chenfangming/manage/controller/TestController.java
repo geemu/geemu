@@ -3,6 +3,7 @@ package com.chenfangming.manage.controller;
 
 import com.chenfangming.manage.config.exception.ResponseEntity;
 import com.chenfangming.manage.config.resolve.CurrentUserInfo;
+import com.chenfangming.manage.service.TestService;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -69,5 +70,28 @@ public class TestController {
     public void get(@Valid CurrentUserInfo currentUser) {
         System.out.println(currentUser);
     }
+
+
+    @Autowired
+    private TestService testService;
+
+    @GetMapping("cache1")
+    public String cache1() {
+        log.info("执行cache1");
+        return testService.cache1();
+    }
+
+    @GetMapping("cache2")
+    public String cache2() {
+        log.info("执行cache2");
+        return testService.cache2();
+    }
+
+    @GetMapping("cache3")
+    public String cache3() {
+        log.info("执行cache3");
+        return testService.cache3();
+    }
+
 
 }

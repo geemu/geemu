@@ -94,10 +94,10 @@ public class RedisConfig extends CachingConfigurerSupport {
         RedisCacheConfiguration config = RedisCacheConfiguration
             .defaultCacheConfig()
             //  设置缓存的默认过期时间，也是使用Duration设置
-            .entryTtl(Duration.ofSeconds(60))
+            .entryTtl(Duration.ofSeconds(600))
             //  不缓存空值
             .disableCachingNullValues()
-            .prefixKeysWith("MANAGER")
+            .disableKeyPrefix()
             //  key序列化
             .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(stringRedisSerializer()))
             // value序列化
