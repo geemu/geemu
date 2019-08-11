@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -33,6 +34,24 @@ public class MenuServiceImpl implements MenuService {
         return menuMapper.selectAllWithRole().orElse(Collections.emptyList());
     }
 
+    public static void main(String[] args) {
+        List<RoleEntity> userRoleList = new ArrayList<>();
+        userRoleList.add(RoleEntity.builder().id(1L).build());
+        userRoleList.add(RoleEntity.builder().id(2L).build());
+        userRoleList.add(RoleEntity.builder().id(3L).build());
+        userRoleList.add(RoleEntity.builder().id(4L).build());
+
+        List<RoleEntity> canAccessRoleList = new ArrayList<>();
+        canAccessRoleList.add(RoleEntity.builder().id(1L).build());
+        canAccessRoleList.add(RoleEntity.builder().id(2L).build());
+//        canAccessRoleList.add(RoleEntity.builder().id(3L).build());
+//        canAccessRoleList.add(RoleEntity.builder().id(4L).build());
+        boolean a = userRoleList.retainAll(canAccessRoleList);
+        System.out.println(a);
+        System.out.println(userRoleList.size());
+        System.out.println(userRoleList);
+    }
+
     /**
      * 判断用户是否可以访问资源
      * @param userRoleList 用户所拥有的角色集合
@@ -41,9 +60,6 @@ public class MenuServiceImpl implements MenuService {
      */
     @Override
     public boolean canAccess(List<RoleEntity> userRoleList, List<RoleEntity> canAccessRoleList) {
-        if (null == canAccessRoleList) {
-            return Boolean.TRUE;
-        }
         // 可以访问当前资源的角色集合
         Iterator<RoleEntity> canAccessRole = canAccessRoleList.iterator();
         // 当前认证对象所拥有的角色列表
@@ -59,6 +75,8 @@ public class MenuServiceImpl implements MenuService {
                 }
             }
         }
+//        userRoleList.retainAll(canAccessRoleList);
+//        return userRoleList.size() > 0;
         return Boolean.FALSE;
     }
 

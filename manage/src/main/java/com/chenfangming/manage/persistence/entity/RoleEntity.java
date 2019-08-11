@@ -38,4 +38,5 @@ public class RoleEntity implements Serializable {
     private String updateUser;
     /** 更新时间 **/
     private Date updateTime;
+
 }

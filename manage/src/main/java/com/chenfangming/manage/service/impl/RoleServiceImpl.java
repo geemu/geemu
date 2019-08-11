@@ -71,9 +71,7 @@ public class RoleServiceImpl implements RoleService {
         }
         // 资源未配置,那么所有角色都可以访问
         log.info("资源:{}未配置,所有角色都可以访问", restfulPath);
-        return menuWithRoleList.stream()
-            .flatMap(e -> e.getRoleEntityList().stream())
-            .collect(Collectors.toList());
+        return menuWithRoleList.stream().flatMap(e -> e.getRoleEntityList().stream()).collect(Collectors.toList());
     }
 
 }
