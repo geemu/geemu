@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 角色
@@ -21,6 +22,6 @@ public interface RoleMapper {
      * @param userId 用户id
      * @return 角色集合
      */
-    List<RoleEntity> selectByUserId(@Param("userId") Long userId);
+    Optional<List<RoleEntity>> selectByUserId(@Param("userId") Long userId);
 
 }

@@ -38,7 +38,7 @@ public class RoleServiceImpl implements RoleService {
      */
     @Override
     public List<RoleEntity> selectByUserId(Long userId) {
-        return roleMapper.selectByUserId(userId);
+        return roleMapper.selectByUserId(userId).orElse(Collections.emptyList());
     }
 
     /**
