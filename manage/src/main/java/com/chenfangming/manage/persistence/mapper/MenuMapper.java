@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -29,6 +30,6 @@ public interface MenuMapper {
      * 查询所有资源及其可以访问的角色集合
      * @return 所有资源其可以访问的角色集合
      */
-    List<MenuRoleView> selectAllWithRole();
+    Optional<List<MenuRoleView>> selectAllWithRole();
 
 }

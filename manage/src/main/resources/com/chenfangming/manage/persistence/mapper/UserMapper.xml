@@ -16,15 +16,7 @@
 
     <!-- 根据用户名查询用户 -->
     <select id="selectByName" resultMap="USER_RESULT_MAP">
-        select u.id,
-               u.name,
-               u.password,
-               u.remark,
-               u.enabled,
-               u.create_user,
-               u.create_time,
-               u.update_user,
-               u.update_time
+        select *
         from backend_user u
         where u.name = #{name}
     </select>

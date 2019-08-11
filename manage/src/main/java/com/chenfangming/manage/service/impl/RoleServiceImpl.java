@@ -2,8 +2,8 @@ package com.chenfangming.manage.service.impl;
 
 import com.chenfangming.manage.persistence.entity.RoleEntity;
 import com.chenfangming.manage.persistence.entity.view.MenuRoleView;
-import com.chenfangming.manage.persistence.mapper.MenuMapper;
 import com.chenfangming.manage.persistence.mapper.RoleMapper;
+import com.chenfangming.manage.service.MenuService;
 import com.chenfangming.manage.service.RoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +14,7 @@ import org.springframework.util.CollectionUtils;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 角色
@@ -29,7 +30,7 @@ public class RoleServiceImpl implements RoleService {
     @Autowired
     private RoleMapper roleMapper;
     @Autowired
-    private MenuMapper menuMapper;
+    private MenuService menuService;
 
     /**
      * 根据用户id查询用户角色列表
@@ -43,32 +44,36 @@ public class RoleServiceImpl implements RoleService {
 
     /**
      * 查询可访问当前请求资源的角色集合
-     * @param requestMethod 请求方法
-     * @param requestUri 请求路径
-     * @return {@code null}当前资源未进行权限配置,可直接访问;{@code List}能够访问当前资源的角色集合
+     * @param method 请求方法
+     * @param path 请求路径
+     * @return 能够访问当前资源的角色集合
      */
     @Override
-    public List<RoleEntity> selectByRequest(String requestMethod, String requestUri) {
+    public List<RoleEntity> selectByRequest(String method, String path) {
         // 所有资源及其可以访问的角色集合
-        List<MenuRoleView> buttonWithRole = menuMapper.selectAllWithRole();
-        Iterator<MenuRoleView> iterator = buttonWithRole.iterator();
-        String requestPath = requestMethod + ":" + requestUri;
+        List<MenuRoleView> menuWithRoleList = menuService.selectAllWithRole();
+        Iterator<MenuRoleView> iterator = menuWithRoleList.iterator();
+        String restfulPath = method.concat(":").concat(path);
         while (iterator.hasNext()) {
             MenuRoleView menuRoleView = iterator.next();
             List<RoleEntity> roleEntityList = menuRoleView.getRoleEntityList();
             if (CollectionUtils.isEmpty(roleEntityList)) {
-                log.info("资源:{}不存在可以访问的角色", menuRoleView);
+                log.warn("资源:{},不存在可以访问的角色", restfulPath);
                 return Collections.emptyList();
             }
             String configMethod = null == menuRoleView.getMethod() ? "" : menuRoleView.getMethod();
             String configPattern = null == menuRoleView.getPattern() ? "" : menuRoleView.getPattern();
-            String pattern = configMethod + ":" + configPattern;
-            boolean match = ANT_PATH_MATCHER.match(pattern, requestPath);
-            if (match) {
+            String restfulPattern = configMethod.concat(":").concat(configPattern);
+            boolean matched = ANT_PATH_MATCHER.match(restfulPattern, restfulPath);
+            if (matched) {
                 return roleEntityList;
             }
         }
-        return null;
+        // 资源未配置,那么所有角色都可以访问
+        log.info("资源:{}未配置,所有角色都可以访问", restfulPath);
+        return menuWithRoleList.stream()
+            .flatMap(e -> e.getRoleEntityList().stream())
+            .collect(Collectors.toList());
     }
 
 }
