@@ -24,7 +24,7 @@ public interface MenuMapper {
      * @param roleIds 角色id集合
      * @return 目录、菜单集合
      */
-    List<MenuEntity> selectByRoleId(@Param("roleIds") Set<Long> roleIds);
+    Optional<List<MenuEntity>> selectByRoleId(@Param("roleIds") Set<Long> roleIds);
 
     /**
      * 查询所有资源及其可以访问的角色集合
