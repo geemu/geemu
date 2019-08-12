@@ -4,11 +4,10 @@ import com.chenfangming.manage.persistence.entity.RoleEntity;
 import com.chenfangming.manage.persistence.entity.view.MenuRoleView;
 import com.chenfangming.manage.persistence.mapper.MenuMapper;
 import com.chenfangming.manage.service.MenuService;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,9 +18,9 @@ import java.util.List;
  */
 @Slf4j
 @Service
-@AllArgsConstructor
 public class MenuServiceImpl implements MenuService {
 
+    @Autowired
     private MenuMapper menuMapper;
 
     /**
@@ -31,24 +30,6 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public List<MenuRoleView> selectAllWithRole() {
         return menuMapper.selectAllWithRole().orElse(Collections.emptyList());
-    }
-
-    public static void main(String[] args) {
-        List<RoleEntity> userRoleList = new ArrayList<>();
-        userRoleList.add(RoleEntity.builder().id(1L).build());
-        userRoleList.add(RoleEntity.builder().id(2L).build());
-        userRoleList.add(RoleEntity.builder().id(3L).build());
-        userRoleList.add(RoleEntity.builder().id(4L).build());
-
-        List<RoleEntity> canAccessRoleList = new ArrayList<>();
-        canAccessRoleList.add(RoleEntity.builder().id(1L).build());
-        canAccessRoleList.add(RoleEntity.builder().id(2L).build());
-//        canAccessRoleList.add(RoleEntity.builder().id(3L).build());
-//        canAccessRoleList.add(RoleEntity.builder().id(4L).build());
-        boolean a = userRoleList.retainAll(canAccessRoleList);
-        System.out.println(a);
-        System.out.println(userRoleList.size());
-        System.out.println(userRoleList);
     }
 
     /**
