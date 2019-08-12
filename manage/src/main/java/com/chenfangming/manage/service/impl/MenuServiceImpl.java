@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -60,24 +59,24 @@ public class MenuServiceImpl implements MenuService {
      */
     @Override
     public boolean canAccess(List<RoleEntity> userRoleList, List<RoleEntity> canAccessRoleList) {
-        // 可以访问当前资源的角色集合
-        Iterator<RoleEntity> canAccessRole = canAccessRoleList.iterator();
-        // 当前认证对象所拥有的角色列表
-        Iterator<RoleEntity> userRole = userRoleList.iterator();
-        while (canAccessRole.hasNext()) {
-            // 可以访问的角色id
-            Long canAccessRoleId = canAccessRole.next().getId();
-            while (userRole.hasNext()) {
-                // 当前用户的角色id
-                Long userRoleId = userRole.next().getId();
-                if (userRoleId.equals(canAccessRoleId)) {
-                    return Boolean.TRUE;
-                }
-            }
-        }
-//        userRoleList.retainAll(canAccessRoleList);
-//        return userRoleList.size() > 0;
-        return Boolean.FALSE;
+//        // 可以访问当前资源的角色集合
+//        Iterator<RoleEntity> canAccessRole = canAccessRoleList.iterator();
+//        // 当前认证对象所拥有的角色列表
+//        Iterator<RoleEntity> userRole = userRoleList.iterator();
+//        while (canAccessRole.hasNext()) {
+//            // 可以访问的角色id
+//            Long canAccessRoleId = canAccessRole.next().getId();
+//            while (userRole.hasNext()) {
+//                // 当前用户的角色id
+//                Long userRoleId = userRole.next().getId();
+//                if (userRoleId.equals(canAccessRoleId)) {
+//                    return Boolean.TRUE;
+//                }
+//            }
+//        }
+        userRoleList.retainAll(canAccessRoleList);
+        return userRoleList.size() > 0;
+//        return Boolean.FALSE;
     }
 
 }
