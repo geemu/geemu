@@ -1,6 +1,7 @@
 package com.chenfangming.manage.config.resolve;
 
 import com.chenfangming.manage.config.resolve.annotation.CurrentUser;
+import com.chenfangming.manage.domain.model.CurrentUserInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;

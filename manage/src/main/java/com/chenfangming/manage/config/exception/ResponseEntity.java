@@ -17,14 +17,17 @@ public class ResponseEntity<T> {
     /** 返回状态 **/
     private Integer code;
     /** 返回提示信息 **/
-    private String message;
+    private String msg;
     /** 返回数据 **/
     private T data;
 
-    private ResponseEntity(Integer code, String message, T data) {
-        this.code = code;
-        this.message = message;
-        this.data = data;
+    /**
+     * 成功
+     * @param msg 成功的提示
+     * @param data 成功的数据
+     */
+    public ResponseEntity(String msg, T data) {
+        this(DefaultResponseStatus.SUCCESS.getCode(), msg, data);
     }
 
     /**
@@ -42,32 +45,29 @@ public class ResponseEntity<T> {
         this(DefaultResponseStatus.SUCCESS.getCode(), DefaultResponseStatus.SUCCESS.getMessage(), data);
     }
 
-    /**
-     * 成功
-     * @param message 成功的提示
-     * @param data 成功的数据
-     */
-    public ResponseEntity(String message, T data) {
-        this(DefaultResponseStatus.SUCCESS.getCode(), message, data);
+    private ResponseEntity(Integer code, String msg, T data) {
+        this.code = code;
+        this.msg = msg;
+        this.data = data;
     }
 
     /**
      * 自定义
      * @param code 自定义的状态码
-     * @param message 自定义的提示信息
+     * @param msg 自定义的提示信息
      * @param data 自定义的数据
      */
-    public ResponseEntity(ResponseStatus code, String message, T data) {
-        this(code.getCode(), message, data);
+    public ResponseEntity(ResponseStatus code, String msg, T data) {
+        this(code.getCode(), msg, data);
     }
 
     /**
      * 自定义
      * @param code 自定义的状态码
-     * @param message 自定义的提示信息
+     * @param msg 自定义的提示信息
      */
-    public ResponseEntity(ResponseStatus code, String message) {
-        this(code.getCode(), message, null);
+    public ResponseEntity(ResponseStatus code, String msg) {
+        this(code.getCode(), msg, null);
     }
 
     /**

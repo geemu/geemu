@@ -2,7 +2,7 @@ package com.chenfangming.manage.controller;
 
 
 import com.chenfangming.manage.config.exception.ResponseEntity;
-import com.chenfangming.manage.config.resolve.CurrentUserInfo;
+import com.chenfangming.manage.domain.model.CurrentUserInfo;
 import com.chenfangming.manage.service.TestService;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;

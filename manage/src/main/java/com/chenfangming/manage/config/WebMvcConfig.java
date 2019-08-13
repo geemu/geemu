@@ -1,16 +1,18 @@
 package com.chenfangming.manage.config;
 
+import com.chenfangming.manage.config.interceptor.AuthInterceptor;
 import com.chenfangming.manage.config.resolve.CurrentUserMethodArgumentResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
 
 /**
- * com.chenfangming.manage.config
+ * MVC配置
  * @author 陈方明  cfmmail@sina.com
  * @since 2019-06-10 21:30
  */
@@ -19,7 +21,24 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Autowired
     private CurrentUserMethodArgumentResolver resolver;
+    @Autowired
+    private AuthInterceptor authInterceptor;
 
+    /**
+     * 拦截器
+     * @param registry 注册
+     */
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(authInterceptor)
+            .addPathPatterns("/**")
+            .excludePathPatterns("/login");
+    }
+
+    /**
+     * 资源映射
+     * @param registry 注册
+     */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         // Swagger
@@ -42,6 +61,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
             .addResourceLocations("classpath:/static/img/");
     }
 
+    /**
+     * 参数解析
+     * @param resolvers 解析
+     */
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
         resolvers.add(resolver);
