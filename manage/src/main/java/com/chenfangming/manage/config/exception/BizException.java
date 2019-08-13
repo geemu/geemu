@@ -18,22 +18,22 @@ public class BizException extends RuntimeException implements Serializable {
     private static final long serialVersionUID = -1;
 
     /** 状态码 **/
-    private Integer code;
+    private String code;
 
-    private BizException(Integer code, String message, Throwable cause) {
+    public BizException(ResponseState status, Throwable cause) {
+        this(status.getCode(), status.getMessage(), cause);
+    }
+
+    private BizException(String code, String message, Throwable cause) {
         super(message, cause);
         this.code = code;
     }
 
-    public BizException(ResponseStatus status, Throwable cause) {
-        this(status.getCode(), status.getMessage(), cause);
-    }
-
-    public BizException(ResponseStatus code, String message) {
+    public BizException(ResponseState code, String message) {
         this(code.getCode(), message, null);
     }
 
-    public BizException(ResponseStatus status) {
+    public BizException(ResponseState status) {
         this(status.getCode(), status.getMessage(), null);
     }
 

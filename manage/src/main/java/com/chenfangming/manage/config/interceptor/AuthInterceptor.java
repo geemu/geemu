@@ -1,13 +1,17 @@
 package com.chenfangming.manage.config.interceptor;
 
+import com.chenfangming.manage.config.exception.DefaultResponseState;
+import com.chenfangming.manage.config.exception.ResponseEntity;
 import com.chenfangming.manage.constants.SessionKey;
 import com.chenfangming.manage.domain.model.CurrentUserInfo;
 import com.chenfangming.manage.persistence.entity.RoleEntity;
 import com.chenfangming.manage.service.MenuService;
 import com.chenfangming.manage.service.RoleService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -28,6 +32,8 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
     private RoleService roleService;
     @Autowired
     private MenuService menuService;
+    @Autowired
+    private ObjectMapper objectMapper;
 
     /**
      * 权限拦截器
@@ -39,18 +45,29 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        // 请求路径不存在
+        if (HttpStatus.NOT_FOUND.value() == response.getStatus()) {
+            log.error("请求路径:{},不存在", request.getRequestURI());
+            ResponseEntity<Void> responseEntity = new ResponseEntity<>(DefaultResponseState.PATH_NOT_FOUND);
+            response.getWriter().println(responseEntity.toJson());
+            return Boolean.FALSE;
+        }
         CurrentUserInfo currentUserInfo = (CurrentUserInfo) request.getSession().getAttribute(SessionKey.CURRENT_USER.name());
+        // 未登录
         if (null == currentUserInfo) {
             log.error("用户未登录");
             response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
-            response.getWriter().println("用户未登录");
+            ResponseEntity<Void> responseEntity = new ResponseEntity<>(DefaultResponseState.NO_AUTHENTICATION);
+            response.getWriter().println(responseEntity.toJson());
             return Boolean.FALSE;
         }
         List<RoleEntity> allCanRoleList = roleService.selectByRequest(request.getMethod().toUpperCase(), request.getRequestURI());
         boolean can = menuService.canAccess(currentUserInfo.getRoleIdList(), allCanRoleList);
+        // 权限不足
         if (!can) {
             response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
-            response.getWriter().println("没有权限");
+            ResponseEntity<Void> responseEntity = new ResponseEntity<>(DefaultResponseState.NO_AUTHORIZE);
+            response.getWriter().println(responseEntity.toJson());
             return Boolean.FALSE;
         }
         return Boolean.TRUE;

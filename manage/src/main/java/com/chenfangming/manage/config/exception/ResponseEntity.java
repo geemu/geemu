@@ -1,21 +1,37 @@
 package com.chenfangming.manage.config.exception;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 基础封装返回体
  * @author 陈方明  cfmmail@sina.com
  * @since 2018-10-27 10:18
  */
+@Slf4j
 @Getter
 @ToString
 @EqualsAndHashCode
 public class ResponseEntity<T> {
 
-    /** 返回状态 **/
-    private Integer code;
+    /** JACKSON **/
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+
+    static {
+        OBJECT_MAPPER.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        OBJECT_MAPPER.setDefaultPropertyInclusion(JsonInclude.Include.NON_NULL);
+        OBJECT_MAPPER.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+    }
+
+    /** 返回状态码 **/
+    private String code;
     /** 返回提示信息 **/
     private String msg;
     /** 返回数据 **/
@@ -23,18 +39,21 @@ public class ResponseEntity<T> {
 
     /**
      * 成功
-     * @param msg 成功的提示
-     * @param data 成功的数据
      */
-    public ResponseEntity(String msg, T data) {
-        this(DefaultResponseStatus.SUCCESS.getCode(), msg, data);
+    public ResponseEntity() {
+        this(DefaultResponseState.SUCCESS.getCode(), DefaultResponseState.SUCCESS.getMessage(), null);
     }
 
     /**
-     * 成功
+     * 全参构造
+     * @param code 状态码
+     * @param msg 提示信息
+     * @param data 数据
      */
-    public ResponseEntity() {
-        this(DefaultResponseStatus.SUCCESS.getCode(), DefaultResponseStatus.SUCCESS.getMessage(), null);
+    private ResponseEntity(String code, String msg, T data) {
+        this.code = code;
+        this.msg = msg;
+        this.data = data;
     }
 
     /**
@@ -42,49 +61,33 @@ public class ResponseEntity<T> {
      * @param data 成功的数据
      */
     public ResponseEntity(T data) {
-        this(DefaultResponseStatus.SUCCESS.getCode(), DefaultResponseStatus.SUCCESS.getMessage(), data);
+        this(DefaultResponseState.SUCCESS.getCode(), DefaultResponseState.SUCCESS.getMessage(), data);
     }
 
-    private ResponseEntity(Integer code, String msg, T data) {
-        this.code = code;
-        this.msg = msg;
-        this.data = data;
+    /**
+     * 成功
+     * @param msg 提示信息
+     * @param data 成功的数据
+     */
+    public ResponseEntity(String msg, T data) {
+        this(DefaultResponseState.SUCCESS.getCode(), msg, data);
     }
 
     /**
      * 自定义
-     * @param code 自定义的状态码
-     * @param msg 自定义的提示信息
+     * @param state 自定义的状态
      * @param data 自定义的数据
      */
-    public ResponseEntity(ResponseStatus code, String msg, T data) {
-        this(code.getCode(), msg, data);
+    public ResponseEntity(ResponseState state, String msg, T data) {
+        this(state.getCode(), msg, data);
     }
 
     /**
      * 自定义
-     * @param code 自定义的状态码
-     * @param msg 自定义的提示信息
+     * @param state 自定义的状态
      */
-    public ResponseEntity(ResponseStatus code, String msg) {
-        this(code.getCode(), msg, null);
-    }
-
-    /**
-     * 自定义
-     * @param status 自定义的状态码、提示信息
-     * @param data 自定义的数据
-     */
-    public ResponseEntity(ResponseStatus status, T data) {
-        this(status.getCode(), status.getMessage(), data);
-    }
-
-    /**
-     * 自定义
-     * @param status 自定义的状态码、提示信息
-     */
-    public ResponseEntity(ResponseStatus status) {
-        this(status.getCode(), status.getMessage(), null);
+    public ResponseEntity(ResponseState state) {
+        this(state.getCode(), state.getMessage(), null);
     }
 
     /**
@@ -93,6 +96,19 @@ public class ResponseEntity<T> {
      */
     public ResponseEntity(BizException ex) {
         this(ex.getCode(), ex.getMessage(), null);
+    }
+
+    /**
+     * 转JSON
+     * @return JSON
+     */
+    public String toJson() {
+        try {
+            return OBJECT_MAPPER.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            log.error("转JSON异常:", e);
+        }
+        return null;
     }
 
 }
