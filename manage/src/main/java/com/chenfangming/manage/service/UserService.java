@@ -10,10 +10,17 @@ import com.chenfangming.manage.persistence.entity.UserEntity;
 public interface UserService {
 
     /**
+     * 新增用户
+     * @param userEntity 需要新增的用户列表
+     * @return 新增后的用户id
+     */
+    Long add(UserEntity userEntity);
+
+    /**
      * 根据用户名查询用户
      * @param name 用户名
      * @return 用户
      */
-    UserEntity selectByName(String name);
+    UserEntity findByName(String name);
 
 }

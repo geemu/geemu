@@ -24,10 +24,8 @@ public enum DefaultResponseState implements ResponseState {
     NO_AUTHENTICATION("未认证"),
     /** 权限不足 **/
     NO_AUTHORIZE("未授权"),
-    /** Token已过期 **/
-    AUTHENTICATION_EXPIRED("认证已过期"),
-    /** 请求参数格式不正确 **/
-    BAD_REQUEST_ARGS("请求参数格式不正确");
+    /** 用户已存在 **/
+    USER_EXIST("用户已存在");
 
     /** 提示信息 **/
     private String message;

@@ -15,26 +15,28 @@ import java.io.Serializable;
 public class BizException extends RuntimeException implements Serializable {
 
     /** 序列化id **/
-    private static final long serialVersionUID = -1;
+    private static final long serialVersionUID = 1L;
 
     /** 状态码 **/
     private String code;
+    /** 异常返回的数据 **/
+    private Object data;
 
-    public BizException(ResponseState status, Throwable cause) {
-        this(status.getCode(), status.getMessage(), cause);
+    public BizException(ResponseState code, String message, Object data) {
+        this(code.getCode(), message, data);
     }
 
-    private BizException(String code, String message, Throwable cause) {
-        super(message, cause);
+    private BizException(String code, String message, Object data) {
+        super(message);
         this.code = code;
+    }
+
+    public BizException(ResponseState state, Object data) {
+        this(state.getCode(), state.getMessage(), data);
     }
 
     public BizException(ResponseState code, String message) {
         this(code.getCode(), message, null);
-    }
-
-    public BizException(ResponseState status) {
-        this(status.getCode(), status.getMessage(), null);
     }
 
 }

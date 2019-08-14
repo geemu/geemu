@@ -43,7 +43,7 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public UserEntity login(NamePwdReq condition) {
-        UserEntity userEntity = userMapper.selectByName(condition.getName())
+        UserEntity userEntity = userMapper.findByName(condition.getName())
             .orElseThrow(() -> new BizException(DefaultResponseState.FAIL, "用户名或密码错误"));
         if (!userEntity.getEnabled()) {
             throw new BizException(DefaultResponseState.FAIL, "用户被禁用");

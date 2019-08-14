@@ -14,11 +14,26 @@
         <result column="update_time" property="updateTime"/>
     </resultMap>
 
-    <!-- 根据用户名查询用户 -->
-    <select id="selectByName" resultMap="USER_RESULT_MAP">
+    <select id="findByName" resultMap="USER_RESULT_MAP">
         select *
         from backend_user u
         where u.name = #{name}
     </select>
+
+    <insert id="addOne" useGeneratedKeys="true">
+        insert into backend_user
+        values (#{userEntity.id},
+                #{item.fundName},
+                #{item.fundCode},
+                #{item.dateX},
+                #{item.dataY},
+                #{item.createBy},
+                #{item.createDate},
+                #{item.updateBy},
+                #{item.updateDate},
+                #{item.remarks},
+                #{item.delFlag})
+    </insert>
+
 
 </mapper>
