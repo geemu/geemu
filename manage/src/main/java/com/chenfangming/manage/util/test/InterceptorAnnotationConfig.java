@@ -1,4 +1,4 @@
-package com.chenfangming.manage.test;
+package com.chenfangming.manage.util.test;
 
 import org.springframework.aop.support.DefaultPointcutAdvisor;
 import org.springframework.aop.support.annotation.AnnotationMatchingPointcut;
@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * com.chenfangming.manage.test
+ * com.chenfangming.manage.util.test
  * @author 陈方明  cfmmail@sina.com
  * @since 2019-07-30 22:58
  */

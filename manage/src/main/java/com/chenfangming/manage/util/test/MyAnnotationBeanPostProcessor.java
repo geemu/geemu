@@ -1,4 +1,4 @@
-//package com.chenfangming.manage.test;
+//package com.chenfangming.manage.util.test;
 //
 //import org.aopalliance.intercept.MethodInterceptor;
 //import org.springframework.aop.framework.AbstractAdvisingBeanPostProcessor;
@@ -11,7 +11,7 @@
 //import java.lang.annotation.Annotation;
 //
 ///**
-// * com.chenfangming.manage.test
+// * com.chenfangming.manage.util.test
 // * @author 陈方明  cfmmail@sina.com
 // * @since 2019-07-30 23:08
 // */

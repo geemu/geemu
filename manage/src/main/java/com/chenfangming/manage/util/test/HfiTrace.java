@@ -1,4 +1,4 @@
-package com.chenfangming.manage.test;
+package com.chenfangming.manage.util.test;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -8,7 +8,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * com.chenfangming.manage.test
+ * com.chenfangming.manage.util.test
  * @author 陈方明  cfmmail@sina.com
  * @since 2019-07-30 22:23
  */

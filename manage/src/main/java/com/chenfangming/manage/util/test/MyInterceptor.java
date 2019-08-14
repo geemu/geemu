@@ -1,4 +1,4 @@
-package com.chenfangming.manage.test;
+package com.chenfangming.manage.util.test;
 
 
 import org.aopalliance.intercept.MethodInterceptor;
