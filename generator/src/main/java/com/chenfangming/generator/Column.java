@@ -29,12 +29,4 @@ public class Column {
     /** 字段注释 **/
     private String comment;
 
-    @Override
-    public String toString() {
-        return "Column{" +
-            "name='" + name + '\'' +
-            ", type='" + type + '\'' +
-            ", comment='" + comment + '\'' +
-            '}';
-    }
 }
