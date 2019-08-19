@@ -23,13 +23,13 @@ import java.io.Serializable;
 @ApiModel(value = "${entity.comment}", description = "${entity.comment}")
 public class ${entity.name} implements Serializable {
 
-/** 序列化id **/
-private static final long serialVersionUID = -1L;
+    /** 序列化id **/
+    private static final long serialVersionUID = -1L;
 
-<#list entity.fieldList as field>
+    <#list entity.fieldList as field>
     /** ${field.comment} **/
     @ApiModelProperty(value = "${field.comment}")
     private ${field.type} ${field.name};
-</#list>
+    </#list>
 
 }
