@@ -1,8 +1,11 @@
 package com.chenfangming.generator;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.Accessors;
 
 /**
@@ -10,7 +13,10 @@ import lombok.experimental.Accessors;
  * @author 陈方明  cfmmail@sina.com
  * @since 2019-08-18 19:48
  */
-@Data
+@Getter
+@Setter
+@Builder
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
@@ -23,4 +29,12 @@ public class Column {
     /** 字段注释 **/
     private String comment;
 
+    @Override
+    public String toString() {
+        return "Column{" +
+            "name='" + name + '\'' +
+            ", type='" + type + '\'' +
+            ", comment='" + comment + '\'' +
+            '}';
+    }
 }

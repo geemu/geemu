@@ -31,4 +31,5 @@ private static final long serialVersionUID = -1L;
     @ApiModelProperty(value = "${field.comment}")
     private ${field.type} ${field.name};
 </#list>
+
 }
