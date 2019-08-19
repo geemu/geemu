@@ -1,4 +1,4 @@
-package com.chenfangming.generator;
+package ${mapper.package};
 
 
 import org.apache.ibatis.annotations.Mapper;

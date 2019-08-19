@@ -1,4 +1,4 @@
-package com.chenfangming.generator;
+package ${entity.package};
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
