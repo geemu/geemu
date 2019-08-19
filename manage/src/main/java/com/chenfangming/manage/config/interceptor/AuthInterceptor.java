@@ -2,7 +2,7 @@ package com.chenfangming.manage.config.interceptor;
 
 import com.chenfangming.manage.config.exception.DefaultResponseState;
 import com.chenfangming.manage.config.exception.ResponseEntity;
-import com.chenfangming.manage.domain.constants.SessionKey;
+import com.chenfangming.manage.constants.SessionKey;
 import com.chenfangming.manage.domain.model.CurrentUserInfo;
 import com.chenfangming.manage.persistence.entity.RoleEntity;
 import com.chenfangming.manage.service.MenuService;

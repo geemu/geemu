@@ -1,4 +1,4 @@
-package com.chenfangming.manage.domain.constants;
+package com.chenfangming.manage.constants;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

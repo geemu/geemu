@@ -21,7 +21,7 @@ public interface UserMapper {
      * @param userEntity 待新增的用户
      * @return 新增后的结果
      */
-    Integer addOne(@Param("userEntity") UserEntity userEntity);
+    int insert(@Param("userEntity") UserEntity userEntity);
 
     /**
      * 根据用户名查询用户
