@@ -6,4 +6,6 @@ package com.chenfangming.generator;
  * @since 2019-08-18 19:44
  */
 public final class FreemarkerTemplate {
+
+
 }

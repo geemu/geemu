@@ -19,23 +19,4 @@ public enum DbType {
     /** 未知的数据库类型 **/
     UNKNOW;
 
-    /**
-     * 获取数据库类型
-     * @param type 数据库类型字符串
-     */
-    public static DbType getDbType(String type) {
-        if (null == type || "".equals(type)) {
-            log.error("数据库类型不能为空");
-            return UNKNOW;
-        }
-        DbType[] typeArray = DbType.values();
-        for (DbType item : typeArray) {
-            if (type.equals(item.name())) {
-                return item;
-            }
-        }
-        log.info("未知的数据库类型:{}", type);
-        return UNKNOW;
-    }
-
 }

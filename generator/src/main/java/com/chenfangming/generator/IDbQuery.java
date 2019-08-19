@@ -1,40 +1,36 @@
 package com.chenfangming.generator;
 
 /**
- * 表数据查询抽象类
+ * 表数据查询接口
  * @author 陈方明  cfmmail@sina.com
- * @since 2019-08-18 20:18
+ * @since 2019-08-19 20:48
  */
-public abstract class AbstractDbQuery implements IDbQuery {
+public interface IDbQuery {
 
     /**
      * 数据库类型
      */
-    @Override
-    public abstract DbType getDbType();
+    DbType getDbType();
 
     /**
      * 获取所有数据表名
      * @return SQL
      */
-    @Override
-    public abstract String getTableNames();
+    String getTableNames();
 
     /**
      * 获取数据表注释
      * @param tableName 数据表名
      * @return SQL
      */
-    @Override
-    public abstract String getTableComment(String tableName);
+    String getTableComment(String tableName);
 
     /**
      * 获取数据表所有字段名
      * @param tableName 数据表名
      * @return SQL
      */
-    @Override
-    public abstract String getTableColumns(String tableName);
+    String getTableColumns(String tableName);
 
     /**
      * 获取字段对应的类型
@@ -42,8 +38,7 @@ public abstract class AbstractDbQuery implements IDbQuery {
      * @param columnName 列名
      * @return SQL
      */
-    @Override
-    public abstract String getColumnType(String tableName, String columnName);
+    String getColumnType(String tableName, String columnName);
 
     /**
      * 获取字段对应的类型
@@ -51,7 +46,6 @@ public abstract class AbstractDbQuery implements IDbQuery {
      * @param columnName 列名
      * @return SQL
      */
-    @Override
-    public abstract String getColumnComment(String tableName, String columnName);
+    String getColumnComment(String tableName, String columnName);
 
 }
