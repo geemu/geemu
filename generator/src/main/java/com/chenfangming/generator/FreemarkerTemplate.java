@@ -9,8 +9,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,6 +23,43 @@ import java.util.Map;
  */
 @Slf4j
 public final class FreemarkerTemplate {
+
+    private Configuration configuration;
+
+    public FreemarkerTemplate init() {
+        configuration = new Configuration(Configuration.DEFAULT_INCOMPATIBLE_IMPROVEMENTS);
+        configuration.setDefaultEncoding(StandardCharsets.UTF_8.name());
+        configuration.setClassForTemplateLoading(FreemarkerTemplate.class, "/");
+        return this;
+    }
+
+    public void writer(Map<String, Object> objectMap, String templatePath, String outputFile) throws Exception {
+        Template template = configuration.getTemplate(templatePath);
+        try (FileOutputStream fileOutputStream = new FileOutputStream(outputFile)) {
+            template.process(objectMap, new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8.name()));
+        }
+        log.info("模板:{},文件:{}", templatePath, outputFile);
+    }
+
+
+    public String templateFilePath(String filePath) {
+        return filePath + ".ftl";
+    }
+
+    /**
+     * 输出 java xml 文件
+     */
+    public FreemarkerTemplate batchOutput() {
+        try {
+            List<TableInfo> tableInfoList = new ArrayList<>();
+            for (TableInfo tableInfo : tableInfoList) {
+
+            }
+        } catch (Exception e) {
+            log.error("无法创建文件，请检查配置信息！", e);
+        }
+        return this;
+    }
 
     private static final String TEMPLATE_PATH = "E:\\cloud\\generator\\src\\main\\resources\\templates";
     private static final String CLASS_PATH = "E:\\cloud\\generator\\src\\main\\java\\com\\chenfangming\\generator";
