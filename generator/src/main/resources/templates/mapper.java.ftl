@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 /**
 * ${table.comment}
 * @author ${author} ${mail}
-* @since ${date}
+* @since ${date?string('yyyy-MM-dd hh:mm:ss')}
 */
 @Mapper
 @Repository

@@ -21,8 +21,8 @@ import java.util.Map;
 @Slf4j
 public final class FreemarkerTemplate {
 
-    private static final String TEMPLATE_PATH = "src/main/resources/templates";
-    private static final String CLASS_PATH = "src/main/java/com/chenfangming/test";
+    private static final String TEMPLATE_PATH = "E:\\cloud\\generator\\src\\main\\resources\\templates";
+    private static final String CLASS_PATH = "E:\\cloud\\generator\\src\\main\\java\\com\\chenfangming\\generator";
 
     public static void main(String[] args) throws Exception {
         Configuration configuration = new Configuration(Configuration.DEFAULT_INCOMPATIBLE_IMPROVEMENTS);
@@ -39,7 +39,9 @@ public final class FreemarkerTemplate {
             .comment("测试Mapper接口")
             .mapperName("TestMapper")
             .build();
+        map.put("table", table);
         map.put("author", "陈方明");
+        map.put("mail", "cfmmail@sina.com");
         map.put("date", new Date());
         Template template = configuration.getTemplate("mapper.java.ftl");
         File docFile = new File(CLASS_PATH + "\\" + "TestMapper.java");

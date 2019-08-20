@@ -16,7 +16,7 @@ import java.io.Serializable;
 /**
 * ${table.comment}
 * @author ${author} ${mail}
-* @since ${date}
+* @since ${date?string('yyyy-MM-dd hh:mm:ss')}
 */
 @Data
 @Builder
