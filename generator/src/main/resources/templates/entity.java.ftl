@@ -2,6 +2,9 @@ package ${entity.package};
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+<#list table.pkgSet as pkg>
+    import ${pkg};
+</#list>
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,7 +14,7 @@ import lombok.experimental.Accessors;
 import java.io.Serializable;
 
 /**
-* ${entity.comment}
+* ${table.comment}
 * @author ${author} ${mail}
 * @since ${date}
 */
@@ -20,16 +23,16 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
-@ApiModel(value = "${entity.comment}", description = "${entity.comment}")
-public class ${entity.name} implements Serializable {
+@ApiModel(value = "${table.comment}", description = "${table.comment}")
+public class ${table.entityName} implements Serializable {
 
     /** 序列化id **/
     private static final long serialVersionUID = -1L;
 
-    <#list entity.fieldList as field>
+<#list table.tableFieldList as field>
     /** ${field.comment} **/
     @ApiModelProperty(value = "${field.comment}")
-    private ${field.type} ${field.name};
+    private ${field.javaType.type} ${field.javaName};
     </#list>
 
 }

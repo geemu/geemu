@@ -20,13 +20,19 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
-public class Column {
+public class TableField {
 
-    /** 字段名 **/
-    private String name;
-    /** 类型 **/
-    private String type;
+    /** 是否是主键字段 {@code true}是主键字段 {@code false}非主键字段 **/
+    private Boolean key;
+    /** 数据库字段名 **/
+    private String jdbcName;
+    /** 数据库字段类型 **/
+    private String jdbcType;
     /** 字段注释 **/
     private String comment;
+    /** 实体字段名 **/
+    private String javaName;
+    /** 实体字段类型 **/
+    private JavaType javaType;
 
 }
