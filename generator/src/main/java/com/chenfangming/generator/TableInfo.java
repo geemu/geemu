@@ -1,6 +1,7 @@
 package com.chenfangming.generator;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
@@ -15,6 +16,7 @@ import java.util.Set;
  * @since 2019-08-18 19:59
  */
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)

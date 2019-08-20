@@ -1,4 +1,4 @@
-package ${mapper.package};
+package ${package.mapper};
 
 
 import org.apache.ibatis.annotations.Mapper;
