@@ -19,6 +19,7 @@
         <module>gateway</module>
         <module>manage</module>
         <module>generator</module>
+        <module>cache-parent</module>
     </modules>
 
     <!-- 全局属性配置 -->
