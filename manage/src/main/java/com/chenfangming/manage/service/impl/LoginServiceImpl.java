@@ -1,13 +1,15 @@
 package com.chenfangming.manage.service.impl;
 
 import com.chenfangming.manage.config.auto.property.AppProperty;
+import com.chenfangming.manage.config.exception.BizException;
+import com.chenfangming.manage.config.exception.DefaultResponseState;
 import com.chenfangming.manage.domain.req.NamePwdReq;
 import com.chenfangming.manage.persistence.entity.UserEntity;
-import com.chenfangming.manage.persistence.mapper.UserMapper;
 import com.chenfangming.manage.service.LoginService;
+import com.chenfangming.manage.service.UserService;
 import com.chenfangming.manage.util.UrlUtils;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,12 +19,12 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-@AllArgsConstructor
 public class LoginServiceImpl implements LoginService {
 
-    /** 应用配置参数 **/
+    @Autowired
     private AppProperty appProperties;
-    private UserMapper userMapper;
+    @Autowired
+    private UserService userService;
 
     @Override
     public String qq() {
@@ -41,18 +43,17 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public UserEntity login(NamePwdReq condition) {
-//        UserEntity userEntity = userMapper.findByName(condition.getName());
-//        if (null == userEntity) {
-//            throw new BizException(DefaultResponseState.FAIL, "用户名或密码错误");
-//        }
-//        if (!userEntity.getEnabled()) {
-//            throw new BizException(DefaultResponseState.FAIL, "用户被禁用");
-//        }
-//        if (!userEntity.getPassword().equals(condition.getPassword())) {
-//            throw new BizException(DefaultResponseState.FAIL, "用户名或密码错误");
-//        }
-//        return userEntity;
-        return null;
+        UserEntity userEntity = userService.findByName(condition.getName());
+        if (null == userEntity) {
+            throw new BizException(DefaultResponseState.FAIL, "用户名或密码错误");
+        }
+        if (!userEntity.getEnabled()) {
+            throw new BizException(DefaultResponseState.FAIL, "用户被禁用");
+        }
+        if (!userEntity.getPassword().equals(condition.getPassword())) {
+            throw new BizException(DefaultResponseState.FAIL, "用户名或密码错误");
+        }
+        return userEntity;
     }
 
 }

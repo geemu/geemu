@@ -29,14 +29,13 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Long add(UserEntity userEntity) {
-        QueryWrapper<UserEntity> userEntityQueryWrapper = new QueryWrapper<>();
-        userEntityQueryWrapper.setEntity(userEntity);
-        UserEntity exist = userMapper.selectOne(userEntityQueryWrapper);
+        UserEntity exist = findByName(userEntity.getName());
         if (null != exist) {
             log.error("用户已存在:{}", userEntity.getName());
             throw new BizException(DefaultResponseState.USER_EXIST);
         }
-        return null;
+        userMapper.insert(userEntity);
+        return userEntity.getId();
     }
 
     /**
@@ -46,7 +45,9 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public UserEntity findByName(String name) {
-        return null;
+        QueryWrapper<UserEntity> userEntityQueryWrapper = new QueryWrapper<>();
+        userEntityQueryWrapper.setEntity(UserEntity.builder().name(name).build());
+        return userMapper.selectOne(userEntityQueryWrapper);
     }
 
 }
