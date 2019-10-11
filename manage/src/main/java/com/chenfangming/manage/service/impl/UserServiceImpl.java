@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
         boolean exist = userMapper.findByName(userEntity.getName()).isPresent();
         if (exist) {
             log.error("用户已存在:{}", userEntity.getName());
-            throw new BizException(DefaultResponseState.USER_EXIST, userEntity);
+            throw new BizException(DefaultResponseState.USER_EXIST);
         }
         return null;
     }

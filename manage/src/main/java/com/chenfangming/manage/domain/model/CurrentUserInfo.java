@@ -21,7 +21,7 @@ import java.util.List;
 public class CurrentUserInfo implements Serializable {
 
     /** 序列化id **/
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -1L;
 
     /** 用户id **/
     private Long id;

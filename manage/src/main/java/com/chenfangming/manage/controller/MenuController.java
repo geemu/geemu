@@ -1,6 +1,6 @@
 package com.chenfangming.manage.controller;
 
-import com.chenfangming.manage.config.exception.ResponseEntity;
+import com.chenfangming.manage.config.exception.BaseResponse;
 import com.chenfangming.manage.persistence.entity.MenuEntity;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -31,25 +31,25 @@ public class MenuController {
 
     @ApiOperation("新增一个资源")
     @PostMapping
-    public ResponseEntity<MenuEntity> add(@Valid MenuEntity menuEntity) {
+    public BaseResponse<MenuEntity> add(@Valid MenuEntity menuEntity) {
         return null;
     }
 
     @ApiOperation("根据主键删除资源")
     @DeleteMapping
-    public ResponseEntity<Void> del(@Valid Long id) {
+    public BaseResponse<Void> del(@Valid Long id) {
         return null;
     }
 
     @ApiOperation("根据主键修改资源信息")
     @PutMapping
-    public ResponseEntity<MenuEntity> edit(@Valid MenuEntity menuEntity) {
+    public BaseResponse<MenuEntity> edit(@Valid MenuEntity menuEntity) {
         return null;
     }
 
     @ApiOperation("根据条件查询资源信息")
     @GetMapping
-    public ResponseEntity<MenuEntity> find(@Valid MenuEntity menuEntity) {
+    public BaseResponse<MenuEntity> find(@Valid MenuEntity menuEntity) {
         return null;
     }
 

@@ -1,7 +1,7 @@
 package com.chenfangming.manage.controller;
 
 
-import com.chenfangming.manage.config.exception.ResponseEntity;
+import com.chenfangming.manage.config.exception.BaseResponse;
 import com.chenfangming.manage.domain.model.CurrentUserInfo;
 import com.chenfangming.manage.service.TestService;
 import io.swagger.annotations.Api;
@@ -48,7 +48,7 @@ public class TestController {
 
     @Cacheable(cacheNames = "data", key = "'dada'")
     @GetMapping
-    public ResponseEntity<List<String>> data(String data) {
+    public BaseResponse<List<String>> data(String data) {
         List<HandlerMapping> list = dispatcherServlet.getHandlerMappings();
         System.out.println(list);
         RequestMappingHandlerMapping mapping = applicationContext.getBean(RequestMappingHandlerMapping.class);
@@ -63,7 +63,7 @@ public class TestController {
             }
         }
         System.out.println(urls);
-        return new ResponseEntity<>(urls);
+        return new BaseResponse<>(urls);
     }
 
     @PostMapping

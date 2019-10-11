@@ -1,7 +1,7 @@
 package com.chenfangming.manage.controller;
 
 
-import com.chenfangming.manage.config.exception.ResponseEntity;
+import com.chenfangming.manage.config.exception.BaseResponse;
 import com.chenfangming.manage.constants.SessionKey;
 import com.chenfangming.manage.domain.model.CurrentUserInfo;
 import com.chenfangming.manage.domain.req.NamePwdReq;
@@ -45,16 +45,16 @@ public class LoginController {
 
     @ApiOperation("QQ登录")
     @GetMapping("qq")
-    public ResponseEntity<String> qq() {
+    public BaseResponse<String> qq() {
         log.info("QQ登录");
         String url = loginService.qq();
         log.info("当前QQ登录地址为:{}", url);
-        return new ResponseEntity<>(url);
+        return new BaseResponse<>(url);
     }
 
     @ApiOperation("用户名密码登录")
     @PostMapping
-    public ResponseEntity<CurrentUserInfo> custom(@RequestBody @Valid NamePwdReq condition) {
+    public BaseResponse<CurrentUserInfo> custom(@RequestBody @Valid NamePwdReq condition) {
         UserEntity userEntity = loginService.login(condition);
         List<RoleEntity> roleEntityList = roleService.selectByUserId(userEntity.getId());
         List<Long> roleIdList = roleEntityList.stream()
@@ -66,7 +66,7 @@ public class LoginController {
             .roleIdList(roleEntityList)
             .build();
         RequestContextHolder.currentRequestAttributes().setAttribute(SessionKey.CURRENT_USER.name(), currentUserInfo, RequestAttributes.SCOPE_SESSION);
-        return new ResponseEntity<>(currentUserInfo);
+        return new BaseResponse<>(currentUserInfo);
     }
 
 }

@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @Getter
 @ToString
 @EqualsAndHashCode
-public class ResponseEntity<T> {
+public class BaseResponse<T> {
 
     /** JACKSON **/
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
@@ -40,7 +40,7 @@ public class ResponseEntity<T> {
     /**
      * 成功
      */
-    public ResponseEntity() {
+    public BaseResponse() {
         this(DefaultResponseState.SUCCESS.getCode(), DefaultResponseState.SUCCESS.getMessage(), null);
     }
 
@@ -50,7 +50,7 @@ public class ResponseEntity<T> {
      * @param msg 提示信息
      * @param data 数据
      */
-    private ResponseEntity(String code, String msg, T data) {
+    private BaseResponse(String code, String msg, T data) {
         this.code = code;
         this.msg = msg;
         this.data = data;
@@ -60,7 +60,7 @@ public class ResponseEntity<T> {
      * 成功
      * @param data 成功的数据
      */
-    public ResponseEntity(T data) {
+    public BaseResponse(T data) {
         this(DefaultResponseState.SUCCESS.getCode(), DefaultResponseState.SUCCESS.getMessage(), data);
     }
 
@@ -69,7 +69,7 @@ public class ResponseEntity<T> {
      * @param msg 提示信息
      * @param data 成功的数据
      */
-    public ResponseEntity(String msg, T data) {
+    public BaseResponse(String msg, T data) {
         this(DefaultResponseState.SUCCESS.getCode(), msg, data);
     }
 
@@ -78,7 +78,7 @@ public class ResponseEntity<T> {
      * @param state 自定义的状态
      * @param data 自定义的数据
      */
-    public ResponseEntity(ResponseState state, String msg, T data) {
+    public BaseResponse(ResponseState state, String msg, T data) {
         this(state.getCode(), msg, data);
     }
 
@@ -86,7 +86,7 @@ public class ResponseEntity<T> {
      * 自定义
      * @param state 自定义的状态
      */
-    public ResponseEntity(ResponseState state) {
+    public BaseResponse(ResponseState state) {
         this(state.getCode(), state.getMessage(), null);
     }
 
@@ -94,7 +94,7 @@ public class ResponseEntity<T> {
      * 自定义
      * @param ex 自定义的状态码、提示信息
      */
-    public ResponseEntity(BizException ex) {
+    public BaseResponse(BizException ex) {
         this(ex.getCode(), ex.getMessage(), null);
     }
 

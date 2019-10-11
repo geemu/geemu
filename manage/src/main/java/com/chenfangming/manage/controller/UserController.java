@@ -1,7 +1,7 @@
 package com.chenfangming.manage.controller;
 
 
-import com.chenfangming.manage.config.exception.ResponseEntity;
+import com.chenfangming.manage.config.exception.BaseResponse;
 import com.chenfangming.manage.persistence.entity.UserEntity;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -32,25 +32,25 @@ public class UserController {
 
     @ApiOperation("新增一个用户")
     @PostMapping
-    public ResponseEntity<UserEntity> add(@Valid UserEntity userEntity) {
+    public BaseResponse<UserEntity> add(@Valid UserEntity userEntity) {
         return null;
     }
 
     @ApiOperation("根据主键删除用户")
     @DeleteMapping
-    public ResponseEntity<Void> del(@Valid Long id) {
+    public BaseResponse<Void> del(@Valid Long id) {
         return null;
     }
 
     @ApiOperation("根据主键修改用户信息")
     @PutMapping
-    public ResponseEntity<UserEntity> edit(@Valid UserEntity userEntity) {
+    public BaseResponse<UserEntity> edit(@Valid UserEntity userEntity) {
         return null;
     }
 
     @ApiOperation("根据条件查询用户信息")
     @GetMapping
-    public ResponseEntity<UserEntity> find(@Valid UserEntity userEntity) {
+    public BaseResponse<UserEntity> find(@Valid UserEntity userEntity) {
         return null;
     }
 

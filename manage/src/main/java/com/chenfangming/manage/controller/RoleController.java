@@ -1,6 +1,6 @@
 package com.chenfangming.manage.controller;
 
-import com.chenfangming.manage.config.exception.ResponseEntity;
+import com.chenfangming.manage.config.exception.BaseResponse;
 import com.chenfangming.manage.persistence.entity.RoleEntity;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -31,25 +31,25 @@ public class RoleController {
 
     @ApiOperation("新增一个角色")
     @PostMapping
-    public ResponseEntity<RoleEntity> add(@Valid RoleEntity roleEntity) {
+    public BaseResponse<RoleEntity> add(@Valid RoleEntity roleEntity) {
         return null;
     }
 
     @ApiOperation("根据主键删除角色")
     @DeleteMapping
-    public ResponseEntity<Void> del(@Valid Long id) {
+    public BaseResponse<Void> del(@Valid Long id) {
         return null;
     }
 
     @ApiOperation("根据主键修改角色信息")
     @PutMapping
-    public ResponseEntity<RoleEntity> edit(@Valid RoleEntity roleEntity) {
+    public BaseResponse<RoleEntity> edit(@Valid RoleEntity roleEntity) {
         return null;
     }
 
     @ApiOperation("根据条件查询角色信息")
     @GetMapping
-    public ResponseEntity<RoleEntity> find(@Valid RoleEntity roleEntity) {
+    public BaseResponse<RoleEntity> find(@Valid RoleEntity roleEntity) {
         return null;
     }
 
