@@ -3,7 +3,6 @@ package com.chenfangming.manage.persistence.entity.view;
 import com.chenfangming.manage.persistence.entity.MenuEntity;
 import com.chenfangming.manage.persistence.entity.RoleEntity;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +19,6 @@ import java.util.List;
  */
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(callSuper = true)

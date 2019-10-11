@@ -14,25 +14,4 @@
         <result column="update_time" property="updateTime"/>
     </resultMap>
 
-    <select id="findByName" resultMap="USER_RESULT_MAP">
-        select *
-        from backend_user u
-        where u.name = #{name}
-    </select>
-
-    <insert id="insert" useGeneratedKeys="true">
-        insert into backend_user(name, password, remark, enabled, create_user, update_user)
-        values (#{item.fundName},
-                #{item.fundCode},
-                #{item.dateX},
-                #{item.dataY},
-                #{item.createBy},
-                #{item.createDate},
-                #{item.updateBy},
-                #{item.updateDate},
-                #{item.remarks},
-                #{item.delFlag})
-    </insert>
-
-
 </mapper>

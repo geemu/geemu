@@ -8,7 +8,7 @@ import com.chenfangming.manage.domain.req.NamePwdReq;
 import com.chenfangming.manage.persistence.entity.RoleEntity;
 import com.chenfangming.manage.persistence.entity.UserEntity;
 import com.chenfangming.manage.service.LoginService;
-import com.chenfangming.manage.service.auth.RoleService;
+import com.chenfangming.manage.service.RoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;

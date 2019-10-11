@@ -1,10 +1,11 @@
 package com.chenfangming.manage.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.chenfangming.manage.config.exception.BizException;
 import com.chenfangming.manage.config.exception.DefaultResponseState;
 import com.chenfangming.manage.persistence.entity.UserEntity;
 import com.chenfangming.manage.persistence.mapper.UserMapper;
-import com.chenfangming.manage.service.auth.UserService;
+import com.chenfangming.manage.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,9 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Long add(UserEntity userEntity) {
-        UserEntity exist = userMapper.findByName(userEntity.getName());
+        QueryWrapper<UserEntity> userEntityQueryWrapper = new QueryWrapper<>();
+        userEntityQueryWrapper.setEntity(userEntity);
+        UserEntity exist = userMapper.selectOne(userEntityQueryWrapper);
         if (null != exist) {
             log.error("用户已存在:{}", userEntity.getName());
             throw new BizException(DefaultResponseState.USER_EXIST);
@@ -43,7 +46,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public UserEntity findByName(String name) {
-        return userMapper.findByName(name);
+        return null;
     }
 
 }

@@ -1,8 +1,6 @@
 package com.chenfangming.manage.service.impl;
 
 import com.chenfangming.manage.config.auto.property.AppProperty;
-import com.chenfangming.manage.config.exception.BizException;
-import com.chenfangming.manage.config.exception.DefaultResponseState;
 import com.chenfangming.manage.domain.req.NamePwdReq;
 import com.chenfangming.manage.persistence.entity.UserEntity;
 import com.chenfangming.manage.persistence.mapper.UserMapper;
@@ -43,17 +41,18 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public UserEntity login(NamePwdReq condition) {
-        UserEntity userEntity = userMapper.findByName(condition.getName());
-        if (null == userEntity) {
-            throw new BizException(DefaultResponseState.FAIL, "用户名或密码错误");
-        }
-        if (!userEntity.getEnabled()) {
-            throw new BizException(DefaultResponseState.FAIL, "用户被禁用");
-        }
-        if (!userEntity.getPassword().equals(condition.getPassword())) {
-            throw new BizException(DefaultResponseState.FAIL, "用户名或密码错误");
-        }
-        return userEntity;
+//        UserEntity userEntity = userMapper.findByName(condition.getName());
+//        if (null == userEntity) {
+//            throw new BizException(DefaultResponseState.FAIL, "用户名或密码错误");
+//        }
+//        if (!userEntity.getEnabled()) {
+//            throw new BizException(DefaultResponseState.FAIL, "用户被禁用");
+//        }
+//        if (!userEntity.getPassword().equals(condition.getPassword())) {
+//            throw new BizException(DefaultResponseState.FAIL, "用户名或密码错误");
+//        }
+//        return userEntity;
+        return null;
     }
 
 }

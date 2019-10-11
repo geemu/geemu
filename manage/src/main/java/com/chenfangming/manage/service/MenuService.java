@@ -1,4 +1,4 @@
-package com.chenfangming.manage.service.auth;
+package com.chenfangming.manage.service;
 
 import com.chenfangming.manage.persistence.entity.RoleEntity;
 import com.chenfangming.manage.persistence.entity.view.MenuRoleView;
