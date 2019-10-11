@@ -21,9 +21,8 @@
     </select>
 
     <insert id="insert" useGeneratedKeys="true">
-        insert into backend_user
-        values (#{userEntity.id},
-                #{item.fundName},
+        insert into backend_user(name, password, remark, enabled, create_user, update_user)
+        values (#{item.fundName},
                 #{item.fundCode},
                 #{item.dateX},
                 #{item.dataY},

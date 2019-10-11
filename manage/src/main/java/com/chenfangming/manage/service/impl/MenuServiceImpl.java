@@ -3,7 +3,7 @@ package com.chenfangming.manage.service.impl;
 import com.chenfangming.manage.persistence.entity.RoleEntity;
 import com.chenfangming.manage.persistence.entity.view.MenuRoleView;
 import com.chenfangming.manage.persistence.mapper.MenuMapper;
-import com.chenfangming.manage.service.MenuService;
+import com.chenfangming.manage.service.auth.MenuService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

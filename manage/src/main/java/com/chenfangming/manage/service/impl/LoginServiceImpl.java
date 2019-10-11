@@ -33,18 +33,20 @@ public class LoginServiceImpl implements LoginService {
         String encodedCallBackUrl = UrlUtils.encode(callBackUrl);
         log.info("URL编码后为:{}", encodedCallBackUrl);
         return appProperties.getQq().getOauthServerUrl() + "oauth2.0/authorize"
-                + "?response_type=code"
-                + "&client_id=" + appProperties.getQq().getAppId()
-                + "&redirect_uri=" + encodedCallBackUrl
-                + "&state=" + "123456789"
-                + "&scope=get_user_info"
-                + "&display=pc";
+            + "?response_type=code"
+            + "&client_id=" + appProperties.getQq().getAppId()
+            + "&redirect_uri=" + encodedCallBackUrl
+            + "&state=" + "123456789"
+            + "&scope=get_user_info"
+            + "&display=pc";
     }
 
     @Override
     public UserEntity login(NamePwdReq condition) {
-        UserEntity userEntity = userMapper.findByName(condition.getName())
-            .orElseThrow(() -> new BizException(DefaultResponseState.FAIL, "用户名或密码错误"));
+        UserEntity userEntity = userMapper.findByName(condition.getName());
+        if (null == userEntity) {
+            throw new BizException(DefaultResponseState.FAIL, "用户名或密码错误");
+        }
         if (!userEntity.getEnabled()) {
             throw new BizException(DefaultResponseState.FAIL, "用户被禁用");
         }

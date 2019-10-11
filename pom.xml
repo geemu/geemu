@@ -33,13 +33,13 @@
         <!-- 版本管理 -->
         <version.versions-maven-plugin>2.7</version.versions-maven-plugin>
         <version.maven-resources-plugin>3.1.0</version.maven-resources-plugin>
-        <version.spring-boot-maven-plugin>2.1.5.RELEASE</version.spring-boot-maven-plugin>
-        <version.spring-boot>2.1.5.RELEASE</version.spring-boot>
+        <version.spring-boot-maven-plugin>2.1.9.RELEASE</version.spring-boot-maven-plugin>
+        <version.spring-boot>2.1.9.RELEASE</version.spring-boot>
         <version.spring-cloud>Greenwich.RELEASE</version.spring-cloud>
         <version.swagger>2.9.2</version.swagger>
-        <version.mybatis-spring-boot-starter>2.0.1</version.mybatis-spring-boot-starter>
+        <version.mybatis-plus-spring-boot-starter>3.2.0</version.mybatis-plus-spring-boot-starter>
         <version.maven-checkstyle-plugin>3.0.0</version.maven-checkstyle-plugin>
-        <version.jasypt>2.1.1</version.jasypt>
+        <version.jasypt>2.1.2</version.jasypt>
     </properties>
 
     <!-- 全局依赖管理 -->
@@ -51,9 +51,9 @@
                 <version>${version.jasypt}</version>
             </dependency>
             <dependency>
-                <groupId>org.mybatis.spring.boot</groupId>
-                <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>${version.mybatis-spring-boot-starter}</version>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${version.mybatis-plus-spring-boot-starter}</version>
             </dependency>
             <dependency>
                 <groupId>io.springfox</groupId>
