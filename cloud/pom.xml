@@ -16,7 +16,7 @@
 
     <name>${project.artifactId}</name>
     <description>微服务</description>
-    <url>https://github.com/geemu/geemu/cloud</url>
+    <url>https://github.com/geemu/geemu/tree/master/cloud</url>
 
     <modules>
         <module>eureka</module>
