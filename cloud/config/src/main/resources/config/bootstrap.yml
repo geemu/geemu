@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: CLOUD-CONFIG
+  profiles:
+    active: native
+    include: @springProfile@
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/config/@springProfile@
