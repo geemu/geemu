@@ -24,3 +24,5 @@ hs_err_pid*
 /.idea/
 **/target/
 **/*.iml
+hydra/core/src/
+hydra/esb/src/

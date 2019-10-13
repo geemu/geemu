@@ -9,20 +9,10 @@
     <version>0.0.1</version>
     <packaging>pom</packaging>
 
-    <name>cloud</name>
+    <name>geemu</name>
     <description>Spring Cloud</description>
+    <url>https://github.com/geemu/cloud</url>
 
-    <modules>
-        <module>common</module>
-        <module>eureka</module>
-        <module>config</module>
-        <module>gateway</module>
-        <module>manage</module>
-        <module>generator</module>
-        <module>cache-parent</module>
-    </modules>
-
-    <!-- 全局属性配置 -->
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -30,21 +20,74 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
-        <!-- 版本管理 -->
-        <version.versions-maven-plugin>2.7</version.versions-maven-plugin>
+
+        <!-- 全局插件版本控制 -->
         <version.maven-resources-plugin>3.1.0</version.maven-resources-plugin>
+        <version.maven-compiler-plugin>3.8.1</version.maven-compiler-plugin>
+        <version.maven-javadoc-plugin>3.1.1</version.maven-javadoc-plugin>
+        <version.versions-maven-plugin>2.7</version.versions-maven-plugin>
+        <version.maven-checkstyle-plugin>3.0.0</version.maven-checkstyle-plugin>
         <version.spring-boot-maven-plugin>2.1.9.RELEASE</version.spring-boot-maven-plugin>
+
+        <!-- 全局依赖版本控制 -->
+        <version.platform-bom>Cairo-RELEASE</version.platform-bom>
         <version.spring-boot>2.1.9.RELEASE</version.spring-boot>
         <version.spring-cloud>Greenwich.RELEASE</version.spring-cloud>
-        <version.swagger>2.9.2</version.swagger>
+
         <version.mybatis-plus-spring-boot-starter>3.2.0</version.mybatis-plus-spring-boot-starter>
-        <version.maven-checkstyle-plugin>3.0.0</version.maven-checkstyle-plugin>
+        <version.swagger>2.9.2</version.swagger>
         <version.jasypt>2.1.2</version.jasypt>
     </properties>
+
+    <modules>
+        <module>common</module>
+        <module>eureka</module>
+        <module>config</module>
+        <module>gateway</module>
+        <module>manage</module>
+        <module>hydra</module>
+    </modules>
+
+    <!-- 全局依赖 -->
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.spring.platform</groupId>
+            <artifactId>platform-bom</artifactId>
+            <version>Cairo-RELEASE</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
 
     <!-- 全局依赖管理 -->
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>io.spring.platform</groupId>
+                <artifactId>platform-bom</artifactId>
+                <version>${version.platform-bom}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${version.spring-boot}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${version.spring-cloud}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>com.github.ulisesbocchio</groupId>
                 <artifactId>jasypt-spring-boot-starter</artifactId>
@@ -65,96 +108,10 @@
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${version.swagger}</version>
             </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${version.spring-boot}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${version.spring-cloud}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
-    <!-- 全局依赖 -->
-    <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-    </dependencies>
-
-    <!-- 全局编译管理 -->
     <build>
-        <finalName>${project.name}-${springProfile}-${project.version}</finalName>
-        <!-- 全局插件管理 -->
-        <pluginManagement>
-            <plugins>
-                <!-- versions -->
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>versions-maven-plugin</artifactId>
-                    <version>${version.versions-maven-plugin}</version>
-                    <configuration>
-                        <generateBackupPoms>false</generateBackupPoms>
-                    </configuration>
-                </plugin>
-                <!-- resources -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>${version.maven-resources-plugin}</version>
-                    <executions>
-                        <execution>
-                            <id>copy-dist-jar</id>
-                            <phase>install</phase>
-                            <goals>
-                                <goal>copy-resources</goal>
-                            </goals>
-                            <configuration>
-                                <encoding>UTF-8</encoding>
-                                <overwrite>true</overwrite>
-                                <outputDirectory>../target</outputDirectory>
-                                <resources>
-                                    <resource>
-                                        <directory>target</directory>
-                                        <includes>
-                                            <include>*.jar</include>
-                                        </includes>
-                                    </resource>
-                                </resources>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <!-- boot -->
-                <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>${version.spring-boot-maven-plugin}</version>
-                    <configuration>
-                        <fork>true</fork>
-                        <addResources>true</addResources>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>repackage</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-
-        <!-- 全局插件 -->
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -184,9 +141,63 @@
                 </includes>
             </resource>
         </resources>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>versions-maven-plugin</artifactId>
+                    <version>${version.versions-maven-plugin}</version>
+                    <configuration>
+                        <generateBackupPoms>false</generateBackupPoms>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${version.maven-resources-plugin}</version>
+                    <executions>
+                        <execution>
+                            <id>copy-dist-jar</id>
+                            <phase>install</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                                <encoding>UTF-8</encoding>
+                                <overwrite>true</overwrite>
+                                <outputDirectory>../target</outputDirectory>
+                                <resources>
+                                    <resource>
+                                        <directory>target</directory>
+                                        <includes>
+                                            <include>*.jar</include>
+                                        </includes>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${version.spring-boot-maven-plugin}</version>
+                    <configuration>
+                        <fork>true</fork>
+                        <addResources>true</addResources>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
-    <!-- 全局环境管理 -->
     <profiles>
         <profile>
             <id>local</id>
