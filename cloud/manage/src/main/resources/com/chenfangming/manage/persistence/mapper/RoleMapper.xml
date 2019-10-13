@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenfangming.manage.persistence.mapper.RoleMapper">
+
+    <resultMap id="ROLE_RESULT_MAP" type="com.chenfangming.manage.persistence.entity.RoleEntity">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="remark" property="remark"/>
+        <result column="enabled" property="enabled"/>
+        <result column="create_user" property="createUser"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <!-- 根据用户id查询角色-->
+    <select id="selectByUserId" resultMap="ROLE_RESULT_MAP">
+        SELECT r.id,
+               r.name,
+               r.remark,
+               r.enabled,
+               r.create_user,
+               r.create_time,
+               r.update_user,
+               r.update_time
+        FROM (select * from backend_user_role where enabled = TRUE AND user_id = #{userId}) ur
+                 INNER JOIN (select * from backend_role where enabled = TRUE) r
+                            ON r.id = ur.role_id
+    </select>
+
+</mapper>
