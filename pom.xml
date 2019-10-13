@@ -50,13 +50,6 @@
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>io.spring.platform</groupId>
-            <artifactId>platform-bom</artifactId>
-            <version>Cairo-RELEASE</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
     </dependencies>
 
     <!-- 全局依赖管理 -->
@@ -105,104 +98,5 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>versions-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-            </plugin>
-        </plugins>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-                <includes>
-                    <include>META-INF/**</include>
-                    <include>public/**</include>
-                    <include>static/**</include>
-                    <include>templates/**</include>
-                    <include>**/*Mapper.xml</include>
-                    <include>config/bootstrap.yml</include>
-                    <include>config/bootstrap-${springProfile}.yml</include>
-                    <include>config/application.yml</include>
-                    <include>config/application-${springProfile}.yml</include>
-                    <include>config/${springProfile}/*-${springProfile}.yml</include>
-                    <include>config/logback-${springProfile}.xml</include>
-                </includes>
-            </resource>
-        </resources>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>versions-maven-plugin</artifactId>
-                    <version>${version.versions-maven-plugin}</version>
-                    <configuration>
-                        <generateBackupPoms>false</generateBackupPoms>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>${version.maven-resources-plugin}</version>
-                    <executions>
-                        <execution>
-                            <id>copy-dist-jar</id>
-                            <phase>install</phase>
-                            <goals>
-                                <goal>copy-resources</goal>
-                            </goals>
-                            <configuration>
-                                <encoding>UTF-8</encoding>
-                                <overwrite>true</overwrite>
-                                <outputDirectory>../target</outputDirectory>
-                                <resources>
-                                    <resource>
-                                        <directory>target</directory>
-                                        <includes>
-                                            <include>*.jar</include>
-                                        </includes>
-                                    </resource>
-                                </resources>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>${version.spring-boot-maven-plugin}</version>
-                    <configuration>
-                        <fork>true</fork>
-                        <addResources>true</addResources>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>repackage</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
-
-    <profiles>
-        <profile>
-            <id>local</id>
-            <properties>
-                <springProfile>local</springProfile>
-            </properties>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
-    </profiles>
 
 </project>
