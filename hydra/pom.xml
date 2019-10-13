@@ -15,8 +15,8 @@
     <packaging>pom</packaging>
 
     <name>${project.artifactId}</name>
-    <description>九头蛇</description>
-    <url>https://github.com/geemu/cloud/hydra</url>
+    <description>公共组件</description>
+    <url>https://github.com/geemu/geemu/hydra</url>
 
     <modules>
         <module>core</module>

@@ -6,16 +6,16 @@
 
     <parent>
         <groupId>com.chenfangming</groupId>
-        <artifactId>hydra-parent</artifactId>
+        <artifactId>cloud-parent</artifactId>
         <version>0.0.1</version>
     </parent>
 
-    <artifactId>hydra-core</artifactId>
+    <artifactId>eureka</artifactId>
     <version>0.0.1</version>
     <packaging>jar</packaging>
 
     <name>${project.artifactId}</name>
-    <description>九头蛇-核心</description>
-    <url>https://github.com/geemu/geemu/hydra-core</url>
+    <description>微服务-注册中心</description>
+    <url>https://github.com/geemu/cloud/hydra-core</url>
 
 </project>

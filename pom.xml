@@ -43,6 +43,7 @@
 
     <modules>
         <module>hydra</module>
+        <module>cloud</module>
     </modules>
 
     <!-- 全局依赖 -->
