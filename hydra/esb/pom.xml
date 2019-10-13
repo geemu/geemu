@@ -10,7 +10,7 @@
         <version>0.0.1</version>
     </parent>
 
-    <artifactId>hydra-core</artifactId>
+    <artifactId>hydra-esb</artifactId>
     <version>0.0.1</version>
     <packaging>jar</packaging>
 
