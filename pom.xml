@@ -22,12 +22,13 @@
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
 
         <!-- 全局插件版本控制 -->
-        <version.maven-resources-plugin>3.1.0</version.maven-resources-plugin>
         <version.maven-compiler-plugin>3.8.1</version.maven-compiler-plugin>
-        <version.maven-javadoc-plugin>3.1.1</version.maven-javadoc-plugin>
-        <version.versions-maven-plugin>2.7</version.versions-maven-plugin>
-        <version.maven-checkstyle-plugin>3.0.0</version.maven-checkstyle-plugin>
         <version.spring-boot-maven-plugin>2.1.9.RELEASE</version.spring-boot-maven-plugin>
+
+        <version.maven-resources-plugin>3.1.0</version.maven-resources-plugin>
+        <version.versions-maven-plugin>2.7</version.versions-maven-plugin>
+        <version.maven-javadoc-plugin>3.1.1</version.maven-javadoc-plugin>
+        <version.maven-checkstyle-plugin>3.0.0</version.maven-checkstyle-plugin>
 
         <!-- 全局依赖版本控制 -->
         <version.platform-bom>Cairo-RELEASE</version.platform-bom>
@@ -35,6 +36,7 @@
         <version.spring-cloud>Greenwich.RELEASE</version.spring-cloud>
 
         <version.mybatis-plus-spring-boot-starter>3.2.0</version.mybatis-plus-spring-boot-starter>
+        <version.junit>5.5.2</version.junit>
         <version.swagger>2.9.2</version.swagger>
         <version.jasypt>2.1.2</version.jasypt>
     </properties>
@@ -75,6 +77,12 @@
                 <version>${version.spring-cloud}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>${version.junit}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>com.github.ulisesbocchio</groupId>
