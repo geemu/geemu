@@ -1,5 +1,6 @@
 package com.chenfangming.esb.core;
 
+import com.chenfangming.core.XmlHead;
 import lombok.Data;
 
 /**
@@ -8,7 +9,7 @@ import lombok.Data;
  * @since 2019-10-15 00:08
  */
 @Data
-public class EsbRequestHead extends AbstractEsbHead {
+public class EsbRequestHead implements XmlHead {
 
     private String ServiceCode;
 
