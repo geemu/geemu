@@ -1,6 +1,6 @@
 package com.chenfangming.esb.core;
 
-import com.chenfangming.esb.core.sign.EsbBody;
+import com.chenfangming.esb.core.sign.EsbBodyType;
 import lombok.Data;
 
 /**
@@ -9,7 +9,7 @@ import lombok.Data;
  * @since 2019-10-15 00:32
  */
 @Data
-public class Esb3002 implements EsbBody {
+public class Esb3002 implements EsbBodyType {
 
     private String Data;
 

@@ -2,8 +2,7 @@ package com.chenfangming.esb.test;
 
 import com.chenfangming.esb.core.Esb3002;
 import com.chenfangming.esb.core.entity.EsbRequestHead;
-import com.chenfangming.esb.core.impl.EsbRequest;
-import com.chenfangming.esb.core.sign.Xml;
+import com.chenfangming.esb.core.impl.Esb;
 
 /**
  * com.chenfangming.esb.test
@@ -13,8 +12,7 @@ import com.chenfangming.esb.core.sign.Xml;
 public class Test {
 
     public static void main(String[] args) {
-        Xml<EsbRequestHead, Esb3002> esb = new EsbRequest<>();
-
+        Esb<EsbRequestHead, Esb3002> esb = new Esb<>();
     }
 
 }
