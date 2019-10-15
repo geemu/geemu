@@ -1,6 +1,9 @@
 package com.chenfangming.esb.test;
 
-import com.chenfangming.esb.core.EsbRequest;
+import com.chenfangming.esb.core.Esb3002;
+import com.chenfangming.esb.core.entity.EsbRequestHead;
+import com.chenfangming.esb.core.impl.EsbRequest;
+import com.chenfangming.esb.core.sign.Xml;
 
 /**
  * com.chenfangming.esb.test
@@ -10,7 +13,8 @@ import com.chenfangming.esb.core.EsbRequest;
 public class Test {
 
     public static void main(String[] args) {
-        EsbRequest<Esb3002Body> esb3002BodyEsbRequest = new Esb3002<Esb3002Body>();
+        Xml<EsbRequestHead, Esb3002> esb = new EsbRequest<>();
+
     }
 
 }
