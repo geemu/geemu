@@ -15,8 +15,8 @@
     <packaging>jar</packaging>
 
     <name>${project.artifactId}</name>
-    <description>九头蛇-ESB</description>
-    <url>https://github.com/geemu/geemu/tree/master/hydra/xml</url>
+    <description>ESB服务</description>
+    <url>https://github.com/geemu/geemu/tree/master/hydra/esb</url>
 
     <dependencies>
         <dependency>

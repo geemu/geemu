@@ -21,6 +21,7 @@
     <modules>
         <module>core</module>
         <module>esb</module>
+        <module>oauth</module>
     </modules>
 
     <dependencies>
