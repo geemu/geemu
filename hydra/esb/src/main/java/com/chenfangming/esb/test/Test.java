@@ -11,6 +11,8 @@ import com.chenfangming.esb.core.impl.Esb;
  */
 public class Test {
 
+    private static final String XML = "";
+
     public static void main(String[] args) {
         Esb<EsbRequestHead, Esb3002> esb = new Esb<>();
     }

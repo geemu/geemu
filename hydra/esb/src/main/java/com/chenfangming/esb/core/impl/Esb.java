@@ -1,7 +1,7 @@
 package com.chenfangming.esb.core.impl;
 
-import com.chenfangming.esb.core.sign.EsbBodyType;
-import com.chenfangming.esb.core.sign.EsbHeadType;
+import com.chenfangming.esb.core.sign.EsbBodyStyle;
+import com.chenfangming.esb.core.sign.EsbHeadStyle;
 import lombok.Data;
 
 /**
@@ -10,7 +10,7 @@ import lombok.Data;
  * @since 2019-10-15 22:17
  */
 @Data
-public class Esb<H extends EsbHeadType, B extends EsbBodyType> extends AbstractEsb<H, B> {
+public class Esb<H extends EsbHeadStyle, B extends EsbBodyStyle> extends AbstractEsb<H, B> {
 
     private H Head;
     private B Body;

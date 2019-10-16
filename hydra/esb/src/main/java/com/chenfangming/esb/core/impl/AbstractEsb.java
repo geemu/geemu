@@ -1,7 +1,7 @@
 package com.chenfangming.esb.core.impl;
 
-import com.chenfangming.esb.core.sign.EsbBodyType;
-import com.chenfangming.esb.core.sign.EsbHeadType;
+import com.chenfangming.esb.core.sign.EsbBodyStyle;
+import com.chenfangming.esb.core.sign.EsbHeadStyle;
 import com.chenfangming.esb.core.sign.Xml;
 
 /**
@@ -9,7 +9,7 @@ import com.chenfangming.esb.core.sign.Xml;
  * @author 陈方明  cfmmail@sina.com
  * @since 2019-10-15 22:56
  */
-public abstract class AbstractEsb<H extends EsbHeadType, B extends EsbBodyType> implements Xml<H, B> {
+public abstract class AbstractEsb<H extends EsbHeadStyle, B extends EsbBodyStyle> implements Xml<H, B> {
 
     public abstract H getHead();
 
