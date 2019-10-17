@@ -1,6 +1,6 @@
 package com.chenfangming.esb.core.entity;
 
-import com.chenfangming.esb.core.sign.EsbHeadStyle;
+import com.chenfangming.esb.core.impl.sign.EsbHead;
 import lombok.Data;
 
 /**
@@ -9,7 +9,7 @@ import lombok.Data;
  * @since 2019-10-15 00:08
  */
 @Data
-public class EsbRequestHead implements EsbHeadStyle {
+public class EsbRequestHead implements EsbHead {
 
     private String ServiceCode;
 

@@ -2,7 +2,7 @@ package com.chenfangming.esb.test;
 
 import com.chenfangming.esb.core.Esb3002;
 import com.chenfangming.esb.core.entity.EsbRequestHead;
-import com.chenfangming.esb.core.impl.Esb;
+import com.chenfangming.esb.core.sign.Esb;
 
 /**
  * com.chenfangming.esb.test
@@ -15,6 +15,8 @@ public class Test {
 
     public static void main(String[] args) {
         Esb<EsbRequestHead, Esb3002> esb = new Esb<>();
+        esb.setHead(new EsbRequestHead());
+        System.out.println(esb.getHead().getClass().getName());
     }
 
 }
