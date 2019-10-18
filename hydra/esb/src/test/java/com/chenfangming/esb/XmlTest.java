@@ -1,10 +1,8 @@
 package com.chenfangming.esb;
 
+import com.chenfangming.esb.entity.request.Esb3002;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * EsbTest
@@ -17,8 +15,15 @@ public class XmlTest {
     @Test
     void getHead() {
         log.info("开始");
-
-        List<String> a = new ArrayList<>();
+        EsbRequest<Esb3002> esb = EsbRequest.<Esb3002>builder()
+                .Head(EsbDefaultRequestHead
+                        .builder()
+                        .build())
+                .Body(Esb3002
+                        .builder()
+                        .build())
+                .build();
+        System.out.println(esb.getHead().getClass().getName());
         log.info("结束");
     }
 

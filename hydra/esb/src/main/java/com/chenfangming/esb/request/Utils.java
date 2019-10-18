@@ -1,6 +1,6 @@
-package com.chenfangming.esb.client;
+package com.chenfangming.esb.request;
 
-import com.chenfangming.esb.core.sign.Style;
+import com.chenfangming.esb.EsbStyle;
 import lombok.extern.slf4j.Slf4j;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -30,19 +30,19 @@ public class Utils {
         return document;
     }
 
-    public static <T> T getFieldValue(Element element, Style style) {
+    public static <T> T getFieldValue(Element element, EsbStyle style) {
         T t = null;
 
         return t;
     }
 
-    public static <T> T getStructValue(Element element, Style style) {
+    public static <T> T getStructValue(Element element, EsbStyle style) {
         T t = null;
 
         return t;
     }
 
-    public static <T> T getListValue(Element element, Style style) {
+    public static <T> T getListValue(Element element, EsbStyle style) {
         T t = null;
 
         return t;
