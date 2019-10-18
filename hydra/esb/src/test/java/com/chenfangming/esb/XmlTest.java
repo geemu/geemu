@@ -15,7 +15,7 @@ public class XmlTest {
     @Test
     void getHead() {
         log.info("开始");
-        EsbRequest<Esb3002> esb = EsbRequest.<Esb3002>builder()
+        Esb<EsbDefaultRequestHead, Esb3002> esb = EsbRequest.<Esb3002>builder()
                 .Head(EsbDefaultRequestHead
                         .builder()
                         .build())

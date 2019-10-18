@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @Builder
 @EqualsAndHashCode(callSuper = true)
-public class EsbRequest<Body extends EsbBodyStyle> extends AbstractEsb<EsbDefaultRequestHead, Body> {
+public class EsbRequest<Body extends EsbBodyStyle> extends AbstractEsb<EsbDefaultRequestHead, Body> implements Esb<EsbDefaultRequestHead, Body> {
 
     /** Head **/
     private EsbDefaultRequestHead Head;

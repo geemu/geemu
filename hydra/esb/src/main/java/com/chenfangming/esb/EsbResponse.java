@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @Builder
 @EqualsAndHashCode(callSuper = true)
-public class EsbResponse<Body extends EsbBodyStyle> extends AbstractEsb<EsbDefaultResponseHead, Body> {
+public class EsbResponse<Body extends EsbBodyStyle> extends AbstractEsb<EsbDefaultResponseHead, Body> implements Esb<EsbDefaultResponseHead, Body> {
 
     /** Head **/
     private EsbDefaultResponseHead Head;
