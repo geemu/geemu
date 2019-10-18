@@ -18,4 +18,3 @@ eureka:
     register-with-eureka: true # 指示此实例是否应向Eureka注册其信息
     service-url:
       defaultZone: http://127.0.0.1:${server.port}/eureka
-

@@ -2,9 +2,6 @@ spring:
   application:
     name: CLOUD-EUREKA
 
-# 8760-eureka.cloud.com:8760
-# 8761-eureka.cloud.com:8761
-# 8762-eureka.cloud.com:8762
 server:
   port: 8760
 
@@ -20,4 +17,3 @@ eureka:
     register-with-eureka: true # 指示此实例是否应向Eureka注册其信息
     service-url:
       defaultZone: http://127.0.0.1:${server.port}/eureka
-
