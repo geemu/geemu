@@ -2,15 +2,13 @@ spring:
   application:
     name: CLOUD-EUREKA
 
-# 8760-eureka.cloud.com:8760
-# 8761-eureka.cloud.com:8761
-# 8762-eureka.cloud.com:8762
 server:
-  port: 8760
+  port: 8761
 
 eureka:
   instance:
     prefer-ip-address: true
+    hostname: localhost
     ip-address: 127.0.0.1
   server:
     enable-self-preservation: false # 关闭保护机制,以确保注册中心将不可用的实例正确剔除
