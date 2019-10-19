@@ -1,7 +1,7 @@
 package com.chenfangming.manage.config.interceptor;
 
 import com.chenfangming.manage.config.exception.BaseResponse;
-import com.chenfangming.manage.config.exception.DefaultResponseState;
+import com.chenfangming.manage.config.exception.BaseResponse.BaseResponseState;
 import com.chenfangming.manage.constants.SessionKey;
 import com.chenfangming.manage.domain.model.CurrentUserInfo;
 import com.chenfangming.manage.persistence.entity.RoleEntity;
@@ -18,7 +18,6 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
-
 /**
  * 权限拦截器
  * @author 陈方明  cfmmail@sina.com
@@ -48,7 +47,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         // 请求路径不存在
         if (HttpStatus.NOT_FOUND.value() == response.getStatus()) {
             log.error("请求路径:{},不存在", request.getRequestURI());
-            BaseResponse<Void> responseEntity = new BaseResponse<>(DefaultResponseState.PATH_NOT_FOUND);
+            BaseResponse<Void> responseEntity = new BaseResponse<>(BaseResponseState.PATH_NOF_FOUND);
             response.getWriter().println(responseEntity.toJson());
             return Boolean.FALSE;
         }
@@ -57,7 +56,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         if (null == currentUserInfo) {
             log.error("用户未登录");
             response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
-            BaseResponse<Void> responseEntity = new BaseResponse<>(DefaultResponseState.NO_AUTHENTICATION);
+            BaseResponse<Void> responseEntity = new BaseResponse<>(BaseResponseState.NO_LOGIN);
             response.getWriter().println(responseEntity.toJson());
             return Boolean.FALSE;
         }
@@ -66,7 +65,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         // 权限不足
         if (!can) {
             response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
-            BaseResponse<Void> responseEntity = new BaseResponse<>(DefaultResponseState.NO_AUTHORIZE);
+            BaseResponse<Void> responseEntity = new BaseResponse<>(BaseResponseState.FORBIDDEN);
             response.getWriter().println(responseEntity.toJson());
             return Boolean.FALSE;
         }

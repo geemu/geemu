@@ -1,5 +1,6 @@
 package com.chenfangming.manage.config.exception;
 
+import com.chenfangming.manage.config.exception.BaseResponse.BaseResponseState;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -17,20 +18,38 @@ public class BizException extends RuntimeException implements Serializable {
     /** 序列化id **/
     private static final long serialVersionUID = -1L;
 
-    /** 状态码 **/
-    private String code;
+    /** 返回状态码 **/
+    private Integer code;
+    /** 返回提示信息 **/
+    private String message;
 
-    public BizException(ResponseState state) {
-        this(state.getCode(), state.getMessage());
-    }
-
-    private BizException(String code, String message) {
-        super(message);
+    /**
+     * 构造
+     * @param code 返回状态码
+     * @param message 返回提示信息
+     */
+    private BizException(Integer code, String message) {
         this.code = code;
+        this.message = message;
     }
 
-    public BizException(ResponseState code, String message) {
-        this(code.getCode(), message);
+    /**
+     * 构造
+     * @param code 返回状态码
+     * @param message 返回提示信息
+     */
+    public BizException(BaseResponseState code, String message) {
+        this.code = code.getCode();
+        this.message = message;
+    }
+
+    /**
+     * 构造
+     * @param state 返回状态码
+     */
+    public BizException(BaseResponseState state) {
+        this.code = state.getCode();
+        this.message = state.getMessage();
     }
 
 }

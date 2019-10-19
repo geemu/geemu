@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -21,6 +22,8 @@ import lombok.extern.slf4j.Slf4j;
 @EqualsAndHashCode
 public class BaseResponse<T> {
 
+    /** 序列化id **/
+    private static final long serialVersionUID = -1L;
     /** JACKSON **/
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
@@ -31,71 +34,106 @@ public class BaseResponse<T> {
     }
 
     /** 返回状态码 **/
-    private String code;
+    private Integer code;
     /** 返回提示信息 **/
-    private String msg;
+    private String message;
     /** 返回数据 **/
     private T data;
 
     /**
-     * 成功
+     * 自定义code、message、data
+     * @param code code
+     * @param message message
+     * @param data data
      */
-    public BaseResponse() {
-        this(DefaultResponseState.SUCCESS.getCode(), DefaultResponseState.SUCCESS.getMessage(), null);
+    public BaseResponse(ResponseState code, String message, T data) {
+        this(code.getCode(), message, data);
     }
 
     /**
-     * 全参构造
-     * @param code 状态码
-     * @param msg 提示信息
-     * @param data 数据
+     * 构造
+     * @param code 返回状态码
+     * @param message 返回提示信息
+     * @param data 返回数据
      */
-    private BaseResponse(String code, String msg, T data) {
+    private BaseResponse(Integer code, String message, T data) {
         this.code = code;
-        this.msg = msg;
+        this.message = message;
         this.data = data;
     }
 
     /**
-     * 成功
-     * @param data 成功的数据
+     * 自定义code、message、data
+     * @param state code、message
+     * @param data data
      */
-    public BaseResponse(T data) {
-        this(DefaultResponseState.SUCCESS.getCode(), DefaultResponseState.SUCCESS.getMessage(), data);
+    public BaseResponse(ResponseState state, T data) {
+        this(state.getCode(), state.getMessage(), data);
     }
 
     /**
-     * 成功
-     * @param msg 提示信息
-     * @param data 成功的数据
+     * 自定义code、message
+     * @param code code
+     * @param message message
      */
-    public BaseResponse(String msg, T data) {
-        this(DefaultResponseState.SUCCESS.getCode(), msg, data);
+    public BaseResponse(ResponseState code, String message) {
+        this(code.getCode(), code.getMessage(), null);
     }
 
     /**
-     * 自定义
-     * @param state 自定义的状态
-     * @param data 自定义的数据
-     */
-    public BaseResponse(ResponseState state, String msg, T data) {
-        this(state.getCode(), msg, data);
-    }
-
-    /**
-     * 自定义
-     * @param state 自定义的状态
+     * 自定义code、message
+     * @param state code、message
      */
     public BaseResponse(ResponseState state) {
         this(state.getCode(), state.getMessage(), null);
     }
 
     /**
-     * 自定义
-     * @param ex 自定义的状态码、提示信息
+     * 自定义data
+     * @param data data
+     */
+    public BaseResponse(T data) {
+        this(BaseResponseState.SUCCESS.getCode(), BaseResponseState.SUCCESS.getMessage(), data);
+    }
+
+    /**
+     * 自定义code、message
+     * @param ex code、message
      */
     public BaseResponse(BizException ex) {
         this(ex.getCode(), ex.getMessage(), null);
+    }
+
+    /**
+     * 返回状态码、返回提示信息
+     */
+    @Getter
+    @ToString
+    @AllArgsConstructor
+    public enum BaseResponseState implements ResponseState {
+
+        /** 通用成功 **/
+        SUCCESS(200, "成功"),
+        /** 通用客户端异常 **/
+        BAD_REQUEST(400, "客户端请求异常"),
+        /** 未登录 **/
+        NO_LOGIN(401, "未登录"),
+        /** 权限不足 **/
+        FORBIDDEN(403, "权限不足"),
+        /** 请求路径不存在 **/
+        PATH_NOF_FOUND(404, "请求路径不存在"),
+        /** 通用服务端异常 **/
+        INTERNAL_SERVER_ERROR(500, "服务器异常"),
+        /** 没有数据 **/
+        EMPTY_RESULT(204, "未获取到数据"),
+        /** 目标资源已经存在 **/
+        HAS_EXIST(205, "目标资源已经存在");
+
+        /** 返回状态码 **/
+        private Integer code;
+        /** 返回提示信息 **/
+        private String message;
+
     }
 
     /**

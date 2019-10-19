@@ -1,8 +1,8 @@
 package com.chenfangming.manage.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.chenfangming.manage.config.exception.BaseResponse.BaseResponseState;
 import com.chenfangming.manage.config.exception.BizException;
-import com.chenfangming.manage.config.exception.DefaultResponseState;
 import com.chenfangming.manage.persistence.entity.UserEntity;
 import com.chenfangming.manage.persistence.mapper.UserMapper;
 import com.chenfangming.manage.service.UserService;
@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
         UserEntity exist = findByName(userEntity.getName());
         if (null != exist) {
             log.error("用户已存在:{}", userEntity.getName());
-            throw new BizException(DefaultResponseState.USER_EXIST);
+            throw new BizException(BaseResponseState.HAS_EXIST, "用户已存在");
         }
         userMapper.insert(userEntity);
         return userEntity.getId();

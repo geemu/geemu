@@ -11,7 +11,7 @@ public interface ResponseState {
      * 获取状态码
      * @return 状态码
      */
-    String getCode();
+    Integer getCode();
 
     /**
      * 获取状态提示信息
