@@ -114,8 +114,6 @@ public class BaseResponse<T> {
 
         /** 通用成功 **/
         SUCCESS(200, "成功"),
-        /** 通用客户端异常 **/
-        BAD_REQUEST(400, "客户端请求异常"),
         /** 未登录 **/
         NO_LOGIN(401, "未登录"),
         /** 权限不足 **/
@@ -124,10 +122,13 @@ public class BaseResponse<T> {
         PATH_NOF_FOUND(404, "请求路径不存在"),
         /** 通用服务端异常 **/
         INTERNAL_SERVER_ERROR(500, "服务器异常"),
-        /** 没有数据 **/
-        EMPTY_RESULT(204, "未获取到数据"),
-        /** 目标资源已经存在 **/
-        HAS_EXIST(205, "目标资源已经存在");
+
+        /** 客户端请求异常 **/
+        BAD_REQUEST(400, "客户端请求异常"),
+        /** 目标资源不存在 **/
+        NOT_EXIST(204, "目标资源不存在"),
+        /** 目标资源已存在 **/
+        HAS_EXIST(205, "目标资源已存在");
 
         /** 返回状态码 **/
         private Integer code;
