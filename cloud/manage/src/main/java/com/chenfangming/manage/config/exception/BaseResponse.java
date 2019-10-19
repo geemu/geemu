@@ -111,20 +111,21 @@ public class BaseResponse<T> {
     @ToString
     @AllArgsConstructor
     public enum BaseResponseState implements ResponseState {
-
+        //--------------------公共返回Begin--------------------//
         /** 通用成功 **/
-        SUCCESS(200, "成功"),
+        SUCCESS(0, "成功"),
+        /** 客户端请求异常、请求参数校验不通过等 **/
+        BAD_REQUEST(1, "客户端请求异常"),
         /** 未登录 **/
-        NO_LOGIN(401, "未登录"),
+        NO_LOGIN(2, "未登录"),
         /** 权限不足 **/
-        FORBIDDEN(403, "权限不足"),
+        FORBIDDEN(3, "权限不足"),
         /** 请求路径不存在 **/
-        PATH_NOF_FOUND(404, "请求路径不存在"),
+        PATH_NOF_FOUND(4, "请求路径不存在"),
         /** 通用服务端异常 **/
-        INTERNAL_SERVER_ERROR(500, "服务器异常"),
+        INTERNAL_SERVER_ERROR(5, "服务器异常"),
+        //--------------------公共返回End--------------------//
 
-        /** 客户端请求异常 **/
-        BAD_REQUEST(400, "客户端请求异常"),
         /** 目标资源不存在 **/
         NOT_EXIST(204, "目标资源不存在"),
         /** 目标资源已存在 **/
