@@ -1,5 +1,7 @@
 package com.chenfangming.esb.client;
 
+import com.chenfangming.esb.style.EsbBodyStyle;
+import com.chenfangming.esb.style.EsbHeadStyle;
 import com.chenfangming.esb.style.EsbStyle;
 import lombok.extern.slf4j.Slf4j;
 import org.dom4j.Document;
@@ -30,22 +32,14 @@ public class EsbClient {
         return document;
     }
 
-    public static <T> T getFieldValue(Element element, EsbStyle style) {
-        T t = null;
+    public static String getTextValue(Element element, EsbStyle style) {
+        if (style instanceof EsbHeadStyle) {
+            return element.getTextTrim();
+        } else if (style instanceof EsbBodyStyle) {
+            return element.attributeValue("");
+        }
 
-        return t;
-    }
-
-    public static <T> T getStructValue(Element element, EsbStyle style) {
-        T t = null;
-
-        return t;
-    }
-
-    public static <T> T getListValue(Element element, EsbStyle style) {
-        T t = null;
-
-        return t;
+        return null;
     }
 
 }
