@@ -1,6 +1,5 @@
-package com.chenfangming.esb.request;
+package com.chenfangming.esb.core;
 
-import com.chenfangming.esb.EsbStyle;
 import lombok.extern.slf4j.Slf4j;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -13,7 +12,7 @@ import org.dom4j.Element;
  * @since 2019-10-16 21:54
  */
 @Slf4j
-public class Utils {
+public class EsbClient {
 
     /**
      * 创建Document

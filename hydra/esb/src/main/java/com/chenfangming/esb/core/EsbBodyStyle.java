@@ -1,4 +1,4 @@
-package com.chenfangming.esb;
+package com.chenfangming.esb.core;
 
 
 /**
