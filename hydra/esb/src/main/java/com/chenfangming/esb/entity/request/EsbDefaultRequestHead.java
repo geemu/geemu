@@ -1,5 +1,6 @@
-package com.chenfangming.esb.core;
+package com.chenfangming.esb.entity.request;
 
+import com.chenfangming.esb.style.EsbHeadStyle;
 import lombok.Builder;
 import lombok.Data;
 

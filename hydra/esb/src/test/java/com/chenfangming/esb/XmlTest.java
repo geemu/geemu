@@ -1,8 +1,8 @@
 package com.chenfangming.esb;
 
-import com.chenfangming.esb.core.EsbDefaultRequestHead;
 import com.chenfangming.esb.core.EsbRequest;
 import com.chenfangming.esb.entity.request.Esb3002;
+import com.chenfangming.esb.entity.request.EsbDefaultRequestHead;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package com.chenfangming.esb.core;
+package com.chenfangming.esb.style;
 
 /**
  * 解析风格、方式标记接口

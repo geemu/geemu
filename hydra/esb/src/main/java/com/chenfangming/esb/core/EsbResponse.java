@@ -1,5 +1,7 @@
 package com.chenfangming.esb.core;
 
+import com.chenfangming.esb.entity.response.EsbDefaultResponseHead;
+import com.chenfangming.esb.style.EsbBodyStyle;
 import lombok.Builder;
 import lombok.Data;
 

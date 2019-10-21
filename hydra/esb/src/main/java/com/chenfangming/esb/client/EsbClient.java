@@ -1,5 +1,6 @@
-package com.chenfangming.esb.core;
+package com.chenfangming.esb.client;
 
+import com.chenfangming.esb.style.EsbStyle;
 import lombok.extern.slf4j.Slf4j;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
