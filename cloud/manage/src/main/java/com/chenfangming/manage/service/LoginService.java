@@ -12,5 +12,11 @@ public interface LoginService {
 
     String qq();
 
+    /**
+     * 根据用户名查询用户
+     * @param condition 查询条件
+     * @return 用户实体
+     */
     UserEntity login(NamePwdReq condition);
+
 }

@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
         UserEntity exist = findByName(userEntity.getName());
         if (null != exist) {
             log.error("用户已存在:{}", userEntity.getName());
-            throw new BizException(BaseResponseState.HAS_EXIST, "用户已存在");
+            throw new BizException(BaseResponseState.USER_EXISTED, "用户已存在");
         }
         userMapper.insert(userEntity);
         return userEntity.getId();

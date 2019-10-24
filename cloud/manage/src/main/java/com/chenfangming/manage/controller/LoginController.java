@@ -2,11 +2,7 @@ package com.chenfangming.manage.controller;
 
 
 import com.chenfangming.manage.config.exception.BaseResponse;
-import com.chenfangming.manage.constants.SessionKey;
-import com.chenfangming.manage.domain.model.CurrentUserInfo;
 import com.chenfangming.manage.domain.req.NamePwdReq;
-import com.chenfangming.manage.persistence.entity.RoleEntity;
-import com.chenfangming.manage.persistence.entity.UserEntity;
 import com.chenfangming.manage.service.LoginService;
 import com.chenfangming.manage.service.RoleService;
 import io.swagger.annotations.Api;
@@ -19,12 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
 
 import javax.validation.Valid;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * 登录控制器
@@ -54,19 +46,20 @@ public class LoginController {
 
     @ApiOperation("用户名密码登录")
     @PostMapping
-    public BaseResponse<CurrentUserInfo> custom(@RequestBody @Valid NamePwdReq condition) {
-        UserEntity userEntity = loginService.login(condition);
-        List<RoleEntity> roleEntityList = roleService.selectByUserId(userEntity.getId());
-        List<Long> roleIdList = roleEntityList.stream()
-            .map(RoleEntity::getId)
-            .collect(Collectors.toList());
-        CurrentUserInfo currentUserInfo = CurrentUserInfo.builder()
-            .id(userEntity.getId())
-            .name(userEntity.getName())
-            .roleIdList(roleEntityList)
-            .build();
-        RequestContextHolder.currentRequestAttributes().setAttribute(SessionKey.CURRENT_USER.name(), currentUserInfo, RequestAttributes.SCOPE_SESSION);
-        return new BaseResponse<>(currentUserInfo);
+    public String custom(@RequestBody @Valid NamePwdReq condition) {
+//        String token = loginService.login(condition);
+//        List<RoleEntity> roleEntityList = roleService.selectByUserId(userEntity.getId());
+//        List<Long> roleIdList = roleEntityList.stream()
+//            .map(RoleEntity::getId)
+//            .collect(Collectors.toList());
+//        CurrentUserInfo currentUserInfo = CurrentUserInfo.builder()
+//            .id(userEntity.getId())
+//            .name(userEntity.getName())
+//            .roleIdList(roleEntityList)
+//            .build();
+//        RequestContextHolder.currentRequestAttributes().setAttribute(SessionKey.CURRENT_USER.name(), currentUserInfo, RequestAttributes.SCOPE_SESSION);
+//        return new BaseResponse<>(currentUserInfo);
+        return null;
     }
 
 }

@@ -126,10 +126,14 @@ public class BaseResponse<T> {
         INTERNAL_SERVER_ERROR(5, "服务器异常"),
         //--------------------公共返回End--------------------//
 
-        /** 目标资源不存在 **/
-        NOT_EXIST(204, "目标资源不存在"),
-        /** 目标资源已存在 **/
-        HAS_EXIST(205, "目标资源已存在");
+        /** 用户已存在 **/
+        USER_EXISTED(6, "用户已存在"),
+        /** 用户不存在 **/
+        USER_NOT_EXISTED(7, "用户不存在"),
+        /** 密码错误 **/
+        INVALID_PASSWORD(8, "密码错误"),
+        /** 用户被禁用 **/
+        USER_LOCKED(9, "用户被禁用");
 
         /** 返回状态码 **/
         private Integer code;
