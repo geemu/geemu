@@ -2,6 +2,7 @@ package com.chenfangming.manage.persistence.mapper;
 
 import com.chenfangming.manage.persistence.entity.UserEntity;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -18,6 +19,6 @@ public interface UserMapper {
      * @param username 用户名
      * @return UserEntity
      */
-    UserEntity selectByUserName(String username);
+    UserEntity selectByUserName(@Param("username") String username);
 
 }

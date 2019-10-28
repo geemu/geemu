@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chenfangming.manage.persistence.mapper.RoleMapper">
 
-    <resultMap id="ROLE_RESULT_MAP" type="com.chenfangming.manage.persistence.entity.RoleEntity">
+    <resultMap id="BASE_RESULT_MAP" type="com.chenfangming.manage.persistence.entity.RoleEntity">
         <id column="role_id" property="roleId"/>
         <result column="role_name" property="roleName"/>
         <result column="remark" property="remark"/>
@@ -13,20 +13,5 @@
         <result column="update_time" property="updateTime"/>
         <result column="non_deleted" property="nonDeleted"/>
     </resultMap>
-
-    <!-- 根据用户id查询角色-->
-    <select id="selectByUserId" resultMap="ROLE_RESULT_MAP">
-        SELECT r.id,
-               r.name,
-               r.remark,
-               r.enabled,
-               r.create_user,
-               r.create_time,
-               r.update_user,
-               r.update_time
-        FROM (select * from backend_user_role where enabled = TRUE AND user_id = #{userId}) ur
-                 INNER JOIN (select * from backend_role where enabled = TRUE) r
-                            ON r.id = ur.role_id
-    </select>
 
 </mapper>

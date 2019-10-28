@@ -7,8 +7,6 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 /**
  * 资源
@@ -20,11 +18,18 @@ import java.util.Set;
 public interface MenuMapper {
 
     /**
-     * 查询角色对应的可用目录、菜单、按钮
-     * @param roleIds 角色id集合
+     * 根据资源id列表,查询资源列表
+     * @param menuIdList 资源id列表
+     * @return 资源列表
+     */
+    List<MenuEntity> selectByMenuIdList(@Param("menuIdList") List<Long> menuIdList);
+
+    /**
+     * 根据角色id,查询目录、菜单、按钮
+     * @param roleIdList 角色id列表
      * @return 目录、菜单集合
      */
-    Optional<List<MenuEntity>> selectByRoleId(@Param("roleIds") Set<Long> roleIds);
+    List<MenuEntity> selectByRoleIdList(@Param("roleIdList") List<Long> roleIdList);
 
     /**
      * 查询所有资源及其可以访问的角色集合
