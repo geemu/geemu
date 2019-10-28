@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
  * @since 2019-04-29 22:03
  */
 @Slf4j
-public class StringUtils {
+public final class StringUtils {
 
     /**
      * 检查一个数组是否为为空或不为{@code null}

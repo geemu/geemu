@@ -1,17 +1,14 @@
 package com.chenfangming.manage.persistence.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.util.Date;
 
 
 /**
@@ -19,39 +16,48 @@ import java.io.Serializable;
  * @author 陈方明  cfmmail@sina.com
  * @since 2018-10-25 20:36
  */
-@Getter
-@Setter
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Accessors(chain = true)
 @ToString(callSuper = true)
-@TableName(value = "backend_menu")
-@EqualsAndHashCode(callSuper = true)
-public class MenuEntity extends BaseEntity implements Serializable {
+public class MenuEntity implements Serializable {
 
     /** 序列化id **/
     private static final long serialVersionUID = -1L;
 
     /** 权限id **/
-    @TableId(type = IdType.AUTO)
-    private Long id;
+    private Long menuId;
     /** 上级权限id 0是顶级id **/
-    private Long pid;
+    private Long parentId;
+    /** icon **/
+    private String icon;
     /** 菜单名称  不区分大小写 **/
     private String name;
     /** 菜单类型  0目录  1菜单  2按钮 **/
-    private Integer type;
-    /** 请求方法 POST DELETE PUT GET 目录没有方法 菜单有方法 按钮有方法 **/
-    private String method;
+    private Byte type;
+    /** 请求方法 目录没有方法 菜单有方法 按钮有方法 0:POST、1:DELETE、2:PUT、3:GET **/
+    private Byte method;
     /** 请求路径 目录没有pattern 菜单是路径 按钮有pattern **/
     private String pattern;
-    /** 用于按钮的隐藏 0新增 1删除 2修改 3查询 4导入 5导出 **/
-    private Integer operate;
+    /** 用于按钮的隐藏 0:新增、1:删除、2:修改、3:查询、4:启用禁用、4:导入、5:导出 **/
+    private Byte operate;
     /** 排序  数值越大越靠后 **/
-    private Integer sort;
+    private Long sort;
     /** 备注 **/
     private String remark;
-    /** 是否可用  0不可用  1可用 **/
+    /** 是否启用 true:启用、false:禁用 **/
     private Boolean enabled;
+    /** 创建人 **/
+    private String createUser;
+    /** 创建时间 **/
+    private Date createTime;
+    /** 更新人 **/
+    private String updateUser;
+    /** 更新时间 **/
+    private Date updateTime;
+    /** 是否未删除 true:未删除、false:已删除 **/
+    private Boolean nonDeleted;
 
 }

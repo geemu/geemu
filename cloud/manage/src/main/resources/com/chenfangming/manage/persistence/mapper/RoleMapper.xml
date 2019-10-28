@@ -3,14 +3,15 @@
 <mapper namespace="com.chenfangming.manage.persistence.mapper.RoleMapper">
 
     <resultMap id="ROLE_RESULT_MAP" type="com.chenfangming.manage.persistence.entity.RoleEntity">
-        <id column="id" property="id"/>
-        <result column="name" property="name"/>
+        <id column="role_id" property="roleId"/>
+        <result column="role_name" property="roleName"/>
         <result column="remark" property="remark"/>
         <result column="enabled" property="enabled"/>
         <result column="create_user" property="createUser"/>
         <result column="create_time" property="createTime"/>
         <result column="update_user" property="updateUser"/>
         <result column="update_time" property="updateTime"/>
+        <result column="non_deleted" property="nonDeleted"/>
     </resultMap>
 
     <!-- 根据用户id查询角色-->

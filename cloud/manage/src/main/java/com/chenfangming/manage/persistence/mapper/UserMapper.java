@@ -1,6 +1,5 @@
 package com.chenfangming.manage.persistence.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.chenfangming.manage.persistence.entity.UserEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -12,6 +11,13 @@ import org.springframework.stereotype.Repository;
  */
 @Mapper
 @Repository
-public interface UserMapper extends BaseMapper<UserEntity> {
+public interface UserMapper {
+
+    /**
+     * 根据用户名,查询系统用户
+     * @param username 用户名
+     * @return UserEntity
+     */
+    UserEntity selectByUserName(String username);
 
 }
