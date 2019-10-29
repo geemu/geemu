@@ -21,52 +21,52 @@
         <result column="non_deleted" property="nonDeleted"/>
     </resultMap>
 
-    <select id="selectByMenuIdList" resultMap="BASE_RESULT_MAP">
-        select * from backend_menu where menu_id in
-        <foreach collection="list" open="(" separator="," close=")" item="item" index="index">
-            #{item}
-        </foreach>
-        order by sort as
-    </select>
+    <!--    <select id="selectByMenuIdList" resultMap="BASE_RESULT_MAP">-->
+    <!--        select * from backend_menu where menu_id in-->
+    <!--        <foreach collection="list" open="(" separator="," close=")" item="item" index="index">-->
+    <!--            #{item}-->
+    <!--        </foreach>-->
+    <!--        order by sort as-->
+    <!--    </select>-->
 
-    <select id="selectAllWithRole" resultMap="MENU_ROLE_RESULT_MAP">
-        SELECT m.id,
-               m.pid,
-               m.name,
-               m.type,
-               m.method,
-               m.pattern,
-               m.operate,
-               m.sort,
-               m.remark,
-               m.enabled,
-               m.create_user,
-               m.create_time,
-               m.update_user,
-               m.update_time,
-               r.id          AS role_id,
-               r.name        AS role_name,
-               r.remark      AS role_remark,
-               r.enabled     AS role_enabled,
-               r.create_user AS role_create_user,
-               r.create_time AS role_create_time,
-               r.update_user AS role_update_user,
-               r.update_time AS role_update_time
-        FROM (select * from backend_menu where enabled = TRUE) m
-                 INNER JOIN (SELECT * FROM backend_role_menu WHERE enabled = TRUE) rm ON m.id = rm.menu_id
-                 INNER JOIN (SELECT * FROM backend_role WHERE enabled = TRUE) r ON r.id = rm.role_id
-        ORDER BY m.sort
-    </select>
+    <!--    <select id="selectAllWithRole" resultMap="BASE_RESULT_MAP">-->
+    <!--        SELECT m.id,-->
+    <!--               m.pid,-->
+    <!--               m.name,-->
+    <!--               m.type,-->
+    <!--               m.method,-->
+    <!--               m.pattern,-->
+    <!--               m.operate,-->
+    <!--               m.sort,-->
+    <!--               m.remark,-->
+    <!--               m.enabled,-->
+    <!--               m.create_user,-->
+    <!--               m.create_time,-->
+    <!--               m.update_user,-->
+    <!--               m.update_time,-->
+    <!--               r.id          AS role_id,-->
+    <!--               r.name        AS role_name,-->
+    <!--               r.remark      AS role_remark,-->
+    <!--               r.enabled     AS role_enabled,-->
+    <!--               r.create_user AS role_create_user,-->
+    <!--               r.create_time AS role_create_time,-->
+    <!--               r.update_user AS role_update_user,-->
+    <!--               r.update_time AS role_update_time-->
+    <!--        FROM (select * from backend_menu where enabled = TRUE) m-->
+    <!--                 INNER JOIN (SELECT * FROM backend_role_menu WHERE enabled = TRUE) rm ON m.id = rm.menu_id-->
+    <!--                 INNER JOIN (SELECT * FROM backend_role WHERE enabled = TRUE) r ON r.id = rm.role_id-->
+    <!--        ORDER BY m.sort-->
+    <!--    </select>-->
 
-    <select id="selectByRoleIdList" resultMap="BASE_RESULT_MAP" parameterType="java.util.List">
-        SELECT m.*
-        FROM (select * from backend_menu where non_deleted = true AND enabled = TRUE) m
-        LEFT JOIN (SELECT * FROM backend_role_menu WHERE enabled = TRUE) rm ON m.id = rm.menu_id
-        WHERE
-        rm.role_id IN
-        <foreach collection="roleIds" index="index" open="(" separator="," close=")" item="roleId">
-            #{roleId}
-        </foreach>
-    </select>
+    <!--    <select id="selectByRoleIdList" resultMap="BASE_RESULT_MAP" parameterType="java.util.List">-->
+    <!--        SELECT m.*-->
+    <!--        FROM (select * from backend_menu where non_deleted = true AND enabled = TRUE) m-->
+    <!--        LEFT JOIN (SELECT * FROM backend_role_menu WHERE enabled = TRUE) rm ON m.id = rm.menu_id-->
+    <!--        WHERE-->
+    <!--        rm.role_id IN-->
+    <!--        <foreach collection="roleIds" index="index" open="(" separator="," close=")" item="roleId">-->
+    <!--            #{roleId}-->
+    <!--        </foreach>-->
+    <!--    </select>-->
 
 </mapper>

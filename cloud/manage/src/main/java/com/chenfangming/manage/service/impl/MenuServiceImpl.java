@@ -1,7 +1,6 @@
 package com.chenfangming.manage.service.impl;
 
 import com.chenfangming.manage.persistence.entity.RoleEntity;
-import com.chenfangming.manage.persistence.entity.view.MenuRoleView;
 import com.chenfangming.manage.persistence.mapper.MenuMapper;
 import com.chenfangming.manage.service.MenuService;
 import lombok.extern.slf4j.Slf4j;
@@ -22,14 +21,14 @@ public class MenuServiceImpl implements MenuService {
     @Autowired
     private MenuMapper menuMapper;
 
-    /**
-     * 查询所有资源及其可以访问的角色集合
-     * @return 所有资源其可以访问的角色集合
-     */
-    @Override
-    public List<MenuRoleView> selectAllWithRole() {
-        return menuMapper.selectAllWithRole();
-    }
+//    /**
+//     * 查询所有资源及其可以访问的角色集合
+//     * @return 所有资源其可以访问的角色集合
+//     */
+//    @Override
+//    public List<MenuRoleView> selectAllWithRole() {
+//        return menuMapper.selectAllWithRole();
+//    }
 
     /**
      * 判断用户是否可以访问资源

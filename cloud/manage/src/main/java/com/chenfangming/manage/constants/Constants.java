@@ -1,4 +1,4 @@
-package com.chenfangming.manage.util;
+package com.chenfangming.manage.constants;
 
 /**
  * 常量

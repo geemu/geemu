@@ -1,7 +1,6 @@
 package com.chenfangming.manage.service;
 
-import com.chenfangming.manage.domain.req.NamePwdReq;
-import com.chenfangming.manage.persistence.entity.UserEntity;
+import com.chenfangming.manage.domain.req.LoginRequest;
 
 /**
  * com.chenfangming.manage.service
@@ -15,8 +14,8 @@ public interface LoginService {
     /**
      * 根据用户名查询用户
      * @param condition 查询条件
-     * @return 用户实体
+     * @return token
      */
-    UserEntity login(NamePwdReq condition);
+    String login(LoginRequest condition);
 
 }

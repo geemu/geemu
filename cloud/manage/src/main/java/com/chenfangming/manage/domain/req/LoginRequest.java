@@ -1,12 +1,15 @@
 package com.chenfangming.manage.domain.req;
 
-import com.chenfangming.manage.util.Constants;
+import com.chenfangming.manage.constants.Constants;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.experimental.Accessors;
 
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 
 /**
  * 普通登录方式----用户名密码
@@ -17,7 +20,12 @@ import javax.validation.constraints.NotBlank;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class NamePwdReq {
+@Accessors(chain = true)
+@ToString(callSuper = true)
+public class LoginRequest implements Serializable {
+
+    /** 序列化id **/
+    private static final long serialVersionUID = -1L;
 
     /** 用户名 **/
     @NotBlank(message = Constants.Tips.NAME_NOT_BLANK)

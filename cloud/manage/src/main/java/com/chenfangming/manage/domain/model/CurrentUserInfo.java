@@ -1,13 +1,13 @@
 package com.chenfangming.manage.domain.model;
 
-import com.chenfangming.manage.persistence.entity.RoleEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * 当前登录用户
@@ -18,16 +18,16 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Accessors(chain = true)
+@ToString(callSuper = true)
 public class CurrentUserInfo implements Serializable {
 
     /** 序列化id **/
     private static final long serialVersionUID = -1L;
 
     /** 用户id **/
-    private Long id;
+    private Long userId;
     /** 用户姓名 **/
-    private String name;
-    /** 用户角色id集合 **/
-    private List<RoleEntity> roleIdList;
+    private String username;
 
 }

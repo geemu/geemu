@@ -1,15 +1,8 @@
 package com.chenfangming.manage.config;
 
-import com.chenfangming.manage.config.interceptor.AuthInterceptor;
-import com.chenfangming.manage.config.resolve.CurrentUserMethodArgumentResolver;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import java.util.List;
 
 /**
  * MVC配置
@@ -19,21 +12,21 @@ import java.util.List;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
-    @Autowired
-    private CurrentUserMethodArgumentResolver resolver;
-    @Autowired
-    private AuthInterceptor authInterceptor;
+//    @Autowired
+//    private CurrentUserMethodArgumentResolver resolver;
+//    @Autowired
+//    private AuthInterceptor authInterceptor;
 
-    /**
-     * 拦截器
-     * @param registry 注册
-     */
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(authInterceptor)
-            .addPathPatterns("/**")
-            .excludePathPatterns("/login");
-    }
+//    /**
+//     * 拦截器
+//     * @param registry 注册
+//     */
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(authInterceptor)
+//                .addPathPatterns("/**")
+//                .excludePathPatterns("/login");
+//    }
 
     /**
      * 资源映射
@@ -43,31 +36,31 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         // Swagger
         registry.addResourceHandler("swagger-ui.html")
-            .addResourceLocations("classpath:/META-INF/resources/");
+                .addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**")
-            .addResourceLocations("classpath:/META-INF/resources/webjars/");
+                .addResourceLocations("classpath:/META-INF/resources/webjars/");
         registry.addResourceHandler("/swagger-resources/**")
-            .addResourceLocations("classpath:/META-INF/resources/swagger-resources/");
+                .addResourceLocations("classpath:/META-INF/resources/swagger-resources/");
         registry.addResourceHandler("/swagger/**")
-            .addResourceLocations("classpath:/META-INF/resources/swagger*");
+                .addResourceLocations("classpath:/META-INF/resources/swagger*");
         registry.addResourceHandler("/v2/api-docs/**")
-            .addResourceLocations("classpath:/META-INF/resources/v2/api-docs/");
+                .addResourceLocations("classpath:/META-INF/resources/v2/api-docs/");
         // 自定义资源
         registry.addResourceHandler("index.html")
-            .addResourceLocations("classpath:/public/");
+                .addResourceLocations("classpath:/public/");
         registry.addResourceHandler("js/**")
-            .addResourceLocations("classpath:/static/js/");
+                .addResourceLocations("classpath:/static/js/");
         registry.addResourceHandler("img/**")
-            .addResourceLocations("classpath:/static/img/");
+                .addResourceLocations("classpath:/static/img/");
     }
 
-    /**
-     * 参数解析
-     * @param resolvers 解析
-     */
-    @Override
-    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
-        resolvers.add(resolver);
-    }
+//    /**
+//     * 参数解析
+//     * @param resolvers 解析
+//     */
+//    @Override
+//    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
+//        resolvers.add(resolver);
+//    }
 
 }

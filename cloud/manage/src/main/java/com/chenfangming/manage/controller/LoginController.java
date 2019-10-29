@@ -2,7 +2,7 @@ package com.chenfangming.manage.controller;
 
 
 import com.chenfangming.manage.config.exception.BaseResponse;
-import com.chenfangming.manage.domain.req.NamePwdReq;
+import com.chenfangming.manage.domain.req.LoginRequest;
 import com.chenfangming.manage.service.LoginService;
 import com.chenfangming.manage.service.RoleService;
 import io.swagger.annotations.Api;
@@ -46,20 +46,8 @@ public class LoginController {
 
     @ApiOperation("用户名密码登录")
     @PostMapping
-    public String custom(@RequestBody @Valid NamePwdReq condition) {
-//        String token = loginService.login(condition);
-//        List<RoleEntity> roleEntityList = roleService.selectByUserId(userEntity.getId());
-//        List<Long> roleIdList = roleEntityList.stream()
-//            .map(RoleEntity::getId)
-//            .collect(Collectors.toList());
-//        CurrentUserInfo currentUserInfo = CurrentUserInfo.builder()
-//            .id(userEntity.getId())
-//            .name(userEntity.getName())
-//            .roleIdList(roleEntityList)
-//            .build();
-//        RequestContextHolder.currentRequestAttributes().setAttribute(SessionKey.CURRENT_USER.name(), currentUserInfo, RequestAttributes.SCOPE_SESSION);
-//        return new BaseResponse<>(currentUserInfo);
-        return null;
+    public String login(@RequestBody @Valid LoginRequest condition) {
+        return loginService.login(condition);
     }
 
 }
