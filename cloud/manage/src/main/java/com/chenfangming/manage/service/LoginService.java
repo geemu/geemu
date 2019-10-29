@@ -1,7 +1,5 @@
 package com.chenfangming.manage.service;
 
-import com.chenfangming.manage.domain.req.LoginRequest;
-
 /**
  * com.chenfangming.manage.service
  * @author 陈方明  cfmmail@sina.com
@@ -11,11 +9,5 @@ public interface LoginService {
 
     String qq();
 
-    /**
-     * 根据用户名查询用户
-     * @param condition 查询条件
-     * @return token
-     */
-    String login(LoginRequest condition);
 
 }

@@ -2,16 +2,20 @@ package com.chenfangming.manage.controller;
 
 
 import com.chenfangming.manage.config.exception.BaseResponse;
+import com.chenfangming.manage.domain.req.LoginRequest;
 import com.chenfangming.manage.persistence.entity.UserEntity;
+import com.chenfangming.manage.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,6 +33,16 @@ import javax.validation.Valid;
 @RequestMapping("user")
 @Api(tags = "用户控制器")
 public class UserController {
+
+    @Autowired
+    private UserService userService;
+
+    @ApiOperation("用户名密码登录")
+    @PostMapping
+    public String login(@RequestBody @Valid LoginRequest condition) {
+        return userService.login(condition);
+    }
+
 
     @ApiOperation("新增一个用户")
     @PostMapping
