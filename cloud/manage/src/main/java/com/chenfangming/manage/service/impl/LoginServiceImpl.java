@@ -67,8 +67,8 @@ public class LoginServiceImpl implements LoginService {
         }
         // 生成Token
         String token = UUID.randomUUID().toString().replace("-", "");
-        HashMapper<Object, String, Object> mapper = new Jackson2HashMapper(Boolean.FALSE);
-        String key = "loginUser::" + token;
+        HashMapper<Object, String, Object> mapper = new Jackson2HashMapper(Boolean.TRUE);
+        String key = "loginUser:" + token;
         CurrentUserInfo currentUserInfo = converter.converterUserEntity2CurrentUserInfo(userEntity);
         redisTemplate.opsForHash().putAll(key, mapper.toHash(currentUserInfo));
         redisTemplate.expire(key, 1, TimeUnit.DAYS);
