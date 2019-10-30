@@ -1,6 +1,8 @@
 package com.chenfangming.manage.controller;
 
 import com.chenfangming.manage.config.exception.BaseResponse;
+import com.chenfangming.manage.config.resolve.annotation.CurrentUser;
+import com.chenfangming.manage.domain.model.CurrentUserInfo;
 import com.chenfangming.manage.persistence.entity.MenuEntity;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -32,7 +34,7 @@ public class MenuController {
 
     @ApiOperation("获取权限")
     @PostMapping
-    public List<MenuEntity> getMenu(@Valid MenuEntity menuEntity) {
+    public List<MenuEntity> getMenu(@CurrentUser CurrentUserInfo currentUserInfo) {
         return null;
     }
 

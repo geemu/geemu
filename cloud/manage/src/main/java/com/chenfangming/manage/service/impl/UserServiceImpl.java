@@ -52,9 +52,9 @@ public class UserServiceImpl implements UserService {
         }
         // 生成Token
         String token = UUID.randomUUID().toString().replace("-", "");
-        String key = "loginUser:" + token;
+        String key = CurrentUserInfo.LOGIN_USER + token;
         CurrentUserInfo currentUserInfo = converter.converterUserEntity2CurrentUserInfo(userEntity);
-        redisTemplate.opsForHash().put(key, "currentUser", currentUserInfo);
+        redisTemplate.opsForHash().put(key, CurrentUserInfo.CURRENT_USER, currentUserInfo);
         redisTemplate.expire(key, 1, TimeUnit.DAYS);
         return token;
     }
