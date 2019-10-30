@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * 资源控制器
@@ -28,6 +29,12 @@ import javax.validation.Valid;
 @RequestMapping("menu")
 @Api(tags = "资源控制器")
 public class MenuController {
+
+    @ApiOperation("获取权限")
+    @PostMapping
+    public List<MenuEntity> getMenu(@Valid MenuEntity menuEntity) {
+        return null;
+    }
 
     @ApiOperation("新增一个资源")
     @PostMapping

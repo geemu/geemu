@@ -11,8 +11,6 @@ import com.chenfangming.manage.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.hash.HashMapper;
-import org.springframework.data.redis.hash.Jackson2HashMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -54,10 +52,9 @@ public class UserServiceImpl implements UserService {
         }
         // 生成Token
         String token = UUID.randomUUID().toString().replace("-", "");
-        HashMapper<Object, String, Object> mapper = new Jackson2HashMapper(Boolean.TRUE);
         String key = "loginUser:" + token;
         CurrentUserInfo currentUserInfo = converter.converterUserEntity2CurrentUserInfo(userEntity);
-        redisTemplate.opsForHash().putAll(key, mapper.toHash(currentUserInfo));
+        redisTemplate.opsForHash().put(key, "currentUser", currentUserInfo);
         redisTemplate.expire(key, 1, TimeUnit.DAYS);
         return token;
     }
