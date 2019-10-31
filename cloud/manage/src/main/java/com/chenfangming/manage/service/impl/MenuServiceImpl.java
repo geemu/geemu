@@ -36,7 +36,7 @@ public class MenuServiceImpl implements MenuService {
      * 判断用户是否可以访问资源
      * @param userRoleList 用户所拥有的角色集合
      * @param canAccessRoleList 可以访问当前资源的角色集合
-     * @return {@code true}可以访问;{@code false}拒绝访问
+     * @return {@code true}可以访问、{@code false}拒绝访问
      */
     @Override
     public boolean canAccess(List<RoleEntity> userRoleList, List<RoleEntity> canAccessRoleList) {
@@ -55,6 +55,7 @@ public class MenuServiceImpl implements MenuService {
                 }
             }
         }
+        //
         userRoleList.retainAll(canAccessRoleList);
         return userRoleList.size() > 0;
     }
