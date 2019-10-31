@@ -12,11 +12,11 @@ import java.util.List;
 public interface RoleService {
 
     /**
-     * 根据用户id查询用户角色集合
+     * 根据用户id,查询用户角色集合
      * @param userId 用户id
      * @return 角色集合
      */
-    List<RoleEntity> selectByUserId(Long userId);
+    List<RoleEntity> findByUserId(Long userId);
 
     /**
      * 查询可访问当前请求资源的角色集合

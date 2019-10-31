@@ -12,13 +12,12 @@
         <result column="create_time" property="createTime"/>
         <result column="update_user" property="updateUser"/>
         <result column="update_time" property="updateTime"/>
-        <result column="non_deleted" property="nonDeleted"/>
     </resultMap>
 
     <select id="selectByUserName" resultMap="BASE_RESULT_MAP">
         select *
-        from backend_user
-        where username = #{username}
+        from backend_user t
+        where t.username = #{username}
     </select>
 
 </mapper>

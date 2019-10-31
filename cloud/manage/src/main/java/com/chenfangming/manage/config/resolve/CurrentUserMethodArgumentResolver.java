@@ -56,7 +56,7 @@ public class CurrentUserMethodArgumentResolver implements HandlerMethodArgumentR
         } else if (null == token) {
             return null;
         }
-        CurrentUserInfo currentUserInfo = (CurrentUserInfo) redisTemplate.opsForHash().get(CurrentUserInfo.LOGIN_USER + token, CurrentUserInfo.CURRENT_USER);
+        CurrentUserInfo currentUserInfo = (CurrentUserInfo) redisTemplate.opsForValue().get(CurrentUserInfo.LOGIN_USER + token);
         if (null == currentUserInfo) {
             throw new BizException(BaseResponseState.NO_LOGIN);
         }

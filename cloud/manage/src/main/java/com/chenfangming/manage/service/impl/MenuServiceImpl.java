@@ -1,12 +1,14 @@
 package com.chenfangming.manage.service.impl;
 
 import com.chenfangming.manage.persistence.entity.RoleEntity;
+import com.chenfangming.manage.persistence.entity.view.MenuRoleView;
 import com.chenfangming.manage.persistence.mapper.MenuMapper;
 import com.chenfangming.manage.service.MenuService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -21,14 +23,14 @@ public class MenuServiceImpl implements MenuService {
     @Autowired
     private MenuMapper menuMapper;
 
-//    /**
-//     * 查询所有资源及其可以访问的角色集合
-//     * @return 所有资源其可以访问的角色集合
-//     */
-//    @Override
-//    public List<MenuRoleView> selectAllWithRole() {
-//        return menuMapper.selectAllWithRole();
-//    }
+    /**
+     * 查询所有资源及其可以访问的角色集合
+     * @return 所有资源其可以访问的角色集合
+     */
+    @Override
+    public List<MenuRoleView> selectAllWithRole() {
+        return menuMapper.selectAllWithRole();
+    }
 
     /**
      * 判断用户是否可以访问资源
@@ -38,24 +40,23 @@ public class MenuServiceImpl implements MenuService {
      */
     @Override
     public boolean canAccess(List<RoleEntity> userRoleList, List<RoleEntity> canAccessRoleList) {
-//        // 可以访问当前资源的角色集合
-//        Iterator<RoleEntity> canAccessRole = canAccessRoleList.iterator();
-//        // 当前认证对象所拥有的角色列表
-//        Iterator<RoleEntity> userRole = userRoleList.iterator();
-//        while (canAccessRole.hasNext()) {
-//            // 可以访问的角色id
-//            Long canAccessRoleId = canAccessRole.next().getId();
-//            while (userRole.hasNext()) {
-//                // 当前用户的角色id
-//                Long userRoleId = userRole.next().getId();
-//                if (userRoleId.equals(canAccessRoleId)) {
-//                    return Boolean.TRUE;
-//                }
-//            }
-//        }
+        // 可以访问当前资源的角色集合
+        Iterator<RoleEntity> canAccessRole = canAccessRoleList.iterator();
+        // 当前认证对象所拥有的角色列表
+        Iterator<RoleEntity> userRole = userRoleList.iterator();
+        while (canAccessRole.hasNext()) {
+            // 可以访问的角色id
+            Long canAccessRoleId = canAccessRole.next().getRoleId();
+            while (userRole.hasNext()) {
+                // 当前用户的角色id
+                Long userRoleId = userRole.next().getRoleId();
+                if (userRoleId.equals(canAccessRoleId)) {
+                    return Boolean.TRUE;
+                }
+            }
+        }
         userRoleList.retainAll(canAccessRoleList);
         return userRoleList.size() > 0;
-//        return Boolean.FALSE;
     }
 
 }

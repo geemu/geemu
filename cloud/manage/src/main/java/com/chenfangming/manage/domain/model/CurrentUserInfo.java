@@ -1,5 +1,6 @@
 package com.chenfangming.manage.domain.model;
 
+import com.chenfangming.manage.persistence.entity.MenuEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,6 +9,7 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 当前登录用户
@@ -27,12 +29,12 @@ public class CurrentUserInfo implements Serializable {
 
     /** 登录用户 **/
     public static final String LOGIN_USER = "LOGIN_USER:";
-    /** 当前用户 **/
-    public static final String CURRENT_USER = "CURRENT_USER";
 
     /** 用户id **/
     private Long userId;
     /** 用户姓名 **/
     private String username;
+    /** 权限列表 **/
+    private List<MenuEntity> menuEntityList;
 
 }

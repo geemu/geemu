@@ -1,6 +1,7 @@
 package com.chenfangming.manage.service;
 
 import com.chenfangming.manage.persistence.entity.RoleEntity;
+import com.chenfangming.manage.persistence.entity.view.MenuRoleView;
 
 import java.util.List;
 
@@ -11,11 +12,11 @@ import java.util.List;
  */
 public interface MenuService {
 
-//    /**
-//     * 查询所有资源及其可以访问的角色集合
-//     * @return 所有资源其可以访问的角色集合
-//     */
-//    List<MenuRoleView> selectAllWithRole();
+    /**
+     * 查询所有资源及其可以访问的角色集合
+     * @return 所有资源其可以访问的角色集合
+     */
+    List<MenuRoleView> selectAllWithRole();
 
     /**
      * 判断用户是否可以访问资源

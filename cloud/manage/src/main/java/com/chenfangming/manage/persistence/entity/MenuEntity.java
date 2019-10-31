@@ -57,7 +57,5 @@ public class MenuEntity implements Serializable {
     private String updateUser;
     /** 更新时间 **/
     private Date updateTime;
-    /** 是否未删除 true:未删除、false:已删除 **/
-    private Boolean nonDeleted;
 
 }

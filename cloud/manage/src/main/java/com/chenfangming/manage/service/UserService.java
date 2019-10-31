@@ -1,6 +1,5 @@
 package com.chenfangming.manage.service;
 
-import com.chenfangming.manage.domain.req.LoginRequest;
 import com.chenfangming.manage.persistence.entity.UserEntity;
 
 /**
@@ -9,14 +8,6 @@ import com.chenfangming.manage.persistence.entity.UserEntity;
  * @since 2019-06-12 22:55
  */
 public interface UserService {
-
-    /**
-     * 登录
-     * 根据用户名、密码,查询系统用户
-     * @param condition 查询条件
-     * @return token
-     */
-    String login(LoginRequest condition);
 
     /**
      * 根据用户名查询用户

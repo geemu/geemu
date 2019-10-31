@@ -29,7 +29,7 @@ public class RoleEntity implements Serializable {
     /** 主键  角色id **/
     private Long roleId;
     /** 角色名称  忽略大小写 **/
-    private String roleName;
+    private String name;
     /** 备注 **/
     private String remark;
     /** 是否启用 true:启用、false:禁用 **/
@@ -42,7 +42,5 @@ public class RoleEntity implements Serializable {
     private String updateUser;
     /** 更新时间 **/
     private Date updateTime;
-    /** 是否未删除 true:未删除、false:已删除 **/
-    private Boolean nonDeleted;
 
 }

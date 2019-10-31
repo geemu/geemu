@@ -4,14 +4,20 @@
 
     <resultMap id="BASE_RESULT_MAP" type="com.chenfangming.manage.persistence.entity.RoleEntity">
         <id column="role_id" property="roleId"/>
-        <result column="role_name" property="roleName"/>
+        <result column="name" property="name"/>
         <result column="remark" property="remark"/>
         <result column="enabled" property="enabled"/>
         <result column="create_user" property="createUser"/>
         <result column="create_time" property="createTime"/>
         <result column="update_user" property="updateUser"/>
         <result column="update_time" property="updateTime"/>
-        <result column="non_deleted" property="nonDeleted"/>
     </resultMap>
+
+    <select id="selectByUserId" resultMap="BASE_RESULT_MAP">
+        SELECT r.*
+        FROM (SELECT * FROM backend_role WHERE enabled = TRUE) r
+                 INNER JOIN (SELECT * FROM backend_user_role WHERE user_id = #{userId}) ur
+                            ON r.role_id = ur.role_id
+    </select>
 
 </mapper>
