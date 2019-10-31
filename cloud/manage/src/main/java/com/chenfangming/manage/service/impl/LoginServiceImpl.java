@@ -6,7 +6,6 @@ import com.chenfangming.manage.config.exception.BizException;
 import com.chenfangming.manage.converter.Converter;
 import com.chenfangming.manage.domain.model.CurrentUserInfo;
 import com.chenfangming.manage.domain.req.LoginRequest;
-import com.chenfangming.manage.persistence.entity.MenuEntity;
 import com.chenfangming.manage.persistence.entity.RoleEntity;
 import com.chenfangming.manage.persistence.entity.UserEntity;
 import com.chenfangming.manage.service.LoginService;
@@ -21,7 +20,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 /**
  * 登录
@@ -61,18 +59,13 @@ public class LoginServiceImpl implements LoginService {
         if (!userEntity.getEnabled()) {
             throw new BizException(BaseResponseState.USER_LOCKED);
         }
-        // 角色id列表
-        List<Long> roleIdList = roleService.findByUserId(userEntity.getUserId())
-                .stream()
-                .map(RoleEntity::getRoleId)
-                .collect(Collectors.toList());
-        // 权限列表
-        List<MenuEntity> menuEntityList = null;
+        // 角色列表
+        List<RoleEntity> roleEntityList = roleService.findByUserId(userEntity.getUserId());
         // 生成Token
         String token = UUID.randomUUID().toString().replace("-", "");
         String key = CurrentUserInfo.LOGIN_USER + token;
         CurrentUserInfo currentUserInfo = converter.converterUserEntity2CurrentUserInfo(userEntity);
-        currentUserInfo.setMenuEntityList(menuEntityList);
+        currentUserInfo.setRoleEntityList(roleEntityList);
         redisTemplate.opsForValue().set(key, currentUserInfo, 1, TimeUnit.DAYS);
         return token;
     }

@@ -24,6 +24,6 @@ public interface RoleService {
      * @param requestUri 请求路径
      * @return 能够访问当前资源的角色集合
      */
-    List<RoleEntity> selectByRequest(String requestMethod, String requestUri);
+    List<RoleEntity> findByRequest(String requestMethod, String requestUri);
 
 }

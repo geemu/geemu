@@ -16,12 +16,12 @@ public interface MenuService {
      * 查询所有资源及其可以访问的角色集合
      * @return 所有资源其可以访问的角色集合
      */
-    List<MenuRoleView> selectAllWithRole();
+    List<MenuRoleView> findAllWithRole();
 
     /**
      * 判断用户是否可以访问资源
-     * @param userRoleList 用户所拥有的角色集合 {@link RoleService#selectByUserId(Long)}
-     * @param canAccessRoleList 可以访问当前资源的角色集合 {@link RoleService#selectByRequest(String, String)}
+     * @param userRoleList 用户所拥有的角色集合 {@link RoleService#findByUserId(Long)}
+     * @param canAccessRoleList 可以访问当前资源的角色集合 {@link RoleService#findByRequest(String, String)}
      * @return {@code true}可以访问;{@code false}拒绝访问
      */
     boolean canAccess(List<RoleEntity> userRoleList, List<RoleEntity> canAccessRoleList);

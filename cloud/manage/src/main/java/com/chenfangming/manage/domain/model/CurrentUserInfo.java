@@ -1,6 +1,6 @@
 package com.chenfangming.manage.domain.model;
 
-import com.chenfangming.manage.persistence.entity.MenuEntity;
+import com.chenfangming.manage.persistence.entity.RoleEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -34,7 +34,7 @@ public class CurrentUserInfo implements Serializable {
     private Long userId;
     /** 用户姓名 **/
     private String username;
-    /** 权限列表 **/
-    private List<MenuEntity> menuEntityList;
+    /** 角色列表 **/
+    private List<RoleEntity> roleEntityList;
 
 }

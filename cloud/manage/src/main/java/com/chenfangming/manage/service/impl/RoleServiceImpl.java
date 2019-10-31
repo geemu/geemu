@@ -47,9 +47,9 @@ public class RoleServiceImpl implements RoleService {
      * @return 能够访问当前资源的角色集合
      */
     @Override
-    public List<RoleEntity> selectByRequest(String method, String requestUri) {
+    public List<RoleEntity> findByRequest(String method, String requestUri) {
         // 所有资源及其可以访问的角色集合
-        List<MenuRoleView> menuWithRoleList = menuService.selectAllWithRole();
+        List<MenuRoleView> menuWithRoleList = menuService.findAllWithRole();
         Iterator<MenuRoleView> iterator = menuWithRoleList.iterator();
         String path = method.concat(":").concat(requestUri);
         while (iterator.hasNext()) {
