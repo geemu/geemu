@@ -6,7 +6,6 @@ import com.chenfangming.manage.domain.model.CurrentUserInfo;
 import com.chenfangming.manage.persistence.entity.RoleEntity;
 import com.chenfangming.manage.service.MenuService;
 import com.chenfangming.manage.service.RoleService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -33,8 +32,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
     private RoleService roleService;
     @Autowired
     private MenuService menuService;
-    @Autowired
-    private ObjectMapper objectMapper;
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
