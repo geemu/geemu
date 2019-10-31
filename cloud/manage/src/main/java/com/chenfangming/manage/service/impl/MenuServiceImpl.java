@@ -44,18 +44,18 @@ public class MenuServiceImpl implements MenuService {
         Iterator<RoleEntity> canAccessRole = canAccessRoleList.iterator();
         // 当前认证对象所拥有的角色列表
         Iterator<RoleEntity> userRole = userRoleList.iterator();
-        while (canAccessRole.hasNext()) {
-            // 可以访问的角色id
-            Long canAccessRoleId = canAccessRole.next().getRoleId();
-            while (userRole.hasNext()) {
-                // 当前用户的角色id
-                Long userRoleId = userRole.next().getRoleId();
-                if (userRoleId.equals(canAccessRoleId)) {
-                    return Boolean.TRUE;
-                }
-            }
-        }
-        //
+//        while (canAccessRole.hasNext()) {
+//            // 可以访问的角色id
+//            Long canAccessRoleId = canAccessRole.next().getRoleId();
+//            while (userRole.hasNext()) {
+//                // 当前用户的角色id
+//                Long userRoleId = userRole.next().getRoleId();
+//                if (userRoleId.equals(canAccessRoleId)) {
+//                    return Boolean.TRUE;
+//                }
+//            }
+//        }
+//        //
         userRoleList.retainAll(canAccessRoleList);
         return userRoleList.size() > 0;
     }
