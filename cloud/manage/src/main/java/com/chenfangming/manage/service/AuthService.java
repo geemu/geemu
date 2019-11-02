@@ -1,6 +1,7 @@
 package com.chenfangming.manage.service;
 
 import com.chenfangming.manage.domain.model.CurrentUserInfo;
+import com.chenfangming.manage.domain.req.LoginRequest;
 import com.chenfangming.manage.persistence.entity.view.MenuRoleView;
 
 import java.util.Collection;
@@ -11,6 +12,13 @@ import java.util.Collection;
  * @since 2019-11-01 21:22
  */
 public interface AuthService {
+
+    /**
+     * 用户名、密码登录
+     * @param condition 用户名、密码
+     * @return token
+     */
+    String login(LoginRequest condition);
 
     /**
      * 根据用户名查询用户

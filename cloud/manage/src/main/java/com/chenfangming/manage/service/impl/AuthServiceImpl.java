@@ -3,6 +3,7 @@ package com.chenfangming.manage.service.impl;
 import com.chenfangming.manage.config.exception.BaseResponse.BaseResponseState;
 import com.chenfangming.manage.config.exception.BizException;
 import com.chenfangming.manage.domain.model.CurrentUserInfo;
+import com.chenfangming.manage.domain.req.LoginRequest;
 import com.chenfangming.manage.persistence.entity.RoleEntity;
 import com.chenfangming.manage.persistence.entity.UserEntity;
 import com.chenfangming.manage.persistence.entity.view.MenuRoleView;
@@ -12,12 +13,15 @@ import com.chenfangming.manage.persistence.mapper.UserMapper;
 import com.chenfangming.manage.service.AuthService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.AntPathMatcher;
 
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -29,7 +33,6 @@ import java.util.stream.Collectors;
 @Service
 public class AuthServiceImpl implements AuthService {
 
-    /** 匹配URL **/
     private static final AntPathMatcher ANT_PATH_MATCHER = new AntPathMatcher();
     @Autowired
     private UserMapper userMapper;
@@ -37,6 +40,29 @@ public class AuthServiceImpl implements AuthService {
     private RoleMapper roleMapper;
     @Autowired
     private MenuMapper menuMapper;
+    @Autowired
+    private RedisTemplate<String, Object> redisTemplate;
+
+    /**
+     * 用户名、密码登录
+     * @param condition 用户名、密码
+     * @return token
+     */
+    @Override
+    public String login(LoginRequest condition) {
+        CurrentUserInfo currentUserInfo = loadUserByUsername(condition.getName());
+        if (!currentUserInfo.getPassword().equals(condition.getPassword())) {
+            throw new BizException(BaseResponseState.INVALID_PASSWORD);
+        }
+        if (!currentUserInfo.getEnabled()) {
+            throw new BizException(BaseResponseState.USER_LOCKED);
+        }
+        // 生成Token
+        String token = UUID.randomUUID().toString().replace("-", "");
+        String key = CurrentUserInfo.LOGIN_USER + token;
+        redisTemplate.opsForValue().set(key, currentUserInfo, 1, TimeUnit.DAYS);
+        return token;
+    }
 
     /**
      * 根据用户名查询用户
