@@ -1,7 +1,5 @@
 package com.chenfangming.manage.converter;
 
-import com.chenfangming.manage.domain.model.CurrentUserInfo;
-import com.chenfangming.manage.persistence.entity.UserEntity;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
@@ -13,12 +11,5 @@ import org.springframework.stereotype.Component;
 @Component
 @Mapper(componentModel = "spring")
 public interface Converter {
-
-    /**
-     * UserEntity转CurrentUserInfo
-     * @param source UserEntity
-     * @return CurrentUserInfo
-     */
-    CurrentUserInfo converterUserEntity2CurrentUserInfo(UserEntity source);
 
 }

@@ -3,7 +3,7 @@ package com.chenfangming.manage.config.interceptor;
 import com.chenfangming.manage.config.exception.BaseResponse;
 import com.chenfangming.manage.config.exception.BaseResponse.BaseResponseState;
 import com.chenfangming.manage.domain.model.CurrentUserInfo;
-import com.chenfangming.manage.persistence.entity.RoleEntity;
+import com.chenfangming.manage.service.AuthService;
 import com.chenfangming.manage.service.MenuService;
 import com.chenfangming.manage.service.RoleService;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +17,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
+import java.util.Collection;
 
 /**
  * 权限拦截器
@@ -32,6 +32,8 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
     private RoleService roleService;
     @Autowired
     private MenuService menuService;
+    @Autowired
+    private AuthService authService;
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
@@ -70,8 +72,8 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
             response.getWriter().println(responseEntity.toJson());
             return Boolean.FALSE;
         }
-        List<RoleEntity> allCanRoleList = roleService.findByRequest(request.getMethod().toUpperCase(), request.getRequestURI());
-        boolean can = menuService.canAccess(currentUserInfo.getRoleEntityList(), allCanRoleList);
+        Collection<Long> allCanRoleList = authService.getAttributes(request.getMethod().toUpperCase(), request.getRequestURI());
+        boolean can = authService.decide(currentUserInfo.getRoleIdCollection(), allCanRoleList);
         // 权限不足
         if (!can) {
             response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);

@@ -1,6 +1,5 @@
 package com.chenfangming.manage.domain.model;
 
-import com.chenfangming.manage.persistence.entity.RoleEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,7 +8,7 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 
 /**
  * 当前登录用户
@@ -35,6 +34,6 @@ public class CurrentUserInfo implements Serializable {
     /** 用户姓名 **/
     private String username;
     /** 角色列表 **/
-    private List<RoleEntity> roleEntityList;
+    private Collection<Long> roleIdCollection;
 
 }

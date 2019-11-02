@@ -1,15 +1,8 @@
 package com.chenfangming.manage.service.impl;
 
-import com.chenfangming.manage.persistence.entity.RoleEntity;
-import com.chenfangming.manage.persistence.entity.view.MenuRoleView;
-import com.chenfangming.manage.persistence.mapper.MenuMapper;
 import com.chenfangming.manage.service.MenuService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * 资源
@@ -19,33 +12,5 @@ import java.util.List;
 @Slf4j
 @Service
 public class MenuServiceImpl implements MenuService {
-
-    @Autowired
-    private MenuMapper menuMapper;
-
-    /**
-     * 查询所有资源及其可以访问的角色集合
-     * @return 所有资源其可以访问的角色集合
-     */
-    @Override
-    public List<MenuRoleView> findAllWithRole() {
-        return menuMapper.selectAllWithRole();
-    }
-
-    /**
-     * 判断用户是否可以访问资源
-     * @param userRoleList 用户所拥有的角色集合
-     * @param canAccessRoleList 可以访问当前资源的角色集合
-     * @return {@code true}可以访问、{@code false}拒绝访问
-     */
-    @Override
-    public boolean canAccess(List<RoleEntity> userRoleList, List<RoleEntity> canAccessRoleList) {
-        // 可以访问当前资源的角色集合
-        Iterator<RoleEntity> canAccessRole = canAccessRoleList.iterator();
-        // 当前认证对象所拥有的角色列表
-        Iterator<RoleEntity> userRole = userRoleList.iterator();
-        userRoleList.retainAll(canAccessRoleList);
-        return userRoleList.size() > 0;
-    }
 
 }

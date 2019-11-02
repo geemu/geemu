@@ -1,10 +1,7 @@
 package com.chenfangming.manage.service.impl;
 
-import com.chenfangming.manage.persistence.entity.UserEntity;
-import com.chenfangming.manage.persistence.mapper.UserMapper;
 import com.chenfangming.manage.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,18 +12,5 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class UserServiceImpl implements UserService {
-
-    @Autowired
-    private UserMapper userMapper;
-
-    /**
-     * 根据用户名查询用户
-     * @param name 用户名
-     * @return 用户
-     */
-    @Override
-    public UserEntity findByName(String name) {
-        return userMapper.selectByUserName(name);
-    }
 
 }
