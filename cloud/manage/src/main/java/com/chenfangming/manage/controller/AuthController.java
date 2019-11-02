@@ -2,6 +2,7 @@ package com.chenfangming.manage.controller;
 
 
 import com.chenfangming.manage.domain.req.LoginRequest;
+import com.chenfangming.manage.service.AuthService;
 import com.chenfangming.manage.service.LoginService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -28,15 +29,17 @@ import javax.validation.Valid;
 @AllArgsConstructor
 @RequestMapping("user")
 @Api(tags = "登录")
-public class LoginController {
+public class AuthController {
 
+    @Autowired
+    private AuthService authService;
     @Autowired
     private LoginService loginService;
 
     @ApiOperation("用户名密码登录")
     @PostMapping("login")
     public String login(@RequestBody @Valid LoginRequest condition) {
-        return loginService.login(condition);
+        return authService.login(condition);
     }
 
     @ApiOperation("QQ登录")
