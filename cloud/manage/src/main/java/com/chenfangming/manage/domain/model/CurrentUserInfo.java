@@ -1,5 +1,6 @@
 package com.chenfangming.manage.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,6 +34,12 @@ public class CurrentUserInfo implements Serializable {
     private Long userId;
     /** 用户姓名 **/
     private String username;
+    /** 密码 **/
+    @JsonIgnore
+    private String password;
+    /** 启用、禁用 **/
+    @JsonIgnore
+    private Boolean enabled;
     /** 角色列表 **/
     private Collection<Long> roleIdCollection;
 
