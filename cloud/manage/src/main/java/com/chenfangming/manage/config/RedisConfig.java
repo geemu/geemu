@@ -36,6 +36,26 @@ public class RedisConfig extends CachingConfigurerSupport {
     private RedisConnectionFactory connectionFactory;
 
     /**
+     * 自定义序列化模板
+     * 序列化时带上参数类型
+     * @param connectionFactory connectionFactory
+     * @return RedisTemplate
+     */
+    @Bean("redisTemplate")
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
+        log.info("初始化:RedisTemplate");
+        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setConnectionFactory(connectionFactory);
+        redisTemplate.setDefaultSerializer(stringRedisSerializer());
+        redisTemplate.setKeySerializer(stringRedisSerializer());
+        redisTemplate.setValueSerializer(jackson2JsonRedisSerializer());
+        redisTemplate.setHashKeySerializer(stringRedisSerializer());
+        redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer());
+        redisTemplate.afterPropertiesSet();
+        return redisTemplate;
+    }
+
+    /**
      * StringRedisSerializer序列化
      * @return StringRedisSerializer
      */
@@ -63,26 +83,6 @@ public class RedisConfig extends CachingConfigurerSupport {
     }
 
     /**
-     * 自定义序列化模板
-     * 序列化时带上参数类型
-     * @param connectionFactory connectionFactory
-     * @return RedisTemplate
-     */
-    @Bean("redisTemplate")
-    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
-        log.info("初始化:RedisTemplate");
-        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
-        redisTemplate.setConnectionFactory(connectionFactory);
-        redisTemplate.setDefaultSerializer(stringRedisSerializer());
-        redisTemplate.setKeySerializer(stringRedisSerializer());
-        redisTemplate.setValueSerializer(jackson2JsonRedisSerializer());
-        redisTemplate.setHashKeySerializer(stringRedisSerializer());
-        redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer());
-        redisTemplate.afterPropertiesSet();
-        return redisTemplate;
-    }
-
-    /**
      * 缓存管理器
      * @return 缓存管理器
      */
@@ -92,20 +92,20 @@ public class RedisConfig extends CachingConfigurerSupport {
         log.info("初始化:CacheManager");
         //  生成一个默认配置，通过config对象即可对缓存进行自定义配置
         RedisCacheConfiguration config = RedisCacheConfiguration
-            .defaultCacheConfig()
-            //  设置缓存的默认过期时间，也是使用Duration设置
-            .entryTtl(Duration.ofSeconds(600))
-            //  不缓存空值
-            .disableCachingNullValues()
-            .disableKeyPrefix()
-            //  key序列化
-            .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(stringRedisSerializer()))
-            // value序列化
-            .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(jackson2JsonRedisSerializer()));
+                .defaultCacheConfig()
+                //  设置缓存的默认过期时间，也是使用Duration设置
+                .entryTtl(Duration.ofSeconds(600))
+                //  不缓存空值
+                .disableCachingNullValues()
+                .disableKeyPrefix()
+                //  key序列化
+                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(stringRedisSerializer()))
+                // value序列化
+                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(jackson2JsonRedisSerializer()));
         return RedisCacheManager.RedisCacheManagerBuilder
-            .fromConnectionFactory(connectionFactory)
-            .cacheDefaults(config)
-            .build();
+                .fromConnectionFactory(connectionFactory)
+                .cacheDefaults(config)
+                .build();
     }
 
     /**

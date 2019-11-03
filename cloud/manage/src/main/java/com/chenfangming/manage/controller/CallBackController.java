@@ -46,11 +46,11 @@ public class CallBackController {
     public Object qq(String code, String state) {
         log.info("QQ回调：[code{}],[state:{}]", code, state);
         String url = appProperties.getQq().getOauthServerUrl() + "oauth2.0/token"
-            + "?grant_type=authorization_code"
-            + "&client_id=" + appProperties.getQq().getAppId()
-            + "&client_secret=" + appProperties.getQq().getAppKey()
-            + "&code=" + code
-            + "&redirect_uri=" + appProperties.getQq().getCallBackUrl();
+                + "?grant_type=authorization_code"
+                + "&client_id=" + appProperties.getQq().getAppId()
+                + "&client_secret=" + appProperties.getQq().getAppKey()
+                + "&code=" + code
+                + "&redirect_uri=" + appProperties.getQq().getCallBackUrl();
         String response = restTemplate.getForObject(url, String.class);
         if (null == response) {
             log.error("获取accessToken结果为null");
@@ -65,7 +65,7 @@ public class CallBackController {
             map.put(temp[0], temp[1]);
         }
         String urlOpenId = appProperties.getQq().getOauthServerUrl() + "oauth2.0/me"
-            + "?access_token=" + map.get("access_token");
+                + "?access_token=" + map.get("access_token");
         String responseOpenId = restTemplate.getForObject(urlOpenId, String.class);
         if (null == responseOpenId) {
             log.error("获取OpenId结果为null");
@@ -73,9 +73,9 @@ public class CallBackController {
         }
         log.info("获取OpenId结果为:{}", responseOpenId);
         String openId = responseOpenId
-            .replace("callback(", "")
-            .replace(")", "")
-            .replace(" ", "");
+                .replace("callback(", "")
+                .replace(")", "")
+                .replace(" ", "");
         log.info("openId返回结果为：{}", openId);
         Map<String, String> openIdMap;
         try {
@@ -86,9 +86,9 @@ public class CallBackController {
         }
         // 获取用户信息
         String userInfoUrl = appProperties.getQq().getOauthServerUrl() + "user/get_user_info"
-            + "?access_token=" + map.get("access_token")
-            + "&oauth_consumer_key=" + appProperties.getQq().getAppId()
-            + "&openid=" + openIdMap.get("openid");
+                + "?access_token=" + map.get("access_token")
+                + "&oauth_consumer_key=" + appProperties.getQq().getAppId()
+                + "&openid=" + openIdMap.get("openid");
         String userInfoResponse = restTemplate.getForObject(userInfoUrl, String.class);
         if (null == userInfoResponse) {
             log.error("获取用户信息结果为null");

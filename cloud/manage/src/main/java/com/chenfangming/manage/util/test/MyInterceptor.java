@@ -48,7 +48,7 @@ public class MyInterceptor implements MethodInterceptor {
         // 为什么调用http://127.0.0.1:8089/jpademo/perform时有两次输出呢？
         // 因为在Audience里面用的是@Around，会拦截到两次
         System.out.println("method " + invocation.getMethod() + " is called on " + invocation.getThis() + " with args" +
-            " " + invocation.getArguments());
+                " " + invocation.getArguments());
         Object proceed = invocation.proceed();
         System.out.println("method " + invocation.getMethod() + " returns " + proceed);
         return proceed;

@@ -24,12 +24,10 @@ import java.util.Collection;
 @ToString(callSuper = true)
 public class CurrentUserInfo implements Serializable {
 
-    /** 序列化id **/
-    private static final long serialVersionUID = -1L;
-
     /** 登录用户 **/
     public static final String LOGIN_USER = "LOGIN_USER:";
-
+    /** 序列化id **/
+    private static final long serialVersionUID = -1L;
     /** 用户id **/
     private Long userId;
     /** 用户姓名 **/
