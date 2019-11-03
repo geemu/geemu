@@ -4,8 +4,7 @@ import com.chenfangming.manage.config.exception.BaseResponse;
 import com.chenfangming.manage.config.exception.BaseResponse.BaseResponseState;
 import com.chenfangming.manage.domain.model.CurrentUserInfo;
 import com.chenfangming.manage.service.AuthService;
-import com.chenfangming.manage.service.MenuService;
-import com.chenfangming.manage.service.RoleService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -29,11 +28,9 @@ import java.util.Collection;
 public class AuthInterceptor extends HandlerInterceptorAdapter {
 
     @Autowired
-    private RoleService roleService;
-    @Autowired
-    private MenuService menuService;
-    @Autowired
     private AuthService authService;
+    @Autowired
+    private ObjectMapper objectMapper;
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
@@ -51,7 +48,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         if (HttpStatus.NOT_FOUND.value() == response.getStatus()) {
             log.info("请求路径:{},不存在", request.getRequestURI());
             BaseResponse<Void> responseEntity = new BaseResponse<>(BaseResponseState.PATH_NOF_FOUND);
-            response.getWriter().println(responseEntity.toJson());
+            response.getWriter().println(objectMapper.writeValueAsString(responseEntity));
             return Boolean.FALSE;
         }
         String token = request.getHeader(CurrentUserInfo.LOGIN_USER);
@@ -59,7 +56,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
             log.info("用户未登录");
             response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
             BaseResponse<Void> responseEntity = new BaseResponse<>(BaseResponseState.NO_LOGIN);
-            response.getWriter().println(responseEntity.toJson());
+            response.getWriter().println(objectMapper.writeValueAsString(responseEntity));
             return Boolean.FALSE;
         }
         String key = CurrentUserInfo.LOGIN_USER + token;
@@ -69,7 +66,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
             log.error("用户未登录");
             response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
             BaseResponse<Void> responseEntity = new BaseResponse<>(BaseResponseState.NO_LOGIN);
-            response.getWriter().println(responseEntity.toJson());
+            response.getWriter().println(objectMapper.writeValueAsString(responseEntity));
             return Boolean.FALSE;
         }
         Collection<Long> allCanRoleList = authService.getAttributes(request.getMethod().toUpperCase(), request.getRequestURI());
@@ -78,7 +75,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         if (!can) {
             response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
             BaseResponse<Void> responseEntity = new BaseResponse<>(BaseResponseState.FORBIDDEN);
-            response.getWriter().println(responseEntity.toJson());
+            response.getWriter().println(objectMapper.writeValueAsString(responseEntity));
             return Boolean.FALSE;
         }
         return Boolean.TRUE;

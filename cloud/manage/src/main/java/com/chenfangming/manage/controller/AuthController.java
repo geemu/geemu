@@ -27,7 +27,7 @@ import javax.validation.Valid;
 @Validated
 @RestController
 @AllArgsConstructor
-@RequestMapping("user")
+@RequestMapping("auth")
 @Api(tags = "登录")
 public class AuthController {
 

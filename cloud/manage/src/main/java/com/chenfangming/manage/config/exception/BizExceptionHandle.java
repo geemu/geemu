@@ -23,7 +23,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  * @since 2019-06-14 22:39
  */
 @Slf4j
-@RestControllerAdvice
+@RestControllerAdvice("com.chenfangming")
 public class BizExceptionHandle implements ResponseBodyAdvice<Object> {
 
     @Autowired

@@ -8,8 +8,16 @@ spring:
         service-id: CLOUD-CONFIG
       name: common,manage
       profile: local
+  redis:
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1ms
+        min-idle: 8
 
 eureka:
   client:
     service-url:
       defaultZone: http://eureka.aliyun.chenfangming.com:8761/eureka
+

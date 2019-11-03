@@ -1,10 +1,5 @@
 package com.chenfangming.manage.config.exception;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -24,14 +19,6 @@ public class BaseResponse<T> {
 
     /** 序列化id **/
     private static final long serialVersionUID = -1L;
-    /** JACKSON **/
-    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-
-    static {
-        OBJECT_MAPPER.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        OBJECT_MAPPER.setDefaultPropertyInclusion(JsonInclude.Include.NON_NULL);
-        OBJECT_MAPPER.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-    }
 
     /** 返回状态码 **/
     private Integer code;
@@ -140,19 +127,6 @@ public class BaseResponse<T> {
         /** 返回提示信息 **/
         private String message;
 
-    }
-
-    /**
-     * 转JSON
-     * @return JSON
-     */
-    public String toJson() {
-        try {
-            return OBJECT_MAPPER.writeValueAsString(this);
-        } catch (JsonProcessingException e) {
-            log.error("转JSON异常:", e);
-        }
-        return null;
     }
 
 }
