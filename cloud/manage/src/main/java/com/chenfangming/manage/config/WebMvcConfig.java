@@ -68,8 +68,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
         // 自定义资源
         registry.addResourceHandler("index.html")
                 .addResourceLocations("classpath:/public/");
+
         registry.addResourceHandler("js/**")
                 .addResourceLocations("classpath:/static/js/");
+
         registry.addResourceHandler("img/**")
                 .addResourceLocations("classpath:/static/img/");
     }
